@@ -1,0 +1,160 @@
+﻿
+@Scripts.Render("~/Jquery/uploadDocuments")
+
+
+<link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<style>
+    .thumbnail {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .caption {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgba(66, 139, 202, 0.75);
+        width: 100%;
+        height: 100%;
+        padding: 2%;
+        display: none;
+        text-align: center;
+        color: #fff !important;
+        z-index: 2;
+    }
+
+    .timg {
+        display: none;
+        border: 2px solid #263E53;
+        width: 180px !important;
+        height: 150px !important;
+    }
+
+    .addview {
+        display: block;
+    }
+</style>
+
+<div class="modal fade" id="divUploadDocument" tabindex="-1" role="dialog" aria-labelledby="divUploadDocument" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue"><i class="fa fa-upload" aria-hidden="true"></i> Upload Documents </h4>
+            </div>
+            <div class="modal-body pre-scrollable">
+                <input type="hidden" id="hdnVehicleIdForUploadDocs" value="0" />
+                <input type="hidden" id="hdnDriverIdForUploadDocs" value="0" />
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> Select Action</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4"> Docuement Type</div>
+                            <div class="col-md-6 form-group icon-addon addon-md">
+                                <select name="ddlDocumentType" id="ddlDocumentType" class="form-control">
+                                    <option selected="selected" value="0">SELECT</option>
+
+                                </select>
+                                @*<i class="fa fa-file"></i>*@
+                            </div>
+
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4">Select Document</div>
+                            <div class="col-md-6 form-group icon-addon addon-md">
+                                <input type="file" id="fuUploadDocument" />
+
+                            </div>
+
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1" style="color:red;">Note:</div>
+                            <div class="col-md-10" style="color:blue;font-size:12px;">Please upload only [JPG], [JPEG], [PNG] or [PDF] documents only with maximum size of 4MB .</div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <div class="col-md-1"><a href="#" class="btn btn-info" id="btnUploadDocs">Upload</a></div>
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-list" aria-hidden="true"></i> View Uploaded Documents</h3> </div>
+                    <div class="panel-body">
+                        <div id="divUploadedDocsDetails">
+                            No Document available!!
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divViewDocuments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">View Your Uploaded Documents</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">&nbsp;</div>
+                        <div class="col-md-8" id="divViewImg">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h5>Your Document</h5>
+                                    <p>
+                                        <a href="#" id="hrfview" class="label label-danger" rel="tooltip" onclick="viewImageFile()" title="View">View</a> <br />
+                                        <a href="#" id="hrfdwn" class="label label-default" rel="tooltip" title="Download now">Download</a>
+                                    </p>
+                                </div>
+                                <img id="imgView" class="img-rounded img-responsive timg" alt="Your document" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">&nbsp;</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" id="btnclsViewDocs" onclick="closePopups('#divViewDocuments')">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br /><br />
+            <div class="modal-body" style="text-align:center">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnclsmymodel" onclick="closePopups('#myModal')">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

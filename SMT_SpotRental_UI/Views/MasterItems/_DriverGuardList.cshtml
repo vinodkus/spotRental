@@ -1,0 +1,147 @@
+﻿@model SMT.SpotRental.UI.Response.DriverGuardResponse
+@{
+    Layout = null;
+    var iCount = 0;
+}
+<table class="table table-bordered table-striped dataTable no-footer" id="tblDriverGuardList" role="grid" aria-describedby="tblDriverGuardList">
+   @if (Model != null && Model.listDriverGuard != null && Model.listDriverGuard.Count > 0)
+   {
+        <thead class="header" style="background-color: #3c8dbc; color: white;">
+            <tr role="row">
+               
+                <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    ID
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Driver/Guard Name
+                </th>
+               
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Employee Type
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Licence No
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Vendor Name
+                </th>
+               
+                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Status
+                </th>   
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Details
+                </th>             
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                  Upload Document
+                </th>                
+              
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Edit
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach (var items in Model.listDriverGuard)
+           {
+               iCount = iCount + 1;
+               var fullName = string.Format("{0} {1}", @items.FirstName, @items.LastName);
+                <tr>
+                    <input type="hidden" id="hdnLocalCode" />
+                    <input type="hidden" id="hdnDriverGuardID"  />
+                    <input type="hidden" id="hdnDriverGuardId_@items.DriverGuardId" value="@items.DriverGuardId" />
+                    <input type="hidden" id="hdnVendorId_@items.DriverGuardId" value="@items.VendorId" />
+                    <input type="hidden" id="hdnVendorName_@items.DriverGuardId" value="@items.VendorName" />
+                    <input type="hidden" id="hdnLocCode_@items.DriverGuardId" value="@items.LocCode" />
+                    <input type="hidden" id="hdnLocationName_@items.DriverGuardId" value="@items.LocationName" />
+                    <input type="hidden" id="hdnEmpCode_@items.DriverGuardId" value="@items.EmpCode" />
+                    <input type="hidden" id="hdnFirstName_@items.DriverGuardId" value="@items.FirstName" />
+                    <input type="hidden" id="hdnLastName_@items.DriverGuardId" value="@items.LastName" />
+                    <input type="hidden" id="hdnEmpType_@items.DriverGuardId" value="@items.EmpType" />
+                    <input type="hidden" id="hdnPermanentAddress_@items.DriverGuardId" value="@items.Address" />
+                    <input type="hidden" id="hdnPinCode_@items.DriverGuardId" value="@items.PinCode" />
+                    <input type="hidden" id="hdnMobileNo_@items.DriverGuardId" value="@items.MobileNo" />
+                    <input type="hidden" id="hdnFatherName_@items.DriverGuardId" value="@items.FatherName" />
+                    <input type="hidden" id="hdnDOB_@items.DriverGuardId" value="@((items.DOB == DateTime.MinValue) ? "N/A" : items.DOB.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnActive_@items.DriverGuardId" value="@items.Active" />
+                    <input type="hidden" id="hdnContactPerson_@items.DriverGuardId" value="@items.ContactPerson" />
+                    <input type="hidden" id="hdnPresentAddress_@items.DriverGuardId" value="@items.ContactPersonAddress" />
+                    <input type="hidden" id="hdnLicenceNo_@items.DriverGuardId" value="@items.LicenceNo" />
+                    <input type="hidden" id="hdnLicenceBeltExpiryDate_@items.DriverGuardId" value="@((items.LicenceExpiryDate == DateTime.MinValue) ? "N/A" : items.LicenceExpiryDate.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnDOJ_@items.DriverGuardId" value="@((items.DOJ == DateTime.MinValue) ? "N/A" : items.DOJ.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnDOL_@items.DriverGuardId" value="@((items.DOL == DateTime.MinValue) ? "N/A" : items.DOL.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnModOn_@items.DriverGuardId" value="@((items.ModOn == DateTime.MinValue) ? "N/A" : items.ModOn.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnModBy_@items.DriverGuardId" value="@items.ModBy" />
+                    <input type="hidden" id="hdnHeight_@items.DriverGuardId" value="@items.Height" />
+                    <input type="hidden" id="hdnWeight_@items.DriverGuardId" value="@items.Weight" />
+                    <input type="hidden" id="hdnSkinColor_@items.DriverGuardId" value="@items.SkinColor" />
+                    <input type="hidden" id="hdnMaritalStatus_@items.DriverGuardId" value="@items.MaritalStatus" />
+                    <input type="hidden" id="hdnEducation_@items.DriverGuardId" value="@items.Education" />
+                    <input type="hidden" id="hdnFingerPrint_@items.DriverGuardId" value="@items.FingerPrint" />
+                    <input type="hidden" id="hdnLeftFingerPrint_@items.DriverGuardId" value="@items.LeftFingerPrint" />
+                    <input type="hidden" id="hdnRightFingerPrint_@items.DriverGuardId" value="@items.RightFingerPrint" />
+                    <input type="hidden" id="hdnBadgeNo_@items.DriverGuardId" value="@items.BadgeNo" />
+                    <input type="hidden" id="hdnBadgeExpiryDate_@items.DriverGuardId" value="@((items.BadgeExpiryDate == DateTime.MinValue) ? "N/A" : items.BadgeExpiryDate.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnPassword_@items.DriverGuardId" value="@items.Password" />
+                    <input type="hidden" id="hdnCreatedOn_@items.DriverGuardId" value="@((items.CreatedOn == DateTime.MinValue) ? "N/A" : items.CreatedOn.ToString("MM-dd-yyyy"))" />
+                    <input type="hidden" id="hdnCreatedBy_@items.DriverGuardId" value="@items.CreatedBy" />
+                    <input type="hidden" id="hdnPoliceVerification_@items.DriverGuardId" value="@items.PoliceVerification" />
+                    <input type="hidden" id="hdnAddVerification_@items.DriverGuardId" value="@items.AddVerification" />
+
+                    <td>@items.DriverGuardId </td>
+                    
+                    <td>@fullName</td>
+                    
+                    @if (items.EmpType != null && items.EmpType == "D")
+                    {
+                        <td>
+                            Driver
+                        </td>
+                    }
+                    else
+                    {
+                        <td>Guard</td>
+                    }
+                    <td>@items.LicenceNo</td>
+                    <td>@items.VendorName</td>
+                     
+                    
+                    @if (items.Active != null && items.Active == "Y")
+                    {
+                        <td style="text-align:center">
+                            <a href="#" class="btn btn-success" title="Status">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center"><a href="#" class="btn btn-danger" title="Status"> <i class="glyphicon glyphicon-remove"></i></a> </td>
+                    }
+
+                    <td style="text-align:center"><a href="#" class="btn btn-success" onclick="viewDriverGuardDetails(@items.DriverGuardId)"> <i class="glyphicon glyphicon-search"></i> </a></td>
+                    <td style="text-align:center"><a href="#" class="btn btn-info" onclick="openDocumentUploadPopup(@items.DriverGuardId)"> <i class="glyphicon glyphicon-open-file"></i> </a></td>                    
+                    <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="openModelToUpdateDriverGuard(@items.DriverGuardId)"> <i class="glyphicon glyphicon-edit"></i> </a> </td>
+                    @*<td style="text-align:center"><a href="#" class="btn btn-danger" onclick="openModelToDeleteDriverGuard('@items.DriverGuardId','@items.EmpType','@fullName' )"> <i class="glyphicon glyphicon-trash"></i> </a> </td>*@
+                    <td style="text-align:center"><a href="#" class="btn btn-success" onclick="deleteDriverGuard('@items.DriverGuardId','@items.EmpType','@fullName')"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></a></td>
+                    
+                </tr>
+           }
+        </tbody>
+
+   }
+   else
+
+   {
+    <tbody>
+        <tr><td> No Records found!!</td></tr>
+    </tbody>
+   }
+</table>
+@Html.Partial("_UploadDocuments")
+
+
+

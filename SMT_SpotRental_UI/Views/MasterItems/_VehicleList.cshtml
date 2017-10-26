@@ -1,0 +1,124 @@
+﻿@model SMT.SpotRental.UI.Response.VehicleMasterResponse
+@{
+    Layout = null;
+    var iCount = 0;
+}
+
+<table class="table table-bordered table-striped dataTable no-footer" id="tblVendorList" role="grid" aria-describedby="example1_info">
+    @if (Model != null && Model.listVehicle != null && Model.listVehicle.Count > 0)
+    {
+        <thead class="header" style="background-color: #3c8dbc; color: white;">
+            <tr role="row">
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Sr. No.: activate to sort column ascending">
+                    Sr. No.
+                </td>
+                <td class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="descending">
+                    Location Name
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Vendor Name
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Vehicle No
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Reg. No.
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Vehicle Type
+                </td>
+                @*<td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Billing Name
+                </td>*@
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Status
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Details
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Upload Docs.
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Edit
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var items in Model.listVehicle)
+            {
+                iCount = iCount + 1;
+                <tr>
+                    <input type="hidden" id="hdnVendorId_@items.VehicleID" value="@items.VendorID" />
+                    <input type="hidden" id="hdnLocationCode_@items.VehicleID" value="@items.LocCode" />
+                    <input type="hidden" id="hdnVehicleNo_@items.VehicleID" value="@items.VehicleNo" />
+                    <input type="hidden" id="hdnRegistrationNo_@items.VehicleID" value="@items.RegistrationNo" />
+                    <input type="hidden" id="hdnRC_Year_@items.VehicleID" value="@items.RC_Year" />
+                   
+                     <input type="hidden" id="hdnVehicleType_@items.VehicleID" value="@items.VehicleType" />
+                    <input type="hidden" id="hdnVendorName_@items.VehicleID" value="@items.VendorName" />
+                    <input type="hidden" id="hdnCapacity_@items.VehicleID" value="@items.Capacity" />
+                    <input type="hidden" id="hdnDriverName_@items.VehicleID" value="@items.DriverName" />
+                    <input type="hidden" id="hdnBillingPlanName_@items.VehicleID" value="@items.BillingPlanName" />
+                    <input type="hidden" id="hdnLocationName_@items.VehicleID" value="@items.LocationName" />
+
+                    <input type="hidden" id="hdnActive_@items.VehicleID" value="@items.Active" />
+                    <input type="hidden" id="hdnBillingPlanId_@items.VehicleID" value="@items.BillingPlanId" />
+                    <input type="hidden" id="hdnEffectiveDate_@items.VehicleID" value="@items.EffectiveDate.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnFit_Crt_Expiry_Date_@items.VehicleID" value="@items.Fit_Crt_Expiry_Date.ToString("MM-dd-yyyy")" />
+
+                    <input type="hidden" id="hdnGPSInstallDate_@items.VehicleID" value="@items.GPSInstallDate.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnGPSInstalledBy_@items.VehicleID" value="@items.GPSInstalledBy" />
+                    <input type="hidden" id="hdnINS_Expiry_Date_@items.VehicleID" value="@items.INS_Expiry_Date.ToString("MM-dd-yyyy")" />
+
+                    <input type="hidden" id="hdnSubVendor_@items.VehicleID" value="@items.SubVendor" />
+                    <input type="hidden" id="hdnIsGPSInstalled_@items.VehicleID" value="@items.IsGPSInstalled" />
+                    <input type="hidden" id="hdnKMLimit_@items.VehicleID" value="@items.KMLimit" />
+                    <input type="hidden" id="hdnManufacturerDate_@items.VehicleID" value="@items.ManufacturerDate.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnEffectiveDate_@items.VehicleID" value="@items.EffectiveDate.ToString("MM-dd-yyyy")" />
+
+                    <input type="hidden" id="hdnODO_Reading_@items.VehicleID" value="@items.ODO_Reading" />
+                    <input type="hidden" id="hdnOwn_Attached_@items.VehicleID" value="@items.Own_Attached" />
+                    <input type="hidden" id="hdnPermit_Expiry_Date_@items.VehicleID" value="@items.Permit_Expiry_Date.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnPUC_Expiry_Date_@items.VehicleID" value="@items.PUC_Expiry_Date.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnVehicleTypeID_@items.VehicleID" value="@items.VehicleTypeID" />
+                   
+                    <input type="hidden" id="hdnRemarks_@items.VehicleID" value="@items.Remarks" />
+
+
+
+                    <td>@iCount</td>
+                    <td>@items.LocationName</td>
+                    <td>@items.VendorName</td>
+                    <td>@items.VehicleNo</td>
+                    <td>@items.RegistrationNo</td>
+                    <td>@items.VehicleType</td>
+                    @*<td>@items.BillingPlanName</td>*@
+                    @if (items.Active != null && items.Active == "Y")
+                    {
+                        <td style="text-align:center">
+                            Active
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center">De-Active</td>
+                    }
+                    <td style="text-align:center"><a href="#" class="btn btn-success" onclick="viewVehicleDetails(@items.VehicleID)"> <i class="glyphicon glyphicon-search"></i> </a></td>
+                    <td style="text-align:center"><a href="#" class="btn btn-info" onclick="openDocumentUploadPopup(@items.VehicleID)"> <i class="glyphicon glyphicon-open-file"></i> </a></td>
+                    <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="openModelToUpdateVendor(@items.VehicleID)"> <i class="glyphicon glyphicon-edit"></i> </a> </td>
+
+                </tr>
+            }
+        </tbody>
+    }
+    else
+
+    {
+        <tbody>
+            <tr><td> No Records found!!</td></tr>
+        </tbody>
+    }
+</table>
+@Html.Partial("_UploadDocuments")
+

@@ -1,0 +1,103 @@
+﻿@model SMT.SpotRental.UI.Response.VendorMasterResponse
+@{
+    Layout = null;
+    var iCount = 0;
+}
+
+<table class="table table-bordered table-striped dataTable no-footer" id="tblVendorList" role="grid" aria-describedby="example1_info">
+    @if (Model != null && Model.listVendor != null && Model.listVendor.Count > 0)
+    {
+        <thead class="header" style="background-color: #3c8dbc; color: white;">
+            <tr role="row">
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Sr. No.: activate to sort column ascending">
+                    Sr. No.
+                </td>
+                <td class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="descending">
+                    Location Code
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Company Name
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Short Name
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Prefix Tag
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Status
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    View
+                </td>
+                <td class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                    Edit
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var items in Model.listVendor)
+            {
+                iCount = iCount + 1;
+                <tr>
+
+                    <input type="hidden" id="hdnVendorId_@items.VendorId" value="@items.VendorId" />
+                    <input type="hidden" id="hdnLocationCode_@items.VendorId" value="@items.LocationCode" />
+                    <input type="hidden" id="hdnAddress1_@items.VendorId" value="@items.Address1" />
+                    <input type="hidden" id="hdnAddress2_@items.VendorId" value="@items.Address2" />
+                    <input type="hidden" id="hdnStatus_@items.VendorId" value="@items.IsActive" />
+
+
+                    <input type="hidden" id="hdnCity_@items.VendorId" value="@items.City" />
+                    <input type="hidden" id="hdnEmailID_@items.VendorId" value="@items.EmailID" />
+                    <input type="hidden" id="hdnFName_@items.VendorId" value="@items.FName" />
+                    <input type="hidden" id="hdnMName_@items.VendorId" value="@items.MName" />
+
+                    <input type="hidden" id="hdnLName_@items.VendorId" value="@items.LName" />
+                    <input type="hidden" id="hdnPhone1_@items.VendorId" value="@items.Phone1" />
+                    <input type="hidden" id="hdnPhone2_@items.VendorId" value="@items.Phone2" />
+                  
+
+                    <input type="hidden" id="hdnShortName_@items.VendorId" value="@items.ShortName" />
+                    <input type="hidden" id="hdnPrefixTag_@items.VendorId" value="@items.PrefixTag" />
+                    <input type="hidden" id="hdnCompanyName_@items.VendorId" value="@items.CompanyName" />
+                    <input type="hidden" id="hdnEffectiveDate_@items.VendorId" value="@items.EffectiveDate.ToString("MM-dd-yyyy")" />
+
+                    <input type="hidden" id="hdnValidFrom_@items.VendorId" value="@items.ValidFrom.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnValidTo_@items.VendorId" value="@items.ValidTo.ToString("MM-dd-yyyy")" />
+                    <input type="hidden" id="hdnZIPCode_@items.VendorId" value="@items.ZIPCode" />
+
+                    <td>@iCount</td>
+                    <td>@items.LocationCode</td>
+                    <td>@items.CompanyName</td>
+                    <td>@items.ShortName</td>
+                    <td>@items.PrefixTag</td>
+
+                    @if (items.IsActive != null && items.IsActive == "Y")
+                    {
+                        <td style="text-align:center" >
+                            <a href="#" class="btn btn-success" onclick="changeVendorStatus(@items.VendorId)" title="Click here to change status.">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="changeVendorStatus(@items.VendorId)" title="Click here to change status."> <i class="glyphicon glyphicon-remove"></i></a> </td>
+                    }
+
+                    <td style="text-align:center"><a href="#" class="btn btn-info" onclick="viewVendorDetails(@items.VendorId)"> <i class="glyphicon glyphicon-search"></i> </a></td>
+                    <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="openPoptotoUpdateVendorDetails(@items.VendorId)"> <i class="glyphicon glyphicon-edit"></i> </a></td>
+
+                </tr>
+            }
+        </tbody>
+    }
+    else
+
+    {
+        <tbody>
+            <tr><td> No Records found!!</td></tr>
+        </tbody>
+    }
+</table>

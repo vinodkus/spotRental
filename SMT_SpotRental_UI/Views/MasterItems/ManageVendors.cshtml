@@ -1,0 +1,68 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/Jquery/manageVendors")
+ 
+<div style="" class="content">
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-user"></i>&nbsp;Manage Vendor
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="box box-default collapsed-box box-solid box-header with-border">
+                <div class="container-fluid">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Location :</label>
+                        </div>
+                        <div class="form-group">
+                            <select name="ddlLocation" id="ddlLocation" class="form-control" style="width:300px;">
+                                <option value="0">SELECT LOCATION</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Mobile No :</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="txtMobileNo" type="text" maxlength="10" id="txtMobileNo" tabindex="1" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">First Name :</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="txtFirstName" type="text" maxlength="30" id="txtFirstName" tabindex="2" class="form-control" style="width:80px;">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Last Name :</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="txtLastName" type="text" maxlength="30" id="txtLastName" tabindex="3" class="form-control" style="width:100px;">
+                        </div>
+                        <div class="form-group pull-right">
+                            <input type="submit" name="btnSearch" value="Search" id="btnSearch" tabindex="4" class="btn btn-primary btn-sm">
+                            <input type="submit" name="btnAdd" value="Add Vendor" id="btnAdd" tabindex="5" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+
+            <div class="box-body">
+                <div id="divInfo" style="display:block;text-align:center;color:red">
+                    Please select above criteria and search vendor!
+                </div>
+                <div id="divVendorList">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @Html.Partial("_AddUpdateVendor")
+</div>
+
+@Html.Partial("_ViewVendorDetails")

@@ -1,0 +1,41 @@
+﻿@model SMT.SpotRental.UI.Response.UploadedDocsResponse
+@{
+    var iCount = 0;
+}
+
+
+<table id="tblViewUploadedDocs" class="table table-md">
+    @if (Model.listUploadedDocs != null && Model.listUploadedDocs.Count > 0)
+    {
+        <thead style="font-size:11px;">
+            <tr>
+                <th>Sr.No</th>
+                <th>Vehicle No</th>
+                <th>Document Name</th>
+                <th>View</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var items in Model.listUploadedDocs)
+            {
+                iCount = iCount + 1;
+                <tr>
+                    <td>@iCount </td>
+                    <td>@items.VehicleNo</td>
+                    <td>@items.DocumentName</td>
+                    <td><a href="#" class="btn btn-info" onclick="viewUploadedImage('@items.DocumentFileName')"><i class="glyphicon glyphicon-search"></i></a></td>
+                    <td><a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                </tr>
+
+            }
+        </tbody>
+    }
+    else
+    {
+        <tr>
+            <td colspan="5">No Document available!! </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SPOT Rental | Session Expired</title>
+    @Styles.Render("~/Content/font")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Plugin/scripts")
+</head>
+<body>
+    <div id="divSession" >
+        <div class="jumbotron text-xs-center">
+            <h2 class="display-3">Session Expired!!</h2>
+            <br />
+            <p class="lead">Your session has been timed out. Please  <a rel="nofollow" class="btn btn-primary btn-sm" href="@Url.Action("Index","Account")" role="button">click here </a> to login again</p>
+
+        </div>
+    </div>
+</body>
+</html>

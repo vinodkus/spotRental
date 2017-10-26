@@ -1,0 +1,84 @@
+﻿
+<div id="divSearchSupervisor_Panel">
+    <div id="divSearchSupervisor" class="modal" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Search Your Supervisor</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="border:none">
+                                <div class="col-md-6">
+                                    First Name:
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="txtFName_S" />
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="material-switch pull-right">
+                                        <input id="cbFName" name="cbFName" onclick="enableDisableSearchCriteria(this.id, '#txtFName_S')" type="checkbox" checked="checked" />
+                                        <label for="cbFName" class="label-success"></label>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="border:none">
+                                <div class="col-md-6">
+                                    Last Name:
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="txtLName_S" disabled="disabled" />
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="material-switch pull-right">
+                                        <input id="cbLName" name="cbLName" onclick="enableDisableSearchCriteria(this.id, '#txtLName_S')" type="checkbox" />
+                                        <label for="cbLName" class="label-success"></label>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="border:none">
+                                <div class="col-md-6">
+                                    Mobile No:
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" id="txtMobileNo_S" disabled="disabled" />
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="material-switch pull-right">
+                                        <input id="cbMobile" name="cbMobile" onclick="enableDisableSearchCriteria(this.id, '#txtMobileNo_S')" type="checkbox" />
+                                        <label for="cbMobile" class="label-success"></label>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSearchSupervisor" class="btn btn-info">Search</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                <hr style=" border: 0;height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+                <div class="modal-body pre-scrollable" id="divShowList">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

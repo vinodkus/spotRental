@@ -1,0 +1,94 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jquery/dataTables")
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/dataTables")
+
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/Jquery/manageRole")
+
+
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-list"></i>&nbsp;Manage Roles
+            </h3>
+        </div>
+        <div class="box box-default collapsed-box box-solid box-header with-border">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAddRole()"><i class="glyphicon glyphicon-plus-sign"></i> Add New Role</a></div>
+            </div>
+            <div class="box-body" style="display:block">
+                <div id="divRoleList">
+                    @*Binding role list from view /model /controller as well as Jquery[see getAllRoles() : manageAccess.js ] by calling partial view*@
+                    @**Should be avoided by Partial View# Need to replace this.. *@
+                    @Html.Partial("_RoleList", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divAddEditRoles" tabindex="-1" role="dialog" aria-labelledby="divAddEditRoles" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue"><i class="fa fa-role" aria-hidden="true"></i> Add/Edit Roles </h4>
+            </div>
+            <div class="modal-body pre-scrollable">
+                <input type="hidden" id="hdnRoleIDForUpdate" value="0" />
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> Role Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4">Role Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-6 form-group icon-addon addon-md">
+                                <input type="text" id="roleName" class="form-control" placeholder="Role name" maxlength="50" />
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4">Status</div>
+                            <div class="col-md-6 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbStatus" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                            </div>
+
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <div class="col-md-1"><a href="#" class="btn btn-info" id="btnUpdate">Save Role</a></div>
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    ViewBag.Title = "SupervisorBucket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/BS_CAL")
+@Scripts.Render("~/Jquery/supervisorbucket")
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-list"></i>&nbsp;Approval Detail
+            </h3>
+
+        </div>
+        <div class="box-body">
+
+
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a id="Tbpact" data-toggle="tab" href="#performaction" aria-expanded="true" onclick="getPrimaryList()">Perform Action</a></li>
+                <li class=""><a id="Tbaccept" data-toggle="tab" href="#approved"   aria-expanded="false" onclick="getApprovedList()">Approved List</a></li>
+                <li class=""><a id="Tbrej" data-toggle="tab" href="#reject" aria-expanded="false" onclick="getRejectedList()" >Rejected List</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="performaction" class="tab-pane fade active in">
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divPerformAction">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="approved" class="tab-pane fade">
+
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divApproved">
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="reject" class="tab-pane fade">
+
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divRejected">
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.Partial("_ViewTripDetails");
+</div>
+
+

@@ -1,0 +1,134 @@
+﻿@model SMT.SpotRental.UI.Models.LoginViewModel
+
+@{
+    Layout = null;
+    var loginError = ViewBag.Error;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Smart Transport | Login</title>
+    @Styles.Render("~/Content/font-awesome")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/AdminLTE")
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/Jquery/Pages")
+
+
+    <style>
+        input[type="checkbox"] {
+            vertical-align: middle;
+        }
+
+        .form-control {
+            padding-left: 10px;
+        }
+
+        #forgotpwd-box {
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #e80c4d;
+        }
+
+        .validation-summary-errors {
+            color: #e80c4d;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+</head>
+<body style="background-image: url(../../Images/bakground.jpg); background-size: cover;">
+    <div id="loader" class="enableLoader" style="display:none;"></div>
+    <div class="overlay enableLoader" style="display:none;"></div>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="login-box">
+                <div class="login-logo">
+                </div>
+                <!-- /.login-logo -->
+                <div id="login-box" style="border-radius: 40px; background:#737373 none repeat scroll 0 0" class="login-box-body">
+                    <h3 class="login-logo">
+                        <a href="#">
+                            <img src="~/Images/stransportsmallBlack.png" />
+                        </a>
+                    </h3>
+                    <hr />
+                    <h3 class="header" style="text-align: left;color:white">
+                        <i class="ag ag-sign-in "></i>Sign in
+                    </h3>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "User Id / Email Id" })
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            @if (loginError != null)
+                            {
+                                <label id="lblMsg" class="label-danger">@loginError</label>
+                                loginError = null;
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-xs-12">
+                            <input type="submit" id="btnLogin" class="btn btn-primary btn-block btn-flat" style="background-color: teal;font-weight: bold;">
+
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a id="anForgetPwd" class="link" data-target="#divForgetPassword" data-toggle="modal">
+                                Forget Password
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a id="anEmpReg" href="#" class="link" >Register Employee</a>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+
+    }
+
+    @Html.Partial("_EmployeeRegistration")
+
+    @Html.Partial("_ForgetPassword")
+    <script>
+        urlPref = '@ViewBag.URL_PREF'
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SPOT Rental |Invalid Access</title>
+    @Styles.Render("~/Content/font")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Plugin/scripts")
+</head>
+<body>
+    <div id="divSession" >
+        <div class="jumbotron text-xs-center">
+            <h2 class="display-3">Invalid Access</h2>
+            <br />
+            <p class="lead">You are trying to access invalid page of application. Please  <a rel="nofollow" class="btn btn-primary btn-sm" href="@Url.Action("Index","Account")" role="button">click here </a> to start.</p>
+
+        </div>
+    </div>
+</body>
+</html>

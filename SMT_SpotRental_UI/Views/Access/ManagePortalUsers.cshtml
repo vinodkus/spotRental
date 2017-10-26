@@ -1,0 +1,156 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jquery/dataTables")
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/dataTables")
+
+@Styles.Render("~/Content/addons")
+@Styles.Render("~/Content/sweetalert")
+@Scripts.Render("~/Jquery/manageUsersList")
+@Scripts.Render("~/Jquery/sweetalert")
+
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-user"></i>&nbsp;Manage Users
+            </h3>
+        </div>
+        <div class="box box-default collapsed-box box-solid box-header with-border">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAddRole()"><i class="glyphicon glyphicon-plus-sign"></i> Add New User</a></div>
+            </div>
+            <div class="box-body" style="display:block">
+                <div id="divUserList">
+                    <!--User List By Partial View -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divAddEditUser" tabindex="-1" role="dialog" aria-labelledby="divAddEditUser" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue"><i class="fa fa-role" aria-hidden="true"></i> Add/Edit User </h4>
+            </div>
+            <div class="modal-body pre-scrollable">
+                <input type="hidden" id="hdnUserIdForUpdate" value="0" />
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> User Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2">User Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="UserName" class="form-control" placeholder="User name" maxlength="20" />
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <div class="col-md-2">Email ID<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="EmailID" class="form-control" placeholder="Email ID " maxlength="50" />
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Mobile No<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="MobileNo" class="form-control" placeholder="Mobile name" maxlength="10" />
+                                <i class="glyphicon glyphicon-phone"></i>
+                            </div>
+                            <div class="col-md-2">Office Location<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <select name="ddlLocation" id="ddlLocation" class="form-control">
+                                    <option value="0">SELECT LOCATION</option>
+                                </select>
+                                <i class="glyphicon glyphicon-home"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Gender<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbGender" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="info" data-on="M" data-off="F">
+                            </div>
+                            <div class="col-md-2">Address<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <textarea id="Address"  class="form-control" placeholder="Address " maxlength="200" ></textarea>
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Roles<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group">
+                                <div class="btn-group" data-toggle="buttons">
+
+                                    <label class="btn btn-success active">
+                                        <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+                                    <label class="btn btn-info">
+                                        <input type="radio" name="options" id="option2" autocomplete="off">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="options" id="option2" autocomplete="off">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+                                    <label class="btn btn-warning">
+                                        <input type="radio" name="options" id="option2" autocomplete="off">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+                                    <label class="btn btn-danger">
+                                        <input type="radio" name="options" id="option2" autocomplete="off">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">Vendor<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <select name="ddlLocation" id="ddlVendor" class="form-control">
+                                    <option value="0">SELECT VENDOR</option>
+                                </select>
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+
+                        </div>
+                        <br />
+                        
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <div class="col-md-1"><a href="#" class="btn btn-info" id="btnUpdate">Save User</a></div>
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,128 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+@Scripts.Render("~/Jquery/profile")
+<script>
+    BaseAddress = '@ViewBag.OfficeLocation'
+</script>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-edit"></i>&nbsp;Edit Profile
+            </h3>
+        </div>
+        <div id="divIdCreate" style="padding:20px">
+            <div class="row">
+
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">First Name <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.FName, "", new { @class = "form-control", @maxlength = "10", @disabled = "disabled" })
+                </div>
+
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Middle Name </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.MName, "", new { @class = "form-control", @maxlength = "10", @disabled = "disabled" })
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Last Name <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.LName, "", new { @class = "form-control", @maxlength = "10", @disabled = "disabled" })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Employee Code/ID<span style="color: red;">*</span> </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.EmployeeCode, "", new { @class = "form-control", @maxlength = "30", @disabled = "disabled" })
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="txtMobileNo">Mobile No <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.MobileNo, "", new { @class = "form-control", @maxlength = "10" })
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="txtEmailId">Email Id <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.EmailID, "", new { @class = "form-control", @maxlength = "150", @disabled = "disabled" })
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Gender </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <select id="ddlGender" class="form-control" style="font-size:11px;">
+                        <option value="0">--Select Gender--</option>
+                        <option selected="selected" value="M">Male</option>
+                        <option value="F">Female</option>
+
+                    </select>
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Credit Card </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.CreditCard, "", new { @class = "form-control", @maxlength = "16", @disabled = "disabled" })
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Designation <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.DesignationName, "", new { @class = "form-control", @maxlength = "16", @disabled = "disabled" })
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Supervisor Name </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    @Html.TextBoxFor(m => m.userDetails.SupervisorName, "", new { @class = "form-control", @maxlength = "16", @disabled = "disabled" })
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Base Office <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <select name="BaseOffice" id="ddlBaseOffice" class="form-control " style="font-size:11px;">
+                        <option value="0">--SELECT--</option>
+                    </select>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Home Address </label>
+                </div>
+                <div class="col-md-10 ">
+                    @Html.TextBoxFor(m => m.userDetails.HomeAddress, "", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 pull-right" style="text-align:right">
+                 <input type="submit" value="Update" id="btnUpdateProfile" class="btn btn-info"/>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

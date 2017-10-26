@@ -1,0 +1,128 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    var iCountControl = TempData["RouteCount"];
+    TempData.Keep("RouteCount");
+}
+
+@Scripts.Render("~/bundles/BS_CAL")
+
+
+@if (Model != null && Model.routeDetails != null && Model.routeDetails.routeList != null)
+{
+    <div id="divRoute_@iCountControl" class="col-lg-12 mainContainer">
+        <span id="span0"></span>
+        <div id="box" class="box box-warning">
+            <div id="divDelete_@iCountControl" class="cross" onclick="deleteRouteDetail(@iCountControl)"></div>
+            <div class="box-header with-border">
+                <button id="btnRepeat_@iCountControl" class="btn btn-primary repeatbutton" onclick="renderRouteDetail()">Repeat</button>
+            </div>
+            <div class="box-body">
+                <div id="colbodyleft" class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <div id="rowRouteTypemain" class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                            <label class="control-label">
+                                Route Type<span style="color: red;">*</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                            <select id="ddlRouteTypeControl_@iCountControl" name="ddlRouteTypeControl_@iCountControl" class="form-control ">
+                                <option value="0">--Select--</option>
+                                <option value="Pick/Drop">Pick/Drop</option>
+                                <option value="Disposal">Disposal</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2"><label class="control-label">Car Type<span style="color: red;">*</span></label></div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                            <select id="ddlCarTypeControl_@iCountControl" onchange="showhideOtherCarType(@iCountControl)" name="ddlCarTypeControl_@iCountControl" class="form-control">
+                                <option value="0">--Select--</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div id="divCarTypeOther_@iCountControl" class="col-xs-6 col-sm-2 col-md-2 col-lg-2 hidediv" style="display:none;">
+                            <label id="lblWhyOtherLable" class="control-label">Specify Other<span style="color: red;">*</span></label>
+                        </div>
+                        <div id="divCarTypeNameOther_@iCountControl" class="col-xs-6 col-sm-2 col-md-2 col-lg-2 hidediv" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.CarTypeNameOther, new { @class = "form-control",@id= "CarTypeNameOther_"+ iCountControl })
+                        </div>
+                    </div>
+                    <div id="divRentalCity" class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2"><label class="control-label">Rental City<span style="color: red;">*</span></label></div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" id="rowrentelcityControl">
+                            <select onchange="bindSourceDestination(@iCountControl)" id="ddlRentalCity_@iCountControl" name="ddlRentalCity_@iCountControl" class="form-control ">
+                                <option value="0">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-8 col-lg-8 hidediv" id="divRentalCityOther_@iCountControl" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.RentalCityNameOther, new { @class = "form-control googleApiCity", @placeholder = "Enter a location", @autocomplete = "off", @id = "RentalCityNameOther_" + iCountControl })
+                        </div>
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                            <label class="control-label">Reporting Date Time<span style="color: red;">*</span></label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.ReportingDate, new { @class = "form-control datepicker", @autocomplete = "off", @id = "ReportingDate_" + iCountControl, @placeholder="DD-MM-YYYY" })
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                            <select id="ddlReportingTime_@iCountControl" name="ddlReportingTime_@iCountControl" class="form-control "></select>
+                        </div>
+                    </div>
+                    <div id="divSourcemain_@iCountControl" class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                            <label class="control-label">Source<span style="color: red;">*</span></label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" id="divSourceControl_@iCountControl">
+                            <select onchange="bindDestination(@iCountControl)" id="ddlSourceControl_@iCountControl" name="ddlSourceControl_@iCountControl" class="form-control">
+                                <option value="0">--Select--</option>
+                            </select>
+                        </div>
+                        <div id="divSourceOther_@iCountControl" class="col-xs-6 col-sm-3 col-md-4 col-lg-4 hidediv" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.SourceOtherName, new { @class = "form-control googleApi", @placeholder = "Source Other", @autocomplete = "off", @id = "SourceOtherName_" + @iCountControl })
+
+                        </div>
+                        <div id="divSourceLandMark_@iCountControl" class="col-xs-6 col-sm-3 col-md-4 col-lg-4 hidediv" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.SourceLandMark, new { @class = "form-control ", @placeholder = "Source Landmark", @autocomplete = "off", @id = "SourceLandMark_" + @iCountControl })
+                        </div>
+                    </div>
+                    <div id="divDestinationmain_@iCountControl" class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                            <label class="control-label">Destination<span style="color: red;">*</span></label>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" id="divDestinationControl_@iCountControl">
+                            <select onchange="showhideOtherDestination(@iCountControl)" id="ddlDestinationControl_@iCountControl" name="ddlDestinationControl_@iCountControl" class="form-control ">
+                                <option value="0">--Select--</option>
+                            </select>
+                        </div>
+                        <div id="divDestinationOther_@iCountControl" class="col-xs-6 col-sm-3 col-md-4 col-lg-4 hidediv" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.DestinationOtherName, new { @class = "form-control googleApi", @placeholder = "Destination Other", @autocomplete = "off" , @id= "DestinationOtherName_"+@iCountControl })
+                        </div>
+                        <div id="divDestinationLandMark_@iCountControl" class="col-xs-6 col-sm-3 col-md-4 col-lg-4 hidediv" style="display:none;">
+                            @Html.TextBoxFor(m => m.routeDetails.routeList.GetEnumerator().Current.DestinationLandMark, new { @class = "form-control ", @placeholder = "Destination Landmark", @autocomplete = "off", @id = "DestinationLandMark_" + @iCountControl })
+                        </div>
+                    </div>
+                </div>
+                <div id="colbodyleft_@iCountControl" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-lg-12 col-xs-12">
+                    <div id="divEstimatedAmountBox_@iCountControl" class="small-box talign">
+                        <div id="colright" class="inner">
+                            <label class="control-label">Rental City</label><br>
+                            <label id="lblYourLocationControl_@iCountControl" class="control-label AMT"></label>
+                        </div>
+                        <div id="colright" class="icon"></div>
+                        <div id="colrightFooter" class="small-box-footer">
+                            <div id="colrightAmmountFooter_@iCountControl" class="small-box-footer hidediv">
+                                <label class="control-label">Estimated</label><br>
+                                <label class="control-label">Amount</label><br>
+                                @Html.LabelFor(m => m.routeDetails.routeList.GetEnumerator().Current.EstimatedAmount, new { @class = "control-label AMT", @id = "EstimatedAmount_" + @iCountControl })
+                                <i class="icb icb-inr"></i>
+                            </div>
+                            <div id="divAmountFooterMSG_@iCountControl">
+                                <label id="lblAmmountNo_@iCountControl" class="control-label ppmes">Please select route type, car type and rental city to get estimated max amount.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

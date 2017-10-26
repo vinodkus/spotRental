@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+@model SMT.SpotRental.UI.Response.AdhocResponse
+
+@{
+    Layout = null;
+}
+<html>
+
+<head>
+    @Styles.Render("~/Content/font-awesome")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/AdminLTE")
+    @Styles.Render("~/Content/login")
+    @Styles.Render("~/Content/bucket")
+    @Scripts.Render("~/Jquery/Common")
+    @Scripts.Render("~/Jquery/usertrip")
+   
+</head>
+<body>
+    <div id="divViewTripDetails_EMAIL" class="row">
+        <div class="col-md-11" style="padding-left:40px;padding-top:50px;">
+            @if (Model != null && Model.itemsList != null && Model.itemsList.Count > 0)
+            {
+                <h5>Your trip itenary are as below. Click on cancel button if you want to cancel trip.</h5>
+                <table class="table table-bordered">
+
+                    <thead class="bg-aqua-gradient" style="font-size:11px;">
+                        <tr>
+                            <td><input type="checkbox" id="cbCheckAll" title="Click here to select all trips" /></td>
+                            <td>Req ID</td>
+                            <td>Requester</td>
+                            <td>Emp. ID</td>
+                            <td>Employee Name</td>
+                            <td>Gender</td>
+                            <td>Trip Type</td>
+                            <td>Source</td>
+                            <td>Destination</td>
+                            <td>Request Date</td>
+                            <td>Pickup Time</td>
+                            <td>ESG</td>
+                            <td>Status</td>
+
+                            <td>Cancel</td>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:10px;">
+                        @foreach (var item in Model.itemsList)
+                        {
+                            @*<input type="hidden" id="hdnSourceLandMark_@item.RequestId" value="@item.LandMarkSource" />
+                                <input type="hidden" id="hdnDestinationLandMark_@item.RequestId" value="@item.LandMarkDestination" />
+                                <input type="hidden" id="hdnStatusName_@item.RequestId" value="@item.StatusName" />
+                                <input type="hidden" id="hdnRequestedByName_@item.RequestId" value="@item.RequestByName" />
+                                <input type="hidden" id="hdnVehhicleName_@item.RequestId" value="@item.VehicleType" />
+                                <input type="hidden" id="hdnVendorName_@item.RequestId" value="@item.VendorName" />*@
+                            <tr>
+                                @if (item.StatusCode == "CBU" || item.StatusCode == "RFS")
+                                {
+                                    <td><input type="checkbox"  style="cursor:not-allowed" disabled="" title="You can not cancel this trip." id="@item.RequestId" /></td>
+                                }
+                                else
+                                {
+                                    <td><input type="checkbox" class="checkbox" id="@item.RequestId" title="Check this trip to cancel." /></td>
+                                }
+
+                                <td>@item.RequestId</td>
+                                <td>@item.RequestByName</td>
+                                <td>@item.EmployeeID</td>
+                                <td>@item.EmployeeName</td>
+                                <td>@item.Gender</td>
+                                <td>@item.RouteType</td>
+                                <td>@item.Source</td>
+                                <td>@item.Destination</td>
+                                <td>@item.RequestOn</td>
+                                <td>@item.ReportingTime</td>
+                                <td>@item.ESG</td>
+                                <td>@item.StatusName</td>
+
+                                <td>
+
+                                    @if (item.StatusCode == "CBU" || item.StatusCode == "RFS")
+                                    {
+                                        <a href="#" class="btn btn-danger" data-toggle="modal" title="Alreay cancelled" style="cursor:not-allowed">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="btn btn-info" data-toggle="modal" title="click here to cancel" onclick='cancelTrip("@item.RequestId")'>
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    }
+
+                                </td>
+
+
+
+                            </tr>
+
+                        }
+                        <tr><td colspan="14" style="text-align:left;font-weight:bold;"> <a href="#" id="btnCancelTrip" class="btn btn-default" style="cursor:not-allowed" disabled="" onclick="cancelSelectedRequest()"><span class="glyphicon glyphicon-trash"></span> Cancel Selected Trip</a></td></tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                @: Record(s) does not exist.
+                        }
+        </div>
+    </div>
+    <script>
+        url = '@ViewBag.URL';
+        urlPref = '@ViewBag.URL';
+    </script>
+</body>
+
+</html>

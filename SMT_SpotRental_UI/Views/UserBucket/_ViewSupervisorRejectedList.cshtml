@@ -1,0 +1,78 @@
+﻿@model SMT.SpotRental.UI.Response.AdhocResponse
+@{
+    Layout = null;
+}
+@Html.AntiForgeryToken()
+<div class="modal-body">
+    @if (Model != null && Model.itemsList != null && Model.itemsList.Count > 0)
+    {
+        <table class="table table-bordered">
+
+            <thead class="bg-aqua-gradient" style="font-size:11px;">
+                <tr>
+                    <td>Req ID</td>
+                    <td>Requester</td>
+                    <td>Emp. ID</td>
+                    <td>Employee Name</td>
+                    <td>Gender</td>
+                    <td>Trip Type</td>
+                    <td>Source</td>
+                    <td>Destination</td>
+                    <td>Request Date</td>
+                    <td>Pickup Time</td>
+                    <td>ESG</td>
+                    <td>Status</td>
+                    <td>View</td>
+                </tr>
+            </thead>
+            <tbody style="font-size:10px;">
+                @foreach (var item in Model.itemsList)
+                {
+                    <input type="hidden" id="hdnSourceLandMark_@item.RequestId" value="@item.LandMarkSource" />
+                    <input type="hidden" id="hdnDestinationLandMark_@item.RequestId" value="@item.LandMarkDestination" />
+                    <input type="hidden" id="hdnStatusName_@item.RequestId" value="@item.StatusName" />
+                    <input type="hidden" id="hdnRequestedByName_@item.RequestId" value="@item.RequestByName" />
+                    <input type="hidden" id="hdnVehhicleName_@item.RequestId" value="@item.VehicleType" />
+                    <input type="hidden" id="hdnVendorName_@item.RequestId" value="@item.VendorName" />
+                    <input type="hidden" id="hdnTripType_@item.RequestId" value="@item.IsOfficialTrip" />
+                    <tr>
+                        <td>@item.RequestId</td>
+                        <td>@item.RequestByName</td>
+                        <td>@item.EmployeeID</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.Gender</td>
+                        <td>@item.RouteType</td>
+                        <td>@item.Source</td>
+                        <td>@item.Destination</td>
+                        <td>@item.RequestOn</td>
+                        <td>@item.ReportingTime</td>
+                        <td>
+                            @item.ESG
+
+                        </td>
+                        <td>
+                            @item.StatusName
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-info" data-toggle="modal" title="View more details" onclick="viewTripDetails(@item.RequestId)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </a>
+                        </td>
+
+
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @: Record(s) does not exist.
+    }
+</div>
+
+
+
+

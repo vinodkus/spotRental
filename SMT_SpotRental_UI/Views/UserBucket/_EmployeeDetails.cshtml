@@ -1,0 +1,218 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div id="divIdCreate" style="padding:20px">
+
+
+    @if (ViewBag.Roles == "EMPLOYEE")
+    {
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Employee Id </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtEmployeeId" type="text" maxlength="10" id="txtEmployeeId" disabled="disabled" value="@Model.userDetails.EmployeeCode" class="form-control Cntrl_0" )">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Name </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtEmployeeName" type="text" maxlength="50" id="txtEmployeeName" disabled="disabled" value="@Model.userDetails.FName @Model.userDetails.LName"  class="aspNetDisabled form-control Cntrl_0 charwithspace">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Gender </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <select name="DDLGender" id="DDLGender" disabled="disabled" value="@Model.userDetails.Gender" class="aspNetDisabled form-control Cntrl_0" style="font-size:11px;">
+                    <option selected="selected" value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="txtMobileNo">Mobile No </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtMobileNo" type="text" maxlength="10" id="txtMobileNo" disabled="disabled" value="@Model.userDetails.MobileNo" class="aspNetDisabled form-control Cntrl_0 Mobile Number">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="txtEmailId">Email Id </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtEmailId" type="text" id="txtEmailId" disabled="disabled" value="@Model.userDetails.EmailID" class="aspNetDisabled form-control Cntrl_0 Email">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Payment Mode </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <select name="ddlPayMentMode" id="ddlPayMentMode" disabled="disabled" value="@Model.userDetails.CostCenter" class="aspNetDisabled form-control" style="font-size:11px;">
+                    <option selected="selected" value="1">Credit card </option>
+
+                </select>
+            </div>
+
+        </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Designation </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtDesignation" type="text" id="txtDesignation" disabled="disabled" value="@Model.userDetails.DesignationName" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Home Address </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtHomeAddress" type="text" id="txtHomeAddress" disabled="disabled" value="@Model.userDetails.HomeAddress" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Credit Card </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtCredit" type="text" id="txtCredit" disabled="disabled" value="@Model.userDetails.CreditCard" class="aspNetDisabled form-control">
+                </div>
+            </div>
+            
+            <div class="row" style="padding:20px">
+                <div id="divoutput" style="width: 100%;">
+                    <div id="divRoutDetails">
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" style="text-align:right">
+                            <label class="control-label" style="font-size: 11px" for="txtRemarks">Remarks </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-9">
+                            <textarea name="txtRemarks" type="text" id="txtRemarks" rows="2" class="form-control"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="box-footer text-center">
+                            <input type="submit" class="btn btn-primary" style="font-size: 11px" id="btnSubmitAdHocRequest" value="Submit" />
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Employee Id<span style="color: red;">*</span> </label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtEmployeeId" type="text" maxlength="10" id="txtEmployeeId" class="form-control Cntrl_0" onblur="showEmployeeDetails()">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Name <span style="color: red;">*</span></label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <input name="txtEmployeeName" type="text" maxlength="50" id="txtEmployeeName" disabled="disabled" class="aspNetDisabled form-control Cntrl_0 charwithspace">
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <label class="control-label" style="font-size: 11px" for="inputLoaction">Gender <span style="color: red;">*</span></label>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                <select name="DDLGender" id="DDLGender" disabled="disabled" class="aspNetDisabled form-control Cntrl_0" style="font-size:11px;">
+                    <option selected="selected" value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+
+            </div>
+
+        </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="txtMobileNo">Mobile No <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtMobileNo" type="text" maxlength="10" id="txtMobileNo" disabled="disabled" class="aspNetDisabled form-control Cntrl_0 Mobile Number">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="txtEmailId">Email Id <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtEmailId" type="text" id="txtEmailId" disabled="disabled" class="aspNetDisabled form-control Cntrl_0 Email">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Payment Mode <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <select name="ddlPayMentMode" id="ddlPayMentMode" disabled="disabled" class="aspNetDisabled form-control" style="font-size:11px;">
+                        <option selected="selected" value="1">Credit card </option>
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Designation <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtDesignation" type="text" id="txtDesignation" disabled="disabled" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Home Address <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtHomeAddress" type="text" id="txtHomeAddress" disabled="disabled" class="form-control">
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Credit Card </label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <input name="txtCredit" type="text" id="txtCredit" disabled="disabled" class="aspNetDisabled form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                    <label class="control-label" style="font-size: 11px" for="inputLoaction">Trip Type <span style="color: red;">*</span></label>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <input type="checkbox" id="cbTripType" checked="checked" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="OFFICIAL" data-off="PERSONAL">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="padding:20px">
+                <div id="divoutput" style="width: 100%;">
+                    <div id="divRoutDetails">
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" style="text-align:right">
+                            <label class="control-label" style="font-size: 11px" for="txtRemarks">Remarks<span style="color: red;">*</span> </label>
+                        </div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-9">
+                            <textarea name="txtRemarks" type="text" id="txtRemarks" rows="2" class="form-control"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="box-footer text-center">
+                            <input type="submit" class="btn btn-primary" style="font-size: 11px" id="btnSubmitAdHocRequest" value="Submit" />
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+    }
+
+</div>

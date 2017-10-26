@@ -1,0 +1,41 @@
+﻿
+body {
+    height: 100%;
+    width: 100%;
+}
+html {
+    height: 100%;
+    width: 100%;
+}
+@media (min-width: 767px) {
+.navbar {
+    transition: background 0.5s ease-in-out 0s, padding 0.5s ease-in-out 0s;
+}
+.top-nav-collapse {
+    padding: 0;
+}
+}
+.intro-section {
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+}
+.about-section {
+    background: #eee none repeat scroll 0 0;
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+}
+.services-section {
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+}
+.contact-section {
+    background: #eee none repeat scroll 0 0;
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+}

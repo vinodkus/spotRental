@@ -1,0 +1,64 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/Jquery/manageVehicles")
+ <input type="hidden" id="hdnDocsPath" value='@ViewBag.DOCS_PATH' />
+<div style="" class="content">
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="icb icb-van"></i>&nbsp;Manage Vehicle
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="box box-default collapsed-box box-solid box-header with-border">
+                <div class="container-fluid">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Location :</label>
+                        </div>
+                        <div class="form-group">
+                            <select name="ddlLocation" id="ddlLocation" class="form-control" style="width:300px;">
+                                <option value="0">SELECT LOCATION</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Vehicle No :</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="txtVehicleNo" type="text" maxlength="20" id="txtVehicleNo" tabindex="1" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="font-size: 11px" for="inputLoaction">Registration No :</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="txtRegistrationNo" type="text" maxlength="20" id="txtRegistrationNo" tabindex="2" class="form-control" style="width:80px;">
+                        </div>
+                        
+                        <div class="form-group pull-right">
+                            <input type="submit" name="btnSearch" value="Search" id="btnSearch" tabindex="4" class="btn btn-primary btn-sm">
+                            <input type="submit" name="btnAddVehicle" value="Add Vehicle" id="btnAddVehicle" tabindex="5" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+
+            <div class="box-body">
+                <div id="divInfo" style="display:block;text-align:center;color:red">
+                    Please select above criteria and search vehicles!
+                </div>
+                <div id="divVehicleList">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+@Html.Partial("_ViewVehicleDetails")
+@Html.Partial("_AddUpdateVehicle")
+ 

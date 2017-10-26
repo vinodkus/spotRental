@@ -1,0 +1,347 @@
+﻿
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/bundles/BS_CAL")
+<div class="modal fade" role="dialog" id="divAddUpdateDriverGuard">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="heading">Add/Register Driver/Guard</h4>
+            </div>
+            <div class="modal-body scrollable">
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Basic Details</h3> </div>
+
+                    <div class="panel-body">
+                        <input type="hidden" value="0" id="hdnDriverGuardID" />
+                        
+
+
+                        <div class="row">
+                           
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> First Name </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtFirstName" maxlength="50" class="form-control" placeholder="First Name" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Last Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtLastName" maxlength="50" class="form-control" placeholder="Last Name" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Father's Name</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtFatherName" maxlength="50" class="form-control" placeholder="Father's Name" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Date of Birth</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtDOB" maxlength="10" class="form-control datepicker" readonly="readonly" placeholder="Date of Birth [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-size: 11px"> Permanent Address</label><span style="color:red;font-size:15px;">*</span>
+                                    <textarea id="txtPermanentAddress" maxlength="300" class="form-control" placeholder="Permanent Address"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">PIN Code</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPINCode" maxlength="6" class="form-control" placeholder="ZIP Code" />
+                                    <i class="glyphicon glyphicon-cd"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">  Employee Id </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtEmployeeId" maxlength="20" class="form-control" placeholder="Employee Id of Driver / Guard" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Other Details</h3> </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Height</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtHeight" maxlength="20" class="form-control" placeholder="Height" />
+                                    <i class="glyphicon glyphicon-text-height"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Weight</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtWeight" maxlength="20" class="form-control" placeholder="Weight" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Color of Skin</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtColorSkin" maxlength="20" class="form-control" placeholder="Color of Skin" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Marital Status </label>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlMaritalStatus" id="ddlMaritalStatus" class="form-control">
+                                        <option value="Single">Single</option>
+                                        <option value="Married">Married</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="control-label" style="font-size: 11px">Education</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtEducation" maxlength="100" class="form-control" placeholder="Education" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Contact Person</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtContactPerson" class="form-control" maxlength="50" placeholder="Contact Person" />
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Contact Number</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtContactNumber" class="form-control" maxlength="30" placeholder="Contact Number" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Present Address</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPresentAddress" class="form-control" maxlength="300" placeholder="Present Address" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Vendor Code</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlVendor" id="ddlVendor" class="form-control">
+                                        <option value="0">SELECT VENDOR</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-home"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Licence/Belt Number </label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtLicenceBeltNumber" class="form-control" maxlength="50"  placeholder="Licence/Belt Number" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Licence/Belt Expiry Date</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtLicenceBeltExpiryDate" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Licence/Belt Expiry Date [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Date of Joining</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtJoiningDate" class="form-control datepicker" maxlength="10" placeholder="Joining Date [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Date of Leaving </label>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtLeavingDate" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Leaving Date [MM-DD-YYYY]" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Employee Type</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlEmployeeType" id="ddlEmployeeType" class="form-control">
+                                        <option value="-1">-- Select --</option>
+                                        <option value="D">Driver</option>
+                                        <option value="G">Guard</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Badge Number</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtBadgeNumber" class="form-control" maxlength="50" placeholder="Badge Number" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Badge Expiry Date </label>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtBadgeExpiryDate" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Badge Expiry Date [MM-DD-YYYY]" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Finger Print</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbFingerPrint" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                            <div class="col-md-4">                                
+                                    <label class="control-label" style="font-size: 11px">Active </label>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="checkbox" id="cbActive" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                @*<label class="control-label" style="font-size: 11px">Left Finger Print </label>
+            <div class="form-group icon-addon addon-md">
+                <select name="ddlLeftFingerPrint" id="ddlLeftFingerPrint" class="form-control">
+                    <option value="Legible">Legible</option>
+                    <option value="Illegible">Illegible</option>
+                </select>
+                <i class="glyphicon glyphicon-envelope"></i>
+            </div>*@
+                                <label class="control-label" style="font-size: 11px">Left Finger Print Legible</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbLeftFingerPrint" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            
+                            <div class="col-md-4">
+                                @*<div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Right Finger Print  </label>
+                                    <div class="form-group icon-addon addon-md">
+                                        <select name="ddlRightFingerPrint" id="ddlRightFingerPrint" class="form-control">
+                                            <option value="Legible">Legible</option>
+                                            <option value="Illegible">Illegible</option>
+                                        </select>
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                    </div>
+                                </div>*@
+                                <label class="control-label" style="font-size: 11px">Right Finger Print Legible</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbRightFingerPrint" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Photo Copy Of Police Verification Received </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbpvr" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Photo Copy Of Address Verification Received </label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbavr" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                         
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnAddDriverGuard">Add Driver/Guard</button>
+                    <button type="button" class="btn btn-info" id="btnReset">Reset</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

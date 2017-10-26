@@ -1,0 +1,262 @@
+﻿
+<div class="modal fade" id="divDriverGuardDetails" tabindex="-1" role="dialog" aria-labelledby="divDriverGuardDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">View Driver/Guard Details </h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="hdnVendorIDToUpdate" value="0" />
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title">Basic Details</h3> </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Site Name:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblSiteName" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Vendor Name:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblVendorName" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">First Name:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblFirstName" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Last Name:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblLastName" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Licence No:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblLicenceNo" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Permanent Address:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblPermanentAddress" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Status:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblStatus" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Employee Id:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblEmployeeId" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Employee Type:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblEmployeeType" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title">Other Details</h3> </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label class="control-label">Height:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblHeight" class="control-label" style="font-size:11px"></label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="control-label">Weight:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblWeight" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Color of Skin:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblSkinColor" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Marital Status:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblMaritalStatus" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Education:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblEducation" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Contact Person:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblContactPerson" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Contact Number:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblContactNumber" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Present Address:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblPresentAddress" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Date of Birth:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblDOB" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Licence/Belt Expiry Date:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblLicenceBeltExpiryDate" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Date of Joining:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblDOJ" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Date of Leaving:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblDOL" class="control-label" style="font-size:11px"></label>
+                            </div>
+                          
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Badge Number:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblBadgeNumber" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Badge Expiry Date:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblBadgeExpiryDate" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Finger Print:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblFingerPrint" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Left Finger Print Legible:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblLeftFingerPrintLegible" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                <label class="control-label">Right Finger Print Legible:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblRightFingerPrintLegible" class="control-label" style="font-size:11px"></label>
+                            </div>
+                           
+                            <div class="col-md-3">
+                                <label class="control-label">Photo Copy Of Police Verification Received:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblPoliceVerificationReceived" class="control-label" style="font-size:11px"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Photo Copy Of Address Verification Received:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblAddressVerificationReceived" class="control-label" style="font-size:11px"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Note:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label id="lblNotes" class="control-label" style="font-size:11px;color:red;">Dates are in MM-DD-YYYY format.</label>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

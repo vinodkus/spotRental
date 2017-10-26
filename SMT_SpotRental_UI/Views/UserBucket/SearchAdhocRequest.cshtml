@@ -1,0 +1,102 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/BS_CAL")
+@Scripts.Render("~/Jquery/adhochistory")
+<script>
+    _defFromDate = '@ViewBag.FromDate';
+    _defToDate = '@ViewBag.ToDate';
+</script>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-list"></i>&nbsp;View History
+            </h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box box-default collapsed-box box-solid box-header with-border" style="padding-bottom:200px;">
+            <div class="container-fluid">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label" style="font-size: 11px" for="inputLoaction">From Date :</label>
+                    </div>
+                    <div class="form-group">
+                        <input name="txtFromDate" type="text" id="txtFromDate" tabindex="1" class="form-control datepicker" placeholder="DD-MM-YYYY">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="font-size: 11px" for="inputLoaction">To Date :</label>
+                    </div>
+                    <div class="form-group">
+                        <input name="txtToDate" type="text" id="txtToDate" tabindex="1" class="form-control datepicker" placeholder="DD-MM-YYYY">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="font-size: 11px" for="inputLoaction">Email ID :</label>
+                    </div>
+                    <div class="form-group">
+                        <input name="txtEmailId" type="text" maxlength="50" id="txtEmailId" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="font-size: 11px" for="inputLoaction">Status :</label>
+                    </div>
+                    <div class="form-group">
+                        <select name="ddlStatus" id="ddlStatus" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnSearch" value="Search" id="btnSearch" tabindex="4" class="btn btn-primary btn-sm">
+                        <input type="submit" name="btnAdd" value="Add" id="btnAdd" tabindex="5" class="btn btn-primary" style="display: none">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="btnPrint" value="Print" id="btnPrint" tabindex="4" class="btn btn-default btn-sm">
+
+                        <input type="submit" name="btnEmail" value="Email" id="btnEmail" tabindex="4" class="btn btn-danger btn-sm">
+                    </div>
+                </div>
+            </div>
+            <!-- /.info-box-content -->
+            <div id="searchResult">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="divCancelTrip" tabindex="-1" role="dialog" aria-labelledby="divCancelTrip" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">Cancel Trip </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="hdnRequestID" value="0" />
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Reason</div>
+                    <div class="col-md-5">
+                        <select name="ddlReason" id="ddlReason" class="form-control">
+                            <option value="0">--SELECT--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Remarks</div>
+                    <div class="col-md-5"><textarea id="txtRemarks" rows="3" style="width:100%;"></textarea></div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">&nbsp;</div>
+                    <div class="col-md-2"><input type="submit" id="btnCancel" value="Submit" class="btn btn-danger" /> </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_ViewTripDetails");
+
+

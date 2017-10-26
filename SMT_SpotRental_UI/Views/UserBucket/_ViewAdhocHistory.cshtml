@@ -1,0 +1,54 @@
+﻿@model SMT.SpotRental.UI.Response.AdhocResponse
+@{
+    Layout = null;
+}
+@Html.AntiForgeryToken()
+<div class="row" id="divTripHistory">
+    @if (Model != null && Model.itemsList != null && Model.itemsList.Count > 0)
+    {
+        <table class="table table-bordered">
+            <!--Note: In future more column can be added-->
+            <thead class="bg-aqua-gradient" style="font-size:11px;">
+                <tr>
+                    <td>Req ID</td>
+                    <td>Status</td>
+                    <td>Reason</td>
+                    <td>ReasonRemarks</td>
+                    <td>ActionBy</td>
+                    <td>Action Date</td>
+                </tr>
+            </thead>
+            <tbody style="font-size:10px;">
+                @foreach (var item in Model.itemsList)
+                {
+                    
+                    <tr>
+                        <td>@item.RequestId</td>
+                        @if (@item.StatusID != null && @item.StatusID == "4")
+                        {
+                            <td style="color:green;font-weight:bold;font-size:12px">@item.StatusName</td>
+                        }
+                        else if (@item.StatusID != null && @item.StatusID == "2")
+                        {
+                            <td style="color:red;font-weight:bold;font-size:12px">@item.StatusName</td>
+                        }
+                        else
+                        {
+                            <td style="color:green;font-weight:bold;font-size:12px">@item.StatusName</td>
+                        }
+                        <td>@item.ReasonName</td>
+                        <td>@item.ReasonRemarks</td>
+                        <td>@item.ActionBy</td>
+                        <td>@item.CreatedDate</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @: History does not exist.
+    }
+</div>
+

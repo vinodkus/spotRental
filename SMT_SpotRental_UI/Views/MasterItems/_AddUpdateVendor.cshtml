@@ -1,0 +1,206 @@
+﻿
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/bundles/BS_CAL")
+<div class="modal fade" role="dialog" id="divAddUpdateVendor">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addVendor">Add/Register Vendor</h4>
+            </div>
+            <div class="modal-body scrollable">
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Basic Details</h3> </div>
+
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Select Location </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlLocationForVendor" id="ddlLocationForVendor" class="form-control">
+                                        <option value="0">SELECT LOCATION</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-map-marker"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">  Enter short Name </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtShortName" maxlength="20" class="form-control" placeholder="Short name of vendor" />
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Company Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtCompanyName" maxlength="100" class="form-control" placeholder="Company name" />
+                                    <i class="glyphicon glyphicon-home"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Prefix Tag </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPrefix" maxlength="8" class="form-control" placeholder="Prefix tag for vendor" />
+                                    <i class="glyphicon glyphicon-th-list"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Is Active</label>
+                                <div class="form-group">
+                                    <input type="checkbox" id="cbActive"   checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Effective Date</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtEffectiveDate" maxlength="10" class="form-control datepicker" readonly="readonly" placeholder="Effective date[MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Contract Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> First Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtFName" maxlength="50" class="form-control" placeholder="First name" />
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px"> Middle Name</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtMName" maxlength="50" class="form-control" placeholder="Middle name" />
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Last Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtLName" maxlength="50" class="form-control" placeholder="Last name" />
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-size: 11px"> Address-1</label><span style="color:red;font-size:15px;">*</span>
+                                    <textarea id="txtAddress1" maxlength="150" class="form-control" placeholder="Address Line 1"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-size: 11px"> Address-2</label>
+                                    <textarea id="txtAddress2" maxlength="150" class="form-control" placeholder="Address Line 2"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">City Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtCity" maxlength="20" class="form-control" placeholder="City Name" />
+                                    <i class="glyphicon glyphicon-home"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Zip Code</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtZIPCode" maxlength="6" class="form-control" placeholder="ZIP Code" />
+                                    <i class="glyphicon glyphicon-cd"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Mobile Number</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtMobileNo_V" maxlength="10" class="form-control" placeholder="Mobile number" />
+                                    <i class="glyphicon glyphicon-phone"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Phone Number</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPhone" maxlength="15" class="form-control" placeholder="Phone number " />
+                                    <i class="glyphicon glyphicon-phone-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Email ID</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtEmailID" class="form-control" maxlength="50" placeholder="Email Address" />
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Contract Valid From</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtContractFrom" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Valid From [MM-DD-YYYY]" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Contract Valid Till</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtContractTo" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Valid To [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnAddVendor">Add Vendor</button>
+                    <button type="button" class="btn btn-info" id="btnReset">Reset</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

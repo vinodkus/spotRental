@@ -1,0 +1,270 @@
+﻿
+<style>
+    .btn {
+        padding: 6px 4px;
+        height: 32px;
+    }
+
+    .toggle-off.btn {
+        padding-left: 13px;
+    }
+</style>
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/bundles/BS_CAL")
+<div class="modal fade" role="dialog" id="divAddUpdateVehicle">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="heading">Add/Register Vehicle</h4>
+            </div>
+            <div class="modal-body scrollable">
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Basic Details</h3> </div>
+
+                    <div class="panel-body">
+                        <input type="hidden" value="0" id="hdnVehicleID" />
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px"> Select Location </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlLocationForVehicle" id="ddlLocationForVehicle" class="form-control">
+                                        <option value="0">SELECT LOCATION</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-map-marker"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Vehicle Type </label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlVehicleType" id="ddlVehicleType" class="form-control">
+                                        <option value="0">SELECT VEHICLE TYPE</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Vendor/Transporter Name</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlVendor" id="ddlVendor" class="form-control">
+                                        <option value="0">SELECT VENDOR</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-home"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Vehicle No</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtVehicleNo_V" maxlength="8" class="form-control" placeholder="Vehicle No" />
+                                    <i class="fa fa-car"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Registration No</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtRegistrationNo_V" maxlength="10" class="form-control" placeholder="Registration No" />
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Billing Plan</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlBillPlan" id="ddlBillPlan" class="form-control">
+                                        <option value="0">SELECT BILLING PLAN</option>
+                                        <option value="1">12 HR 120 KM</option>
+                                        <option value="2">8 HR 80 KM</option>
+                                    </select>
+                                    <i class="fa fa-inr"></i>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading"> <h3 class="panel-title">Other Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Effective Date</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtEffectiveDate" maxlength="10" class="form-control datepicker" placeholder="Effective Date [MM-DD-YYYY]" readonly="readonly" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+
+                                <label class="control-label" style="font-size: 11px">Insurance Expiry Date</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtInsuranceDate" maxlength="10" class="form-control datepicker" placeholder="Insurance Expiry Date [MM-DD-YYYY]" readonly="readonly" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Date of manufacturer</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtManufacturerDate" maxlength="10" class="form-control datepicker" placeholder="Date of manufaturer[MM-DD-YYYY]" readonly="readonly" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-size: 11px">KM Limit</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtKMLimit" maxlength="10" class="form-control" placeholder="KM Limit" />
+                                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Sub-Vendor</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtSubVendor" maxlength="50" class="form-control" placeholder="Sub Vendor" />
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Status</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbStatus" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Is GPS Installed</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbIsGPSIntalled" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="YES" data-off="NO">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">GPS installed By</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <select name="ddlGPSInstalledBy" id="ddlVendor" class="form-control">
+                                        <option value="0">GPS INSTALLED BY</option>
+                                        <option value="1">Dhanuka</option>
+                                        <option value="2">Non-Dhanuka</option>
+                                    </select>
+                                    <i class="glyphicon glyphicon-cd"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">GPS installed Date</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtGPSInstalledDate" maxlength="10" class="form-control datepicker" placeholder="GPS installed Date [MM-DD-YYYY]" readonly="readonly" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">Fitness Certificate Expiry Date</label>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtFitnessCertExpiryDate" class="form-control datepicker" maxlength="10" placeholder="Fitness Certificate Expiry Date [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">RC Year</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtRCYear" class="form-control" maxlength="4" placeholder="RC Year" />
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">All India Permit expiry date</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPermitExpiryDate" class="form-control datepicker" maxlength="10" readonly="readonly" placeholder="Permit expiry date [MM-DD-YYYY]" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" style="font-size: 11px">PUC Expiry Date</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="text" id="txtPUCExpiryDate" class="form-control datepicker" maxlength="10" placeholder="PUC Expiry date [MM-DD-YYYY]" readonly="readonly" />
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <label class="control-label" style="font-size: 11px">Current Odometer</label><span style="color:red;font-size:15px;">*</span>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtCurrentOdometer" class="form-control" maxlength="10" placeholder="Current Odometer" />
+                                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <label class="control-label" style="font-size: 11px">Owned/Attached</label><span style="color:red;font-size:15px;">*</span>
+                                <div class="form-group icon-addon addon-md">
+                                    <input type="checkbox" id="cbOwened" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="danger" data-on="OWN" data-off="ATTC">
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="control-label" style="font-size: 11px">Remarks</label>
+                                    <div class="form-group icon-addon addon-md">
+                                        <input type="text" id="txtRemarks" class="form-control" maxlength="400" placeholder="Your remarks" />
+                                        <i class="fa fa-commenting" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>*@
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnAddVehicleDetails">Add Vehicle</button>
+                    <button type="button" class="btn btn-info" id="btnReset" onclick="resetFields()">Reset</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

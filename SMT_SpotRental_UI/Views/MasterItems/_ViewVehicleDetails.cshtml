@@ -1,0 +1,248 @@
+﻿
+<div class="modal fade" id="divViewVehicleDetails" tabindex="-1" role="dialog" aria-labelledby="divViewVendorDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">View Vehicle Details and History</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#details"><i class="glyphicon glyphicon-list-alt"> </i> Vehicle Details</a></li>
+                    <li><a data-toggle="tab" href="#history"><i class="glyphicon glyphicon-th-list"> </i>  Vehicle History</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+                    <br />
+                    <div id="details" class="tab-pane active">
+                        <input type="hidden" id="hdnVendorIDToUpdate" value="0" />
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"> <h3 class="panel-title">Basic Details</h3> </div>
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Vehicle No:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblVehicleNo" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Vehicle Type:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblVehicleType" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Capacity:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblCapacity" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Driver Name:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblDriverName" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Active:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblStatus" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Registration No:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblRegistrationNo" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Billing Name:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblBillingName" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Location Name:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblLocationName" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Vendor Name:</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <label id="lblVendorName" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"> <h3 class="panel-title">Other Details</h3> </div>
+
+                            <div class="panel-body">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <label class="control-label">Kilometer Limit:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblKMLimit" class="control-label" style="font-size:11px"></label>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="control-label">GPS Installed:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblGPSInstalled" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">GPS Install Date:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblGPSInstallDate" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">GPS Install By:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblGPSInstallBy" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Sub Vendor:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblSubVendor" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">RC Year:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblRCYear" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Insurance Expiry Date:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblINSExpiryDate" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">FIT Certificate Expiry Date:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblFITCRTExpiryDate" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Permit Expiry Date:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblPermitExpiryDate" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Effective Date:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblEffectiveDate" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">Mod On:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblModOn" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Created By:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblCreatedBy" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">ODO Reading:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblODOReading" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Remarks:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblRemarks" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="control-label">OWN Attached:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblOWNAttached" class="control-label" style="font-size:11px"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="control-label">Notes:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label id="lblNotes" class="control-label" style="font-size:11px;color:red;">Dates are in MM-DD-YYYY format.</label>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="history" class="tab-pane">
+                        <br />
+                        <div id="divVehicleHistory">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

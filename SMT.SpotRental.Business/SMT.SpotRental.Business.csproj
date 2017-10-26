@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CCF4C933-19CE-4F12-9187-2B0FBB34CDC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SMT.SpotRental.Business</RootNamespace>
+    <AssemblyName>SMT.SpotRental.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLBookVehicle.cs" />
+    <Compile Include="BLItems.cs" />
+    <Compile Include="BLUsers.cs" />
+    <Compile Include="Entities\AdhocRequestForEntity.cs" />
+    <Compile Include="Entities\BaseLocationEntity.cs" />
+    <Compile Include="Entities\DesignationEntity.cs" />
+    <Compile Include="Entities\DocumentMasterEntity.cs" />
+    <Compile Include="Entities\DriverGuardEntity.cs" />
+    <Compile Include="Entities\EmailDetailsEntity.cs" />
+    <Compile Include="Entities\MenuEntity.cs" />
+    <Compile Include="Entities\ReasonEntity.cs" />
+    <Compile Include="Entities\RolesEntity.cs" />
+    <Compile Include="Entities\RouteItemsEntity.cs" />
+    <Compile Include="Entities\SourceDestinationEntity.cs" />
+    <Compile Include="Entities\TripStatusEntity.cs" />
+    <Compile Include="Entities\UploadedDocumentEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\VehicleHistoryEntity.cs" />
+    <Compile Include="Entities\VehicleMasterEntity.cs" />
+    <Compile Include="Entities\VehicleTypeMasterEntity.cs" />
+    <Compile Include="Entities\VendorMasterEntity.cs" />
+    <Compile Include="EntityMapper\ItemsMapper.cs" />
+    <Compile Include="EntityMapper\UserMapper.cs" />
+    <Compile Include="EntityMapper\VehicleBookingMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\AdhocRequest.cs" />
+    <Compile Include="Request\MenuRequest.cs" />
+    <Compile Include="Request\RequestBase.cs" />
+    <Compile Include="Request\TripStatusChangeRequest.cs" />
+    <Compile Include="Request\UserRequest.cs" />
+    <Compile Include="Response\AdhocResponse.cs" />
+    <Compile Include="Response\BaseLocationResponse.cs" />
+    <Compile Include="Response\DesignationResponse.cs" />
+    <Compile Include="Response\DocumentMasterResponse.cs" />
+    <Compile Include="Response\DriverGuardResponse.cs" />
+    <Compile Include="Response\MenuResponse.cs" />
+    <Compile Include="Response\ReasonResponse.cs" />
+    <Compile Include="Response\ResponseBase.cs" />
+    <Compile Include="Response\RolesResponse.cs" />
+    <Compile Include="Response\SourceDestinationRentalResponse.cs" />
+    <Compile Include="Response\TripStatusResponse.cs" />
+    <Compile Include="Response\UploadedDocsResponse.cs" />
+    <Compile Include="Response\UserResponse.cs" />
+    <Compile Include="Response\VehicleHistoryResponse.cs" />
+    <Compile Include="Response\VehicleMasterResponse.cs" />
+    <Compile Include="Response\VehicleTypeMasterResponse.cs" />
+    <Compile Include="Response\VendorMasterResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SMT.SpotRental.Data\SMT.SpotRental.Data.csproj">
+      <Project>{150e7b4e-58c9-41c1-ab32-63e43c7b6bed}</Project>
+      <Name>SMT.SpotRental.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMT.SpotRental.Shared\SMT.SpotRental.Shared.csproj">
+      <Project>{a1230471-3afa-4c67-9724-3ca42504f6e3}</Project>
+      <Name>SMT.SpotRental.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

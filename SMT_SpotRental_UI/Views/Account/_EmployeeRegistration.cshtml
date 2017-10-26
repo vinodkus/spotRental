@@ -1,0 +1,152 @@
+﻿
+ @Scripts.Render("~/Jquery/Common")
+
+<div id="divEmployeeRegistration" class="modal" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Employee Registration Form</h4>
+            </div>
+            <div class="modal-body" style="padding-left:40px;padding-right:30px;">
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <label class="control-label" for="inputLoaction">First Name <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <input name="txtFName" type="text" maxlength="10" id="txtFName" class="form-control ">
+                       
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <label class="control-label" for="inputLoaction">Middle Name </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <input name="txtMName" type="text" maxlength="10" id="txtMName" class="form-control ">
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <label class="control-label" for="inputLoaction">
+                            Last Name
+                            <span style="color:red;font-size:15px;">*</span>
+                        </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <input name="txtLName" type="text" maxlength="10" id="txtLName" class="form-control ">
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Employee Code <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtEmployeeCode" type="text" maxlength="10" id="txtEmployeeCode" class="form-control ">
+                     
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Mobile No <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtMobileNo" type="text" maxlength="10" id="txtMobileNo" class="form-control" onkeyup="checkNumeric(this);">
+                        
+                    </div>
+
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Gender <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <select name="DDLGender" id="DDLGender" class="form-control" style="font-size:11px;">
+                            <option value="0">--Select Gender--</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Email Id <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtEmailId" type="text" id="txtEmailId" class="form-control emailaddress">
+                    </div>
+
+
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Base Office <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+
+                        <select name="BaseOffice" id="BaseOffice" class="form-control " style="font-size:11px;">
+                            <option value="0">--SELECT--</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Credit Card <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtCreditCard" type="text" id="txtCreditCard" style="font-family: monospace;" class="form-control">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Designation </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <select name="Designation" id="Designation" class="form-control " style="font-size:11px;">
+                            <option value="0">--SELECT--</option>
+                         
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Supervisor ID </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtSupervisorID" type="text" id="txtSupervisorID" class="form-control" disabled="disabled">
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <a href="#" class="btn btn-info" data-target="#divSearchSupervisor" data-toggle="modal"><i class="glyphicon glyphicon-search"> </i> &nbsp; Search</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Cost Center </label>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <input name="txtCostCenter" type="text" id="txtCostCenter" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" >
+                        <label class="control-label"  for="inputLoaction">Home Address <span style="color:red;font-size:15px;">*</span></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-10 col-md-2 col-lg-2" >
+                        <input name="txtFromAddress" type="text" id="txtHomeAddress" class="form-control" placeholder="Pick Up Location" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row pull-right">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" value="Register" id="btnEmployeeRegister" class="btn btn-primary">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Account/_SearchSupervisor.cshtml")

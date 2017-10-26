@@ -1,0 +1,348 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/BS_CAL")
+@Scripts.Render("~/Jquery/vendorbucket")
+
+<!----  -->
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-list"></i>&nbsp;Request Detail
+            </h3>
+
+        </div>
+        <div class="box-body">
+
+
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a id="Tbpact" data-toggle="tab" href="#performaction" aria-expanded="true">Perform Action</a></li>
+                <li class=""><a id="Tbaccept" data-toggle="tab" href="#approved" onclick="getAcceptedList()" aria-expanded="false">Accepted</a></li>
+                <li class=""><a id="Tbrej" data-toggle="tab" href="#reject" aria-expanded="false" onclick="getRejectedList()">Rejected</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="performaction" class="tab-pane fade active in">
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divPerformAction">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="approved" class="tab-pane fade">
+
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divApproved">
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="reject" class="tab-pane fade">
+
+                    <div class="col-sm-12">
+                        <div class="box-body" style="overflow: auto;">
+                            <div class="col-lg-12" id="divRejected">
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divRejectTrip" tabindex="-1" role="dialog" aria-labelledby="divRejectTrip" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">Reject Trip </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="hdnRequestID" value="0" />
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Reason</div>
+                    <div class="col-md-5">
+                        <select name="ddlReason" id="ddlReason" class="form-control">
+                            <option value="0">--SELECT--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Remarks</div>
+                    <div class="col-md-5"><textarea id="txtRemarks" rows="3" style="width:100%;"></textarea></div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">&nbsp;</div>
+                    <div class="col-md-2"><input type="submit" id="btnReject" value="Submit" class="btn btn-danger" /> </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divAssignVehicleDriver" tabindex="-1" role="dialog" aria-labelledby="divAssignVehicleDriver" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4  id="heading" class="modal-title" style="color:blue">Assign Vehicle and Driver </h4>
+                <input type="hidden" id="hdnVehicleDetails" value="" />
+                <input type="hidden" id="hdnDriverDetails" value="" />
+                <input type="hidden" id="hdnRequestID_VEH" value="0" />
+                <input type="hidden" id="hdnVehicleAssignType" value="0" />
+            </div>
+            <div class="modal-body">
+                <div class="row" style="display:none" id="divReason_REASSIGN">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Reason<span style="color:red;font-size:15px;">*</span></div>
+                    <div class="col-md-5">
+                        <select name="ddlReason_REASSIGN" id="ddlReason_REASSIGN" class="form-control" >
+                            <option value="0">--SELECT REASON--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="row" style="display:none" id="divReasonRemark_REASSIGN">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Enter Remarks</div>
+                    <div class="col-md-5">
+                        <textarea id="txtRemarks_REASSIGN" rows="2" style="width:100%"></textarea>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Vehicle<span style="color:red;font-size:15px;">*</span></div>
+                    <div class="col-md-5">
+                        <select name="ddlVehicle" id="ddlVehicle" class="form-control" onchange="hideshowViewVehicle()">
+                            <option value="0">--SELECT VEHICLE--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" id="aviewVehicle" class="btn btn-info" title="View vehicle details" style="display:none;" onclick="showVehicleDetails()"><i class="glyphicon glyphicon-eye-open"></i> </a>
+                        <a href="#" id="aviewVehicleDIS" style="cursor:not-allowed" class="btn btn-default" title="select vehicle to view their details" ><i class="glyphicon glyphicon-eye-close"></i> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Driver<span style="color:red;font-size:15px;">*</span></div>
+                    <div class="col-md-5">
+                        <select name="ddlDriver" id="ddlDriver" class="form-control" onchange="hideshowViewDriver()">
+                            <option value="0">--SELECT DRIVER--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" id="aviewDriver" class="btn btn-info" title="View driver details" style="display:none;" onclick="showDriverDetails()"><i class="glyphicon glyphicon-eye-open"></i> </a>
+                        <a href="#" id="aviewDriverDIS" style="cursor:not-allowed" class="btn btn-default" title="select driver to view their details"><i class="glyphicon glyphicon-eye-close"></i> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Select Guard</div>
+                    <div class="col-md-5">
+                        <select name="ddlDriver" id="ddlGuard" class="form-control" onchange="hideshowViewGuard()">
+                            <option value="0">--SELECT Guard--</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" id="aviewGuard" class="btn btn-info" title="View Guard details" style="display:none;" onclick="showGuardDetails()"><i class="glyphicon glyphicon-eye-open"></i> </a>
+                        <a href="#" id="aviewGuardDIS" style="cursor:not-allowed" class="btn btn-default" title="select Guard to view their details"><i class="glyphicon glyphicon-eye-close"></i> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">&nbsp;</div>
+                    <div class="col-md-2"><a  href="#" id="btnAssign" class="btn btn-success" disabled="" > &nbsp; Done <i class="glyphicon glyphicon-thumbs-up"></i> </a> </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="divViewVehicleDetails" tabindex="-1" role="dialog" aria-labelledby="divViewVehicleDetails" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">View Vehicle Details </h4>
+            </div>
+            <div class="modal-body">
+              
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Registration No: </div>
+                    <div class="col-md-5"><label id="lblRegistrationNo" style="font-family:Verdana;font-size:12px;font-variant-caps:petite-caps"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Capcity: </div>
+                    <div class="col-md-5">
+                        <label id="lblCapcity" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Ass. Driver Name: </div>
+                    <div class="col-md-5">
+                        <label id="lblDriverName" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Location Code: </div>
+                    <div class="col-md-5">
+                        <label id="lblLocationCode" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Pending Trip: </div>
+                    <div class="col-md-5">
+                        <label id="lblPendingTrip" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="divViewDriverDetails" tabindex="-1" role="dialog" aria-labelledby="divViewDriverDetails" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">View Driver Details </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Driver Name : </div>
+                    <div class="col-md-5">
+                        <label id="lblDriverName_View" style="font-family:Verdana;font-size:12px;"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Mobile No: </div>
+                    <div class="col-md-5">
+                        <label id="lblMobileNo" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Address: </div>
+                    <div class="col-md-5">
+                        <label id="lblDriverAddress" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="divViewGuardDetails" tabindex="-1" role="dialog" aria-labelledby="divViewGuardDetails" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" style="color:blue">View Guard Details </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12"><br /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Guard Name : </div>
+                    <div class="col-md-5">
+                        <label id="lblGuardName_View" style="font-family:Verdana;font-size:12px;"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Mobile No: </div>
+                    <div class="col-md-5">
+                        <label id="lblMobileNoGuard" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-3">Address: </div>
+                    <div class="col-md-5">
+                        <label id="lblDriverAddressGuard" style="font-family:Verdana;font-size:11px"></label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_ViewTripDetails");

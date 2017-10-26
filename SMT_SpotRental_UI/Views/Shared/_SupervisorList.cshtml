@@ -1,0 +1,36 @@
+﻿@model SMT.SpotRental.UI.Response.EmployeeResponse
+
+@{
+    var itemCount = 0;
+}
+<table id="tblSupervisorList" class="table table-sm">
+    @if (Model.userList != null && Model.userList.Count>0)
+    {
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile No</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.userList)
+            {
+                <tr>
+                    <th scope="row"><a href="#" id="aepmid_@itemCount" onclick="fillSupervisorID(@employee.UserID)">@employee.UserID</a> </th>
+                    <td>@employee.FName</td>
+                    <td>@employee.LName</td>
+                    <td>@employee.MobileNo</td>
+                </tr>
+                itemCount++;
+            }
+        </tbody>
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">No data found </td>
+        </tr>
+    }
+</table>

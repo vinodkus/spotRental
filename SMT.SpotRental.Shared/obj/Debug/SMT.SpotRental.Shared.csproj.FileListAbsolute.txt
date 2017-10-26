@@ -1,0 +1,8 @@
+D:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\bin\Debug\SMT.SpotRental.Shared.dll
+D:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\bin\Debug\SMT.SpotRental.Shared.pdb
+D:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\obj\Debug\SMT.SpotRental.Shared.dll
+D:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\obj\Debug\SMT.SpotRental.Shared.pdb
+F:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\bin\Debug\SMT.SpotRental.Shared.dll
+F:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\bin\Debug\SMT.SpotRental.Shared.pdb
+F:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\obj\Debug\SMT.SpotRental.Shared.dll
+F:\Projects\SMT_SpotRental\SMT.SpotRental.Shared\obj\Debug\SMT.SpotRental.Shared.pdb

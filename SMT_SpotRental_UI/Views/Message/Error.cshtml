@@ -1,0 +1,28 @@
+﻿@model System.Web.Mvc.HandleErrorInfo  
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SPOT Rental |Error</title>
+    @Styles.Render("~/Content/font")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Plugin/scripts")
+</head>
+<body>
+    <div id="divSession" >
+        <div class="jumbotron text-xs-center">
+            <h2 class="display-3">Error Occured!!</h2>
+            <br />
+            <p class="lead">An error occurred while processing your request. Please contact the administrator.</p>
+         
+        </div>
+    </div>
+</body>
+</html>

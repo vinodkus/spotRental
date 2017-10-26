@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Roles = ViewBag.Roles;
+}
+@Scripts.Render("~/Jquery/AdhocReq")
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="icb icb-list"></i>&nbsp;Ad hoc Transport Request
+            </h3>
+        </div>
+        @Html.Partial("_EmployeeDetails")
+
+    </div>
+
+</div>

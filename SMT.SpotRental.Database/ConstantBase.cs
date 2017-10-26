@@ -1,0 +1,46 @@
+﻿
+
+namespace SMT.SpotRental.Database
+{
+   public class ConstantBase
+    {
+        public const string SR_USP_GETNEVIGATIONDETAIL = "SR_USP_GETNEVIGATIONDETAIL";
+        public const string SR_USP_LOGINCHECK = "SR_USP_LOGINCHECK";
+        public const string SR_USP_MANAGEEMPLOYEE = "SR_USP_MANAGEEMPLOYEE";
+        public const string SR_USP_GETDESIGNATIONLIST = "SR_USP_GETDESIGNATIONLIST";
+        public const string SR_USP_GETBASELOCATION = "SR_USP_GETBASELOCATION";
+        public const string SR_USP_SEARCHEMPLOYEE = "SR_USP_SEARCHEMPLOYEE";
+        public const string SR_USP_FORGETPWD = "SR_USP_FORGETPWD";
+        public const string SR_USP_CHANGEPASSWORD = "SR_USP_CHANGEPASSWORD";
+        public const string SR_USP_GETSOURCEANDDESTINATIONBYLOCCODE = "SR_USP_GETSOURCEANDDESTINATIONBYLOCCODE";
+        public const string SR_USP_CREATEADHOCREQUEST = "SR_USP_CREATEADHOCREQUEST";
+        public const string SR_USP_SEARCHADHOCREQUEST = "SR_USP_SEARCHADHOCREQUEST";
+        public const string SR_USP_GETREASONDETAILS = "SR_USP_GETREASONDETAILS";
+        public const string SR_USP_MANAGETRIPSTATUS = "SR_USP_MANAGETRIPSTATUS";
+        public const string SR_USP_MANAGETRIPSTATUS_FORMULTIPLETRIPS = "SR_USP_MANAGETRIPSTATUS_FORMULTIPLETRIPS";
+        public const string SR_USP_GETSTATUSDETAILS = "SR_USP_GETSTATUSDETAILS";
+        public const string SR_USP_GETADHOCREQUESTHISTORY = "SR_USP_GETADHOCREQUESTHISTORY";
+        public const string SR_USP_GETALLVEHICLEFORVENDOR = "SR_USP_GETALLVEHICLEFORVENDOR";
+        public const string SR_USP_GETDRIVERGuardFORVENDOR = "SR_USP_GETDRIVERGuardFORVENDOR";
+        public const string SR_USP_GETVEHICLETYPE = "SR_USP_GETVEHICLETYPE";
+        public const string SR_USP_MANAGESENDINGEMAILS = "SR_USP_MANAGESENDINGEMAILS";
+        public const string SR_USP_UPDATEPROFILEPIC = "SR_USP_UPDATEPROFILEPIC";
+        public const string SR_USP_MANAGEVENDORS = "SR_USP_MANAGEVENDORS";
+        public const string SR_USP_CREATEVENDOR = "SR_USP_CREATEVENDOR";
+        public const string SR_USP_UPDATEVENDOR = "SR_USP_UPDATEVENDOR";
+        public const string SR_USP_SEARCHVEHICLE = "SR_USP_SEARCHVEHICLE";
+        public const string SR_USP_CREATEVEHICLE = "SR_USP_CREATEVEHICLE";
+        public const string SR_USP_UPDATEVEHICLE = "SR_USP_UPDATEVEHICLE";
+        public const string SR_USP_GETVEHICLEHISTORY = "SR_USP_GETVEHICLEHISTORY";
+        public const string SR_USP_SEARCHDRIVERGUARD = "SR_USP_SEARCHDRIVERGUARD";
+        public const string SR_USP_CREATEDRIVERGUARD = "SR_USP_CREATEDRIVERGUARD";
+        public const string SR_USP_UPDATEDRIVERGUARD = "SR_USP_UPDATEDRIVERGUARD";
+        public const string SR_USP_DELETEDRIVERGUARD = "SR_USP_DELETEDRIVERGUARD";
+        public const string SR_USP_GETDOCUMENTLIST = "SR_USP_GETDOCUMENTLIST";
+        public const string SR_USP_UPLOADDOCUMENTS = "SR_USP_UPLOADDOCUMENTS";
+        public const string SR_USP_GETUPLOADEDDOCS = "SR_USP_GETUPLOADEDDOCS";
+        public const string SR_USP_MANAGEROLES = "SR_USP_MANAGEROLES";
+        public const string SR_USP_GETUSERLIST = "SR_USP_GETUSERLIST";
+
+    }
+}

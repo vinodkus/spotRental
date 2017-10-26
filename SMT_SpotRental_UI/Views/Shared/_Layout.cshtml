@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transport</title>
+    @Styles.Render("~/Content/font-awesome")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/AdminLTE")
+    @Styles.Render("~/Content/login")
+    @Styles.Render("~/Content/bucket")
+    @Styles.Render("~/Content/loader")      
+    @Scripts.Render("~/Jquery/Common")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqBzRSKA35wH98nB3S8_3jIRWXn6zeXoM&libraries=places">
+    </script>
+
+
+</head>
+<body class="skin-red sidebar-mini wysihtml5-supported" style="background: url('http://180.179.206.69/SpotRental/images/bg3.png');background-size: cover;" >
+    <div id="loader" class="enableLoader" style="display:none;"></div>
+    <div class="overlay enableLoader" style="display:none;"></div>
+
+    <input type="hidden" id="hdnPrfPicPath" value="@ViewBag.ProfilePicPath" />
+    @Html.Partial("_MenuItems")
+    <div>
+        @RenderBody()
+    </div>
+
+    <div id="mdChangePP" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Update Profile Picture</h4>
+
+                </div>
+                <div class="modal-body">
+                    <p>
+                        You can select your profile image which should be less or equal to 20 KB. Profile image must be .JPG, .GIF, .JPE or .PNG only.
+                    </p>
+                    <br />
+                    <br />
+                    <p class="text-warning">
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4"><label class="control-label">Select Profile Picture: </label></div>
+                            <div class="col-md-3"><input type="file" id="fuProfile" /></div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-1">&nbsp;</div>
+                            <div class="col-md-4"><label class="control-label">Profile Picture Preview: </label></div>
+                            <div class="col-md-3"><img src="@ViewBag.ProfilePic" id="imgupdateProfilePic" class="img-thumbnail" height="200" width="100" alt="Your current profile picture."></div>
+
+                        </div>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnChangePP" onclick="updateProfilePic()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        urlPref = '@ViewBag.URL_PREF'
+    </script>
+</body>
+
+</html>

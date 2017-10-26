@@ -1,0 +1,162 @@
+﻿@model SMT.SpotRental.UI.Response.VehicleHistoryResponse
+@{
+    Layout = null;
+    var iCount = 0;
+}
+
+<div class="table-responsive">
+    @if (Model != null & Model.listVehicleHistory != null && Model.listVehicleHistory.Count > 0)
+    {
+        <table class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="example1_info">
+            <thead>
+                <tr class="btn-primary">
+                    <th>@*Sr. No.*@</th>
+                    <th>Location Name</th>
+                    <th>Vendor Name</th>
+                    <th>Vehicle No</th>
+
+                    <th>Reg. No.</th>
+                    <th>Vehicle Type</th>
+                    <th>Histoty Date</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var items in Model.listVehicleHistory)
+                {
+                    iCount = @iCount + 1;
+                    <tr>
+                        <td><span class="glyphicon glyphicon-plus-sign" style="color:green" id="more_@iCount" onclick="showMoreVehicleRecords('more_@iCount', 'moreTable_@iCount')"></span> </td>
+                        <td>@items.LocationName</td>
+                        <td>@items.VendorName</td>
+                        <td>@items.VehicleNo</td>
+
+                        <td>@items.RegistrationNo</td>
+                        <td>@items.VehicleType</td>
+                        <td>@items.HistoryDate</td>
+                        
+
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            <div style="display:none;" id="moreTable_@iCount">
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading"> <h3 class="panel-title">More Details</h3> </div>
+
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">Kilometer Limit:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@items.KmLimit</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Manufacture Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.ManufactureDate == DateTime.MinValue) ? "N/A" : items.ManufactureDate.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">RC Year:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@items.KmLimit</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Effective Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.EffectiveDate == DateTime.MinValue) ? "N/A" : items.EffectiveDate.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">GPS Install Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.GPSInstallDate == DateTime.MinValue) ? "N/A" : items.GPSInstallDate.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Is GPS Installed:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@items.IsGPSInstalled</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">Mode On:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.ModOn == DateTime.MinValue) ? "N/A" : items.ModOn.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">GPS Install By:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@items.GPSInstalledBy</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">Sub Vendor:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@items.SubVendor</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Insurance Expiry Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.INS_Expiry_Date == DateTime.MinValue) ? "N/A" : items.INS_Expiry_Date.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">FIT Certificate Expiry Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.Fit_Crt_Expiry_Date == DateTime.MinValue) ? "N/A" : items.Fit_Crt_Expiry_Date.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Permit Expiry Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.Permit_Expiry_Date == DateTime.MinValue) ? "N/A" : items.Permit_Expiry_Date.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="control-label">History Date:</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label" style="font-size:11px">@((items.HistoryDate == DateTime.MinValue) ? "N/A" : items.HistoryDate.ToString("MM-dd-yyyy"))</label>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> No History Found</p>
+    }
+
+</div>
