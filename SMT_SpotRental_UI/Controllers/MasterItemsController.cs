@@ -17,7 +17,7 @@ namespace SMT.SpotRental.UI.Controllers
     {
         WebAPICommunicator webAPI = null;
         
-        //driver guard
+        // user list
         #region MANAGE VENDORS
         public ActionResult ViewVendors()
         {
