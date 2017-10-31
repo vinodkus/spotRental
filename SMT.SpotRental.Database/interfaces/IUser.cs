@@ -19,5 +19,9 @@ namespace SMT.SpotRental.Database.interfaces
         IList<Roles> GetAllRoles();
         string ManageRoles(Roles request);
         IList<User> GetUserList();
+        IList<Menu> GetMenuList(string LoginCred);
+        IList<Menu> GetParentMenu(string LoginCred);
+        string ManageMenus(Menu request);
+
     }
 }

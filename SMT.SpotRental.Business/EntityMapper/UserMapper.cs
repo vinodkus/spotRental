@@ -113,7 +113,7 @@ namespace SMT.SpotRental.Business.EntityMapper
 
             }).ToList();
         }
-        public static IList<MenuEntity> MapMenuEntity(IList<Menu> x)
+        public static IList<MenuEntity> MapMenuEntityList(IList<Menu> x)
         {
             return x.AsEnumerable().Select(c => new MenuEntity()
             {
@@ -126,8 +126,24 @@ namespace SMT.SpotRental.Business.EntityMapper
                 ActionText = c.ActionText,
                 ControllerName = c.ControllerName,
                 RootID = c.RootID,
-                UserID = c.UserID
+                UserID = c.UserID                
             }).ToList();
+        }
+        public static Menu MapMenuEntity(MenuEntity c)
+        {
+            return new Menu() {
+                ActionID = c.ActionID,
+                ActionName = c.ActionName,
+                Active = c.Active,
+                Icon = c.Icon,
+                IsMenuItems = c.IsMenuItems,
+                MenuOrder = c.MenuOrder,
+                ActionText = c.ActionText,
+                ControllerName = c.ControllerName,
+                RootID = c.RootID,
+                UserID = c.UserID,
+                QueryNo=c.QueryNo                
+            };
         }
         public static IList<RolesEntity> MapRoleEntityList(IList<Roles> m)
         {

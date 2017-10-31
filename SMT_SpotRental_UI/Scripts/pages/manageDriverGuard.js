@@ -10,18 +10,14 @@
  * @version    1.0.0
  *-------------------------------------------------------------------------------------*/
 var urlPref;
-var deleteDriverGuardId;
 var DriverGuard;
 $(document).ready(function () {
     bindBaseOffice('#ddlSite');
     bindAllVendors('#ddlVendorCode');
     $('#btnSearch').on('click', function () { searchDriverGuard();  });
-    //$('#btnAdd').on('click', function () { $('#hdnVendorIDToUpdate').val('0'); $('#btnAddVendor').text('Add Vendor'); $('#addVendor').text('Add/Register Vendor'); openModelToAddVendor(); });
     $('#btnAdd').on('click', function () { if (checkBaseDriverGuard()) { openModelToAddDriverGuard(); } });
     $('#btnAddDriverGuard').on('click', function () { $('#btnAddDriverGuard').text().trim() == 'Add Driver/Guard' ? addDriverGuardDetails() : updateDriverGuardDetails(); });
-
     $('#btnReset').on('click', function () { resetFields(); })
-
     $(document).on('keydown', '#txtFirstName', function (e) {
         if (e.keyCode == 32) return false;
     });
@@ -53,16 +49,21 @@ var openModelToAddDriverGuard = function () {
     resetFields();
     $('#divAddUpdateDriverGuard').modal('show');
     $(function () {
-        $('.datepicker').datepicker({
-            format: 'mm-dd-yyyy',
-            startDate: '-0d',
-            autoclose: true
-        });
-        //$('.datepicker').datepicker({ // Back date
-        //    format: 'mm-dd-yyyy', 
-        //    endDate: 'd',
+        //$('.datepicker').datepicker({
+        //    format: 'mm-dd-yyyy',
+        //    startDate: '-0d',
         //    autoclose: true
         //});
+        $('#txtLicenceBeltExpiryDate,#txtJoiningDate,#txtLeavingDate,#txtBadgeExpiryDate').datepicker({
+            format: 'dd-mm-yyyy',
+            startDate: '01/01/0001',
+            autoclose: true
+        });
+        $('#txtDOB').datepicker({
+            format: 'dd-mm-yyyy',
+            endDate: 'd',
+            autoclose: true
+        });
         bindAllVendors('#ddlVendor');
         $('#ddlVendor').val($("#ddlVendorCode").val());
         $('#ddlVendor').prop("disabled", "disabled");
@@ -77,10 +78,15 @@ var openModelToUpdateDriverGuard = function (driverGuardId) {
     $('#heading').text('Update ' + dg);    
     $('#btnAddDriverGuard').text('Update '+dg);
     $('#divAddUpdateDriverGuard').modal('show');
-    $(function () {
-        $('.datepicker').datepicker({
-            format: 'mm-dd-yyyy',
-            startDate: '-0d',
+    $(function () {        
+        $('#txtLicenceBeltExpiryDate,#txtJoiningDate,#txtLeavingDate,#txtBadgeExpiryDate').datepicker({
+            format: 'dd-mm-yyyy',
+            startDate:'01/01/0001',
+            autoclose: true
+        });
+        $('#txtDOB').datepicker({
+            format: 'dd-mm-yyyy',
+            endDate: 'd',
             autoclose: true
         });
         bindAllVendors('#ddlVendor');
@@ -93,9 +99,8 @@ var openModelToUpdateDriverGuard = function (driverGuardId) {
     checkNumeric('#txtContactNumber');
 }
 
-var openModelToDeleteDriverGuard = function (driverGuardId,empType,fullName) {
-    
-    deleteDriverGuardId = driverGuardId;
+var openModelToDeleteDriverGuard = function (driverGuardId,empType,fullName) {    
+
     $('#divDeleteDriverGuard').modal('show');
     DriverGuard = $.trim(empType) == "D" ? "Driver" : "Guard";
     var msg = DriverGuard + ' of ID:' + driverGuardId+'';
@@ -103,34 +108,6 @@ var openModelToDeleteDriverGuard = function (driverGuardId,empType,fullName) {
     $('#spanDriverGuard').text(DriverGuard);
     $('#spanDriverGuardFullName').text(fullName);
 }
-//var deleteDriverGuard = function () {
-//    var req =
-//            {
-//                'DriverGuardId': deleteDriverGuardId
-//            };
-
-    //$.ajax({
-    //    type: "POST",
-    //    data: { 'request': req },
-    //    url: urlPref + '/MasterItems/DeleteDriverGuard',
-    //    success: function (data) {
-    //        if (data && data.Result == "TRUE") {
-    //            alert(DriverGuard+ ' deleted successfully!');
-    //            searchDriverGuard();
-    //        }
-    //        else {
-    //            alert(data.Result);
-    //        }
-    //    },
-    //    error: function (xhr) {
-    //        alert('Error: unable to delete ' + DriverGuard + ' details. Please try after some time!');
-    //    },
-    //    complete: function () {
-    //        $('#divDeleteDriverGuard').modal('toggle');
-    //    }
-    //});
-
-//}
 var bindFieldsForUpdate = function (driverGuardId) {
     $('#hdnLocalCode').val($('#hdnLocCode_' + driverGuardId).val());
     $('#txtFirstName').val($('#hdnFirstName_' + driverGuardId).val());
@@ -443,7 +420,6 @@ var openDocumentUploadPopup = function (driverGuardId) {
     getUploadedDocs(0, DriverGuardId);
     // rest actions are in uploadDocuments.js 
 }
-
 var deleteDriverGuard = function (driverGuardId, empType, fullName) {
     var dg = empType == "D" ? "Driver" : "Guard";
     swal({
@@ -484,10 +460,10 @@ function (isConfirm) {
             },
             
         });
-        swal("Done!", "Password has been reseted and send on registered email.", "success");
+        swal("Done!", fullName+" has been deleted successfully.", "success");
     }
     else {
-        swal("Cancelled", "Password could not be reseted.", "error");
+        swal("Cancelled", fullName+" could not be deleted.", "error");
     }
 });
 }

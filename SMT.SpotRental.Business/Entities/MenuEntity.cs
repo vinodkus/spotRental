@@ -6,6 +6,7 @@ namespace SMT.SpotRental.Business.Entities
     {
         public int UserID { get; set; }
         public int ActionID { get; set; }
+        public string ActionIDs { get; set; }
         public string ActionName { get; set; }
         public string ActionText { get; set; }
         public int RootID { get; set; }
@@ -14,5 +15,6 @@ namespace SMT.SpotRental.Business.Entities
         public int MenuOrder { get; set; }
         public int IsMenuItems { get; set; }
         public string Icon { get; set; }
+        public int QueryNo { get; set; }
     }
 }

@@ -34,8 +34,9 @@ namespace SMT.SpotRental.UI
             bundles.Add(new ScriptBundle("~/Jquery/manageVehicles").Include("~/Scripts/pages/manageVehicles.js"));
             bundles.Add(new ScriptBundle("~/Jquery/manageDriverGuard").Include("~/Scripts/pages/manageDriverGuard.js"));
             bundles.Add(new ScriptBundle("~/Jquery/uploadDocuments").Include("~/Scripts/pages/uploadDocuments.js"));
-            bundles.Add(new ScriptBundle("~/Jquery/manageRole").Include("~/Scripts/pages/manageRole.js"));
+            bundles.Add(new ScriptBundle("~/Jquery/manageRole").Include("~/Scripts/pages/manageRole.js"));            
             bundles.Add(new ScriptBundle("~/Jquery/manageUsersList").Include("~/Scripts/pages/manageUsersList.js"));
+            bundles.Add(new ScriptBundle("~/Jquery/manageMenu").Include("~/Scripts/pages/manageMenu.js"));
             bundles.Add(new ScriptBundle("~/Jquery/sweetalert").Include("~/Scripts/plugins/sweetalert/sweetalert.js"));
 
             //---------------------EOF: Javascript Bundels-------------------------------------//

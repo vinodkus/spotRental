@@ -28,7 +28,7 @@ namespace SMT.SpotRental.Business
         }
         public IList<MenuEntity> GetNavigationDetails(string LoginCred)
         {
-            return UserMapper.MapMenuEntity(userRepository.GetNavigationDetails(LoginCred));
+            return UserMapper.MapMenuEntityList(userRepository.GetNavigationDetails(LoginCred));
         }
         public IList<UserEntity> SearchEmployees(string EmployeeCode, string FName, string LName, string MobileNo, string EmailID)
         {
@@ -59,6 +59,19 @@ namespace SMT.SpotRental.Business
         public IList<UserEntity> GetUserList()
         {
             return  UserMapper.MapUserEntityList(userRepository.GetUserList());
+        }
+        public IList<MenuEntity> GetMenuList(string LoginCred)
+        {
+            return UserMapper.MapMenuEntityList(userRepository.GetMenuList(LoginCred));
+        }
+
+        public IList<MenuEntity> GetParentMenu(string LoginCred)
+        {
+            return UserMapper.MapMenuEntityList(userRepository.GetParentMenu(LoginCred));
+        }
+        public string ManageMenus(MenuEntity requst)
+        {
+            return userRepository.ManageMenus (UserMapper.MapMenuEntity(requst));
         }
     }
 }

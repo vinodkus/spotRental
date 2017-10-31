@@ -1,0 +1,127 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jquery/dataTables")
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/dataTables")
+
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/Jquery/manageMenu")
+
+
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-user"></i>&nbsp;Manage Menus
+            </h3>
+        </div>
+        <div class="box box-default collapsed-box box-solid box-header with-border">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAddMenu()"><i class="glyphicon glyphicon-plus-sign"></i> Add New Menu</a></div>
+            </div>
+            <div class="box-body" style="display:block">
+                <div id="divMenuList">
+                    <!--User List By Partial View -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divAddEditMenu" tabindex="-1" role="dialog" aria-labelledby="divAddEditMenu" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="heading" style="color:blue"><i class="fa fa-role" aria-hidden="true"></i> Add/Edit Menu </h4>
+            </div>
+            <div class="modal-body pre-scrollable">
+                <input type="hidden" id="hdnActionIDForUpdate" value="0" />
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> Menu Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2">Action Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtActionName" class="form-control" placeholder="ActionName" maxlength="400" />
+                                <i class="glyphicon glyphicon-th"></i>
+                            </div>
+                            <div class="col-md-2">Action Text<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtActionText" class="form-control" placeholder="Action Text" maxlength="400" />
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Controller Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtControllerName" class="form-control" placeholder="Controller Name" maxlength="1000" />
+                                <i class="glyphicon glyphicon-subtitles"></i>
+                            </div>
+                            <div class="col-md-2">Parent Menu</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <select name="ddlParentMenu" id="ddlParentMenu" class="form-control">
+                                    <option value="0">Parent Menu</option>
+                                </select>
+                                <i class="glyphicon glyphicon-home"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Menu Item</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbMenuItem" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="info" data-on="Yes" data-off="No" onchange="SetParnetMenu();">
+                            </div>
+                            <div class="col-md-2">Menu Order</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtMenuOrder" class="form-control" placeholder="Menu Order" maxlength="3" />
+                                <i class="glyphicon glyphicon-th-list"></i>
+                            </div>
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-2">Status</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbStatus" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="info" data-on="Yes" data-off="No">
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                
+                            </div>
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <button type="submit" class="btn btn-info" id="btnAddMenu">Save Menu</button>
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

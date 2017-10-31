@@ -402,5 +402,104 @@ namespace SMT.SpotRental.API.Controllers
             }
             return objResopnse;
         }
+
+        [Route("getmenulist")]
+        [HttpGet]
+        public MenuResponse GetMenuList(string UserID)
+        {
+            MenuResponse objResopnse = new MenuResponse();
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    objResopnse.menuItems = new List<MenuEntity>();
+                    objResopnse.menuItems = objUser.GetMenuList(UserID);
+                    if (objResopnse.menuItems != null && objResopnse.menuItems.Count > 0)
+                    {
+                        objResopnse.Result = true;
+                    }
+                    else
+                    {
+                        objResopnse.Result = false;
+                        objResopnse.ErrorMessage = "NOREC";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objResopnse.IsExcep = true;
+                objResopnse.ErrorMessage = "Error: " + ex.Message;
+            }
+            return objResopnse;
+        }
+
+        [Route("getparentmenu")]
+        [HttpGet]
+        public MenuResponse GetParentMenu(string UserID)
+        {
+            MenuResponse objResopnse = new MenuResponse();
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    objResopnse.menuItems = new List<MenuEntity>();
+                    objResopnse.menuItems = objUser.GetParentMenu(UserID);
+                    if (objResopnse.menuItems != null && objResopnse.menuItems.Count > 0)
+                    {
+                        objResopnse.Result = true;
+                    }
+                    else
+                    {
+                        objResopnse.Result = false;
+                        objResopnse.ErrorMessage = "NOREC";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objResopnse.IsExcep = true;
+                objResopnse.ErrorMessage = "Error: " + ex.Message;
+            }
+            return objResopnse;
+        }
+
+        [Route("managemenus")]
+        [HttpPost]
+        public string ManageMenus(MenuEntity request)
+        {
+            string Result = "";
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    Result = objUser.ManageMenus(request);
+                }
+            }
+            catch (Exception ex)
+            {
+                Result = "Error: " + ex.Message;
+            }
+            return Result;
+        }
     }
 }

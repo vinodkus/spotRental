@@ -268,7 +268,169 @@ namespace SMT.SpotRental.UI.Controllers
                 return Json(new { Result = false, Message = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
+        #endregion
+
+        #region MANAGE MENU
+        public ActionResult Menu()
+        {
+            if (Session["User"] != null)
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                DashboardViewModel modelDashboard = new DashboardViewModel();
+                modelDashboard.userDetails = new UserViewModel();
+                modelDashboard.userDetails = empmodel;
+                ViewBag.TempPassword = modelDashboard.userDetails.TempPwd;
+                ViewBag.ProfilePicPath = PRF_PATH;
+                ViewBag.ProfilePic = !string.IsNullOrEmpty(empmodel.ProfilePic) ? PRF_PATH + empmodel.ProfilePic : PRF_PATH + "PRF_PIC.png";
+                modelDashboard.objMenu = GetMenuDetails(modelDashboard.userDetails.UserID);
+                empmodel.TempPwd = false;
+                Session["User"] = empmodel;
+                if (modelDashboard.objMenu == null || modelDashboard.objMenu.menuItems == null || modelDashboard.objMenu.menuItems.Count <= 0 || modelDashboard.objMenu.IsError || modelDashboard.objMenu.IsExcep)
+                {
+                    return RedirectToAction("InvalidAccess", "Message");
+                }
+                else
+                {
+
+
+                    return View("ManageMenu", modelDashboard);
+                }
+            }
+            else
+            {
+                return RedirectToAction("InvalidAccess", "Message");
+            }
+
+        }
+
+        public PartialViewResult BindMenus()
+        {
+            MenuResponse response = new MenuResponse();
+            response = GetMenuList();
+            return PartialView("_MenuList", response);
+        }
+        private MenuResponse GetMenuList()
+        {
+            MenuResponse response = new MenuResponse();
+            try
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID",};
+                paramValue[0] = empmodel.UserID;
+                webAPI = new WebAPICommunicator();
+                response = webAPI.GetResponse<MenuResponse>(response, "U", "getmenulist", paramValue, paramName);
+
+            }
+            catch
+            {
+
+            }
+
+            return response;
+        }
+
+        public JsonResult GetParentMenu()
+        {
+            MenuResponse response = new MenuResponse();
+            
+            UserViewModel empmodel = new UserViewModel();
+            empmodel = Session["User"] as UserViewModel;
+            object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID", };
+            paramValue[0] = empmodel.UserID;
+            webAPI = new WebAPICommunicator();
+            response = webAPI.GetResponse<MenuResponse>(response, "U", "getparentmenu", paramValue, paramName);
+            if (response != null && response.menuItems != null)
+            {
+                var parentMenu = response.menuItems.Where(x => x.RootID == 0);
+                return Json(new { Result = true, List = parentMenu }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = false }, JsonRequestBehavior.AllowGet);
+            }            
+        }
+        public JsonResult AddNewMenu(string ActionName="", string ActionText="", int RootID=0, Boolean status=true, string ControllerName="", int MenuOrder=0, Boolean IsMenuItems=true)
+        {
+            if (ActionName != null && ActionText != null && ControllerName != null)
+            {
+                string Result = "";
+                string str = AddMenu(ActionName, ActionText, RootID, status, ControllerName, MenuOrder, IsMenuItems, ref Result);
+                return Json(new { Result = Result.ToUpper().Contains("TRUE") ? "TRUE" : Result.ToUpper().Contains("DUPLICATE") ? "This menu already exist." : "There are some issue in adding menu." }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        private string AddMenu(string ActionName, string ActionText, int RootID, Boolean status, string ControllerName, int MenuOrder, Boolean IsMenuItems,  ref string Result)
+        {
+            string strResult = "";
+            try
+            {
+                webAPI = new WebAPICommunicator();
+                Menu request = new Menu();
+                request.ActionText = ActionText;
+                request.ActionName = ActionName;
+                request.ControllerName = ControllerName;
+                request.MenuOrder = MenuOrder;
+                request.IsMenuItems = IsMenuItems == true ? 1 : 0;
+                request.Active = status;
+                request.RootID = RootID;
+                request.QueryNo = 1;
+                strResult = webAPI.PostRequest<Menu>(request, "U", "managemenus", ref Result);
+
+            }
+            catch (Exception ex)
+            {
+                strResult = "EXE:" + ex.Message;
+            }
+
+            return strResult;
+        }
+
+        public JsonResult UpdateNewMenu(int ActionId, string ActionName = "", string ActionText = "", int RootID = 0, Boolean status = true, string ControllerName = "", int MenuOrder = 0, Boolean IsMenuItems = true)
+        {
+            if (ActionName != null && ActionText != null && ControllerName != null)
+            {
+                string Result = "";
+                string str = UpdateMenu(ActionId, ActionName, ActionText, RootID, status, ControllerName, MenuOrder, IsMenuItems, ref Result);
+                return Json(new { Result = Result.ToUpper().Contains("TRUE") ? "TRUE" : Result.ToUpper().Contains("DUPLICATE") ? "This menu already exist." : "There are some issue in updating menu." }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private string UpdateMenu(int ActionId, string ActionName, string ActionText, int RootID, Boolean status, string ControllerName, int MenuOrder, Boolean IsMenuItems, ref string Result)
+        {
+            string strResult = "";
+            try
+            {
+                webAPI = new WebAPICommunicator();
+                Menu request = new Menu();
+                request.ActionID = ActionId;
+                request.ActionText = ActionText;
+                request.ActionName = ActionName;
+                request.ControllerName = ControllerName;
+                request.MenuOrder = MenuOrder;
+                request.IsMenuItems = IsMenuItems == true ? 1 : 0;
+                request.Active = status;
+                request.RootID = RootID;
+                request.QueryNo = 2;
+                strResult = webAPI.PostRequest<Menu>(request, "U", "managemenus", ref Result);
+
+            }
+            catch (Exception ex)
+            {
+                strResult = "EXE:" + ex.Message;
+            }
+
+            return strResult;
+        }
         #endregion
     }
 }

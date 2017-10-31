@@ -41,6 +41,8 @@ namespace SMT.SpotRental.Database
         public const string SR_USP_GETUPLOADEDDOCS = "SR_USP_GETUPLOADEDDOCS";
         public const string SR_USP_MANAGEROLES = "SR_USP_MANAGEROLES";
         public const string SR_USP_GETUSERLIST = "SR_USP_GETUSERLIST";
+        public const string SR_USP_GETPARENTMENU = "SR_USP_GETPARENTMENU";
+        public const string SR_USP_MANAGEMENUS = "SR_USP_MANAGEMENUS";
 
     }
 }

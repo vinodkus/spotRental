@@ -63,5 +63,19 @@ namespace SMT.SpotRental.Data
         {
             return users.GetUserList();
         }
+
+        public IList<Menu> GetMenuList(string LoginCred)
+        {
+            return users.GetMenuList(LoginCred);
+        }
+
+        public IList<Menu> GetParentMenu(string LoginCred)
+        {
+            return users.GetParentMenu(LoginCred);
+        }
+        public string ManageMenus(Menu request)
+        {
+            return users.ManageMenus(request);
+        }
     }
 }

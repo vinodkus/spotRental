@@ -137,7 +137,6 @@ F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\Microsoft.Owin.Security.OAuth.x
 F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\Microsoft.Owin.Security.Google.xml
 F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\Microsoft.Owin.Security.Twitter.xml
 F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.csprojResolveAssemblyReference.cache
 F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.dll
 F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.pdb
 D:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\roslyn\csc.exe
@@ -211,3 +210,4 @@ D:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.csprojR
 D:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.dll
 D:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.pdb
 D:\Projects\SMT_SpotRental\SMT_SpotRental_UI\bin\SMT.SpotRental.Shared.dll
+F:\Projects\SMT_SpotRental\SMT_SpotRental_UI\obj\Debug\SMT.SpotRental.UI.csprojResolveAssemblyReference.cache

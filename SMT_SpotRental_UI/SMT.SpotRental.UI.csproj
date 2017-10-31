@@ -330,6 +330,7 @@
     <Content Include="Scripts\pages\common.js" />
     <Content Include="Scripts\pages\dashboard.js" />
     <Content Include="Scripts\pages\login.js" />
+    <Content Include="Scripts\pages\manageMenu.js" />
     <Content Include="Scripts\pages\manageRole.js" />
     <Content Include="Scripts\pages\manageDriverGuard.js" />
     <Content Include="Scripts\pages\manageUsersList.js" />
@@ -400,6 +401,8 @@
     <Content Include="Views\MasterItems\_DeleteDriverGuard.cshtml" />
     <Content Include="Views\MasterItems\_DriverGuardList.cshtml" />
     <Content Include="Views\MasterItems\_ViewDriverGuardDetails.cshtml" />
+    <Content Include="Views\Access\ManageMenu.cshtml" />
+    <Content Include="Views\Access\_MenuList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -237,5 +237,61 @@ namespace SMT.SpotRental.Database
             }
             return listUser;
         }
+
+        /// <summary>
+        /// This method returns all user list with their role
+        /// </summary>
+        /// <returns></returns>
+        public IList<Menu> GetMenuList(string LoginCred)
+        {
+            IList<Menu> listMenu = new List<Menu>();
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objparams = new DynamicParameters();
+                objparams.Add("@UserID", LoginCred);
+                objparams.Add("@QueryNo", 4);
+                listMenu = dc.ExecuteProc<Menu>(SR_USP_GETNEVIGATIONDETAIL, objparams);
+            }
+            return listMenu;
+        }
+        /// <summary>
+        /// This method returns all Parent Menu
+        /// </summary>
+        /// <returns></returns>
+        public IList<Menu> GetParentMenu(string LoginCred)
+        {
+            IList<Menu> listMenu = new List<Menu>();
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objparams = new DynamicParameters();
+                objparams.Add("@UserID", LoginCred);
+                objparams.Add("@QueryNo", 2);
+                listMenu = dc.ExecuteProc<Menu>(SR_USP_GETNEVIGATIONDETAIL, objparams);
+            }
+            return listMenu;
+        }
+
+        public string ManageMenus(Menu request)
+        {
+            string strResult = "";
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objparams = new DynamicParameters();
+                objparams.Add("@ActionID", request.ActionID);
+                objparams.Add("@ActionText", request.ActionText);
+                objparams.Add("@ActionName", request.ActionName);
+                objparams.Add("@Active", request.Active);
+                objparams.Add("@RootID", request.RootID);
+                objparams.Add("@ControllerName", request.ControllerName);
+                objparams.Add("@MenuOrder", request.MenuOrder);
+                objparams.Add("@IsMenuItems", request.IsMenuItems);
+                objparams.Add("@QueryNo", request.QueryNo);
+                objparams.Add("@Result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+                strResult = Convert.ToString(dc.ExecuteProc(SR_USP_MANAGEMENUS, objparams));
+                strResult = objparams.Get<string>("@Result");
+            }
+            return strResult;
+
+        }
     }
 }
