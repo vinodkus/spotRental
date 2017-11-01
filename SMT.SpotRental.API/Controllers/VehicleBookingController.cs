@@ -143,11 +143,11 @@ namespace SMT.SpotRental.API.Controllers
                     if (request.entity.RequestIDs==null || request.entity.RequestIDs == "" || request.entity.RequestIDs == "0")
                     {
                         string Result = objbookVehicle.ManageTripStatus(request.entity);
-                        if (Result != null && Result == "TRUE")
+                        if (Result != null )
                         {
                             objResponse.Result = true;
                             objResponse.ResultId = 1;
-                            objResponse.Message = "TRUE";
+                            objResponse.Message = Result;
                         }
                         else
                         {

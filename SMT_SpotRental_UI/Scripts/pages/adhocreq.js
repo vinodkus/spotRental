@@ -179,7 +179,7 @@ var showEmployeeDetails = function () {
     if (empID.trim().length > 3) {
         var empData = getEmployeeDetails(empID);
         if (empData != undefined && empData.Result == true) {
-            $('#txtEmployeeName').val(empData.List.userList[0].UserName);
+            $('#txtEmployeeName').val(empData.List.userList[0].FName + ' ' + empData.List.userList[0].LName);
             $('#txtMobileNo').val(empData.List.userList[0].MobileNo);
             $('#txtEmailId').val(empData.List.userList[0].EmailID);
             $('#txtCredit').val(empData.List.userList[0].CreditCard);

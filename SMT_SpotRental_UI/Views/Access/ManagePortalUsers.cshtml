@@ -29,7 +29,7 @@
         <div class="box box-default collapsed-box box-solid box-header with-border">
             <div class="row">
                 <div class="col-md-6"></div>
-                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAddRole()"><i class="glyphicon glyphicon-plus-sign"></i> Add New User</a></div>
+                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAdd()"><i class="glyphicon glyphicon-plus-sign"></i> Add New User</a></div>
             </div>
             <div class="box-body" style="display:block">
                 <div id="divUserList">
@@ -96,38 +96,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2">Roles<span style="color:red;font-size:15px;">*</span></div>
-                            <div class="col-md-4 form-group">
-                                <div class="btn-group" data-toggle="buttons">
-
-                                    <label class="btn btn-success active">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" chacked>
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="options" id="option1" autocomplete="off">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input type="radio" name="options" id="option2" autocomplete="off">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-                                    <label class="btn btn-default">
-                                        <input type="radio" name="options" id="option2" autocomplete="off">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-                                    <label class="btn btn-warning">
-                                        <input type="radio" name="options" id="option2" autocomplete="off">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-                                    <label class="btn btn-danger">
-                                        <input type="radio" name="options" id="option2" autocomplete="off">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </label>
-
-                                </div>
+                        
+                            <div class="col-md-4 form-group" id="divRoles">
+                                
                             </div>
-                            <div class="col-md-2">Vendor<span style="color:red;font-size:15px;">*</span></div>
-                            <div class="col-md-4 form-group icon-addon addon-md">
+                            <div class="col-md-2" id="divName" style="display:none;">Vendor<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md" id="divData" style="display:none;">
                                 <select name="ddlLocation" id="ddlVendor" class="form-control">
                                     <option value="0">SELECT VENDOR</option>
                                 </select>

@@ -25,6 +25,7 @@
                     <td>View</td>
                     <td>Assign Vehicle</td>
                     <td>Re-Assign Vehicle</td>
+                    <td>Update Trip</td>
                 </tr>
             </thead>
             <tbody style="font-size:10px;">
@@ -37,8 +38,9 @@
                     <input type="hidden" id="hdnVehhicleName_@item.RequestId" value="@item.VehicleType" />
                     <input type="hidden" id="hdnVendorName_@item.RequestId" value="@item.VendorName" />
                     <input type="hidden" id="hdnTripType_@item.RequestId" value="@item.IsOfficialTrip" />
-
-                     <tr>
+                    <input type="hidden" id="hdnVehhicleID_@item.RequestId" value="@item.VehicleID" />
+                    <input type="hidden" id="hdnDriverID_@item.RequestId" value="@item.DriverId" />
+                    <tr>
                         <td>@item.RequestId</td>
                         <td>@item.RequestByName</td>
                         <td>@item.EmployeeID</td>
@@ -55,7 +57,7 @@
                         }
                         else
                         {
-                            <td style="color:green;font-weight:bold">@item.ReportingTime</td>
+                            <td style="color:green;font-weight:bold" title="Pickup time">@item.ReportingTime</td>
                         }
 
                         <td>@item.ESG</td>
@@ -124,8 +126,23 @@
                                 </td>
                             }
                         }
-
-
+                        @* Open trip status just before 2 hrs of trip started. Need to make configuration for it *@
+                        @if (Convert.ToDateTime(item.ReportingTime) >  (DateTime.Now).AddHours(2) || Convert.ToDateTime(item.ReportingTime) < DateTime.Now)
+                        {
+                            <td style="text-align:center">
+                                <a href="#" class="btn btn-default" data-toggle="modal" title="Not allowed" style="cursor:not-allowed">
+                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="text-align:center">
+                                <a href="#" class="btn btn-info" data-toggle="modal" title="click here to update trip status" onclick="showTripStatusPopup(@item.RequestId)">
+                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        }
                     </tr>
 
                 }

@@ -12,7 +12,7 @@ namespace SMT.SpotRental.Data.interfaces
         IList<SourceDestination> GetRateDetails(string UserID, string RentalCityName, string CarType, string RouteType);
         IList<Reason> GetReason(string ReasonGroup);
         IList<VehicleTypeMaster> GetAllVehicleTypes();
-        IList<TripStatus> GetTripStatusList(string DisplayFor);
+        IList<TripStatus> GetTripStatusList(string DisplayFor, string GroupName = "");
         IList<VehicleMaster> GetVehicleList(string VendorID);
         IList<DriverGuard> GetDriverGuardList(string VendorID, string EmpType);
         string ManageSendEmails(EmailDetails request);

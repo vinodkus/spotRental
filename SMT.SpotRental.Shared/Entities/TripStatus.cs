@@ -13,6 +13,7 @@ namespace SMT.SpotRental.Shared.Entities
         public string StatusName { get; set; }
         public string ActionName { get; set; }
         public string DisplayFor { get; set; }
+        public string GroupName { get; set; }
         public string ReasonID { get; set; }
         public string ReasonRemarks { get; set; }
         public string RequestID { get; set; }

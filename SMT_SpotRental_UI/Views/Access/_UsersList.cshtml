@@ -36,7 +36,7 @@
                 <td>@users.MobileNo</td>
                 <td style="text-align:center"><a href="#" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="@users.RoleNames.Replace("$",", ")"> <i class="glyphicon glyphicon-eye-open"></i> </a></td>
                 <td style="text-align:center"><a href="#" class="btn btn-success" onclick="resetPassword('@users.EmailID')"><i class="fa fa-refresh" aria-hidden="true"></i></a></td>
-                <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="showPopupForEdit('@users.UserID','@users.UserName','@users.EmailID','@users.OfficeLocation','@users.Gender','@users.MobileNo')"> <i class="glyphicon glyphicon-edit"></i> </a></td>
+                <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="showPopupForEdit('@users.UserID','@users.UserName','@users.EmailID','@users.OfficeLocation','@users.Gender','@users.MobileNo','@users.HomeAddress','@users.VendorID', '@users.RoleNames')"> <i class="glyphicon glyphicon-edit"></i> </a></td>
 
             </tr>
         }

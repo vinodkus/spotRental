@@ -1,0 +1,37 @@
+﻿@model SMT.SpotRental.UI.Response.MenuResponse
+
+@if (Model != null && Model.menuItems != null && Model.menuItems.Count > 0)
+{
+    foreach (var menu in Model.menuItems.Where(i => i.RootID == 0))
+    {
+        <ul>
+            <li>
+                @if (menu.MapID != 0)
+                {
+                    <input type="checkbox" id="cbParent_@menu.ActionID" checked="checked" /><span style="color:blue;font-weight:bold"> @menu.ActionText</span>
+                }
+                else
+                {
+                    <input type="checkbox" id="cbParent_@menu.ActionID" /><span style="color:blue;font-weight:bold"> @menu.ActionText</span>
+                }
+                @foreach (var subMenuItems in Model.menuItems.Where(s => s.RootID == menu.ActionID && s.RootID != 0))
+                {
+                    <ul>
+                        <li>
+                            @if (subMenuItems.MapID != 0)
+                            {
+                                <input type="checkbox" class="aa" checked="checked" id="cbChild_@(menu.ActionID+"_"+subMenuItems.ActionID)" /><span style="color:black"> @subMenuItems.ActionText</span>
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="aa" id="cbChild_@(menu.ActionID+"_"+subMenuItems.ActionID)" /><span style="color:black"> @subMenuItems.ActionText</span>
+
+                            }
+                        </li>
+                    </ul>
+
+                }
+            </li>
+        </ul>
+    }
+}

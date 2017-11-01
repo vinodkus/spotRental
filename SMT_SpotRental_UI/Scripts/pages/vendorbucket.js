@@ -7,11 +7,16 @@ $(document).ready(function () {
     $('#btnAssign').click(function () {
         assignVehicleSubmit();
     });
+    $('#btnUpdateTripStatus').click(function () {
+        updateTripStatus();
+    });
+
+
 
 });
 var getPrimaryList = function () {
     $.ajax({
-        url: urlPref +  '/UserBucket/RenderVendorBucketForAccept',
+        url: urlPref + '/UserBucket/RenderVendorBucketForAccept',
         type: "GET",
         contenttype: 'application/json; charset=utf-8',
         success: function (data) {
@@ -31,7 +36,7 @@ var getPrimaryList = function () {
 var acceptTrip = function (reqID) {
     if (confirm('Are you sure to accept this trip request?')) {
         $.ajax({
-            url: urlPref +  '/UserBucket/AcceptTrip',
+            url: urlPref + '/UserBucket/AcceptTrip',
             type: "GET",
             data: { 'ReqID': reqID },
             contenttype: 'application/json; charset=utf-8',
@@ -61,7 +66,7 @@ var rejectTrip = function () {
     }
     else {
         $.ajax({
-            url: urlPref +  '/UserBucket/RejectTrip',
+            url: urlPref + '/UserBucket/RejectTrip',
             type: "GET",
             data: { 'ReqID': reqID, 'StatusCode': 'RJ', 'ReasonID': reasonId, 'ReasonRemarks': reamrks },
             contenttype: 'application/json; charset=utf-8',
@@ -91,7 +96,7 @@ var rejectTripCnf = function (reqID) {
 }
 var getAcceptedList = function () {
     $.ajax({
-        url: urlPref +  '/UserBucket/RenderAcceptedVendorBucket',
+        url: urlPref + '/UserBucket/RenderAcceptedVendorBucket',
         type: "GET",
         contenttype: 'application/json; charset=utf-8',
         success: function (data) {
@@ -110,7 +115,7 @@ var getAcceptedList = function () {
 }
 var getRejectedList = function () {
     $.ajax({
-        url: urlPref +  '/UserBucket/RenderRejectedVendorBucket',
+        url: urlPref + '/UserBucket/RenderRejectedVendorBucket',
         type: "GET",
         contenttype: 'application/json; charset=utf-8',
         success: function (data) {
@@ -177,17 +182,15 @@ var assignVehicleSubmit = function (reqID) {
     else {
 
         var statusCode = "";
-        if (assignType == "1")
-        {
+        if (assignType == "1") {
             statusCode = "VRAD";
         }
-        else
-        {
+        else {
             statusCode = "VAD";
         }
 
         $.ajax({
-            url: urlPref +  '/UserBucket/AssignVehicleAndDriver',
+            url: urlPref + '/UserBucket/AssignVehicleAndDriver',
             type: "GET",
             data: { 'ReqID': reqID, 'StatusCode': statusCode, 'VehicleID': vehID, 'DriverID': driverID, 'GuardID': GuardID, 'ReasonID': reasonID, 'ReasonRemarks': reasonRemarks },
             contenttype: 'application/json; charset=utf-8',
@@ -209,7 +212,7 @@ var assignVehicleSubmit = function (reqID) {
 }
 var bindVehicleForVendor = function (cntrlID) {
     $.ajax({
-        url: urlPref +  '/Common/GetAllVehicleListForVendor',
+        url: urlPref + '/Common/GetAllVehicleListForVendor',
         type: "GET",
         contenttype: 'application/json; charset=utf-8',
         success: function (data) {
@@ -218,7 +221,9 @@ var bindVehicleForVendor = function (cntrlID) {
 
                 $('#hdnVehicleDetails').val(JSON.stringify(data));
                 $.each(data.List.listVehicle, function (key, value) {
-                    listitems += '<option value=' + "'" + value.VehicleID + "'" + '>' + ' [' + value.RegistrationNo + '] - ' + value.VehicleType + '</option>';
+
+                    if (listitems.indexOf(value.RegistrationNo) <= 0)
+                        listitems += '<option value=' + "'" + value.VehicleID + "'" + '>' + ' [' + value.RegistrationNo + '] - ' + value.VehicleType + '</option>';
                 });
                 $(cntrlID).empty();
                 $(cntrlID).append(listitems);
@@ -238,7 +243,7 @@ var bindVehicleForVendor = function (cntrlID) {
 }
 var bindDriverAndGuardForVendor = function (cntrlID_Driver, cntrlID_Guard) {
     $.ajax({
-        url: urlPref +  '/Common/GetAllDriverVehicleForVendor',
+        url: urlPref + '/Common/GetAllDriverVehicleForVendor',
         type: "GET",
         contenttype: 'application/json; charset=utf-8',
         success: function (data) {
@@ -248,10 +253,14 @@ var bindDriverAndGuardForVendor = function (cntrlID_Driver, cntrlID_Guard) {
                 $('#hdnDriverDetails').val(JSON.stringify(data));
                 $.each(data.List.listDriverGuard, function (key, value) {
                     if (value.EmpType == "D") {
-                        listitemsDriver += '<option value=' + "'" + value.DriverGuardId + "'" + '>' + value.FirstName + ' ' + value.LastName + '</option>';
+                        if (listitemsDriver.indexOf(value.FirstName + ' ' + value.LastName) <= 0) { //unique Driver [May be added id also]
+                            listitemsDriver += '<option value=' + "'" + value.DriverGuardId + "'" + '>' + value.FirstName + ' ' + value.LastName + '</option>';
+                        }
                     }
                     else if (value.EmpType == "G") {
-                        listitemsGuard += '<option value=' + "'" + value.DriverGuardId + "'" + '>' + value.FirstName + ' ' + value.LastName + '</option>';
+                        if (listitemsGuard.indexOf(value.FirstName + ' ' + value.LastName) <= 0) { //unique Driver [May be added id also]
+                            listitemsGuard += '<option value=' + "'" + value.DriverGuardId + "'" + '>' + value.FirstName + ' ' + value.LastName + '</option>';
+                        }
                     }
                 });
                 $(cntrlID_Driver).empty();
@@ -323,11 +332,12 @@ var hideshowViewGuard = function () {
 }
 var showVehicleDetails = function () {
 
+    $('#divViewVehicleDetails').modal('toggle');
     var vehID = $('#ddlVehicle').val();
     var data = JSON.parse($('#hdnVehicleDetails').val());
     $.each(data.List.listVehicle, function (key, value) {
         if (value.VehicleID == vehID) {
-            $('#divViewVehicleDetails').modal('toggle');
+
             $('#lblRegistrationNo').text(value.RegistrationNo);
             $('#lblCapcity').text(value.Capacity);
             $('#lblDriverName').text(value.DriverName);
@@ -344,6 +354,8 @@ var showVehicleDetails = function () {
 
         }
     });
+
+    return false;
 }
 var showDriverDetails = function () {
 
@@ -370,4 +382,57 @@ var showGuardDetails = function () {
             $('#lblDriverAddressGuard').text(value.Address);
         }
     });
+}
+var showTripStatusPopup = function (reqID) {
+    $('#divUpdateTripStatus').modal('toggle');
+    bindTripStatus('#ddlTripStatus_Status', 'VTRIP_UPD', 'VEN');
+    $('#hdnReqID_TripStatus').val(reqID);
+    $('#TripStatus_Remarks').val('');
+
+}
+var updateTripStatus = function () {
+    if ($('#ddlTripStatus_Status').val() == "0") {
+        alert('Please select status.');
+        $('#ddlTripStatus_Status').focus();
+        return false;
+    }
+    else if ($('#TripStatus_Remarks').val().trim() == "") {
+        alert('Please enter remarks.');
+        $('#TripStatus_Remarks').focus();
+        return false;
+    }
+    else if ($('#hdnReqID_TripStatus').val() == "0") {
+        alert('Invalid Trip Id.');
+        return false;
+    }
+
+    else {
+        var vehID = $('#hdnVehhicleID_' + $('#hdnReqID_TripStatus').val()).val();
+        var drvID = $('#hdnDriverID_' + $('#hdnReqID_TripStatus').val()).val();
+
+        $.ajax({
+            url: urlPref + '/UserBucket/UpdateTripStatus',
+            type: "GET",
+            data: { 'VehicleID': vehID, 'DriverID': drvID, 'ReqID': $('#hdnReqID_TripStatus').val(), 'StatusCode': $('#ddlTripStatus_Status').val(), 'ReasonID': '0', 'ReasonRemarks': $('#TripStatus_Remarks').val() },
+            contenttype: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data.Result == true) {
+                    alert("Trip status updated successfully.");
+                    $('#TripStatus_Remarks').val('');
+                    getAcceptedList();
+                }
+                else if ($.parseJSON(data.Message).Message != undefined && $.parseJSON(data.Message).Message != null) {
+                    alert($.parseJSON(data.Message).Message);
+                }
+                else {
+                    alert(data.Message);
+                }
+
+
+            },
+            error: function (err) {
+                alert("Error::Not Responding");
+            }
+        });
+    }
 }

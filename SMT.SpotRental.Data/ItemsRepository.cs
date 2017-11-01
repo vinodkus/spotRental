@@ -38,9 +38,9 @@ namespace SMT.SpotRental.Data
         {
             return items.GetAllVehicleTypes();
         }
-        public IList<TripStatus> GetTripStatusList(string DisplayFor)
+        public IList<TripStatus> GetTripStatusList(string DisplayFor, string GroupName = "")
         {
-            return items.GetTripStatusList(DisplayFor);
+            return items.GetTripStatusList(DisplayFor,GroupName);
         }
 
         public IList<VehicleMaster> GetVehicleList(string VendorID)

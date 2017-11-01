@@ -67,11 +67,11 @@ namespace SMT.SpotRental.UI.Controllers
 
         [UserSessionTimeout]
         [HttpGet]
-        public PartialViewResult GetAdhocRequestList(string FromDate, string ToDate, string EmailID, string StatusCode)
+        public PartialViewResult GetAdhocRequestList(string FromDate, string ToDate, string EmailID, string StatusCode,string ForInterface="")
         {
             AdhocResponse response = new AdhocResponse();
             response.itemsList = new List<RouteItems>();
-            response = GetAdhocList(FromDate, ToDate, EmailID, StatusCode);
+            response = GetAdhocList(FromDate, ToDate, EmailID, StatusCode,ForInterFace: ForInterface);
             return PartialView("_ViewAdhocRequest", response);
 
         }
@@ -584,6 +584,46 @@ namespace SMT.SpotRental.UI.Controllers
             else
             {
                 return Json(new { Result = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [UserSessionTimeout]
+        [CheckVendorAccess]
+        [HttpGet]
+        public JsonResult UpdateTripStatus(string VehicleID, string DriverID, string ReqID, string StatusCode, string ReasonRemarks)
+        {
+            if (VehicleID != "" && DriverID != "")
+            {
+                empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+
+                TripStatusChangeRequest request = new TripStatusChangeRequest();
+                request.entity = new TripStatus();
+                request.entity.ReasonID = "0";
+                request.entity.ReasonRemarks = ReasonRemarks;
+                request.entity.StatusCode = StatusCode;
+                request.entity.ActionById = empmodel.UserID.ToString();
+                request.entity.RequestID = ReqID;
+                request.entity.ActionBy = "VEN";
+                request.entity.VendorId = empmodel.VendorID;
+                request.entity.VehicleID = VehicleID;
+                request.entity.DriverID = DriverID;
+
+                string strResult = "";
+                string RES = ManageTripStatus(request, ref strResult);
+
+                if (RES != null && RES == "TRUE")
+                {
+                    return Json(new { Result = true }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Result = false, Message = strResult }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { Result = false, Message = "Please assign vehicle/driver before update status." }, JsonRequestBehavior.AllowGet);
             }
         }
 

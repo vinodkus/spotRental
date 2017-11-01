@@ -1,0 +1,125 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jquery/dataTables")
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/dataTables")
+
+@Styles.Render("~/Content/addons")
+@Scripts.Render("~/Jquery/manageLocation")
+
+
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-user"></i>&nbsp;Manage Location
+            </h3>
+        </div>
+        <div class="box box-default collapsed-box box-solid box-header with-border">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 text-right"><a href="#" class="btn btn-info" title="Click here to add new role." onclick="showPopupForAddLocation()"><i class="glyphicon glyphicon-plus-sign"></i> Add New Location</a></div>
+            </div>
+            <div class="box-body" style="display:block">
+                <div id="divLocationList">
+                    <!--User List By Partial View -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="divAddEditLocation" tabindex="-1" role="dialog" aria-labelledby="divAddEditLocation" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="heading" style="color:blue"><i class="fa fa-role" aria-hidden="true"></i> Add/Edit Location </h4>
+            </div>
+            <div class="modal-body pre-scrollable">
+                <input type="hidden" id="hdnLocationCodeForUpdate" value="0" />
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <h3 class="panel-title"><i class="fa fa-tasks" aria-hidden="true"></i> Location Details</h3> </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2">Location Code<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtLocationCode" class="form-control" placeholder="Location Code" maxlength="400" onkeypress="return blockSpecialChar(event)" />
+                                <i class="glyphicon glyphicon-th"></i>
+                            </div>
+                            <div class="col-md-2">Location Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtLocationName" class="form-control" placeholder="Location Text" maxlength="400" onkeypress="return blockSpecialChar(event)"/>
+                                <i class="glyphicon glyphicon-home"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Short Name<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtShortName" class="form-control" placeholder="Short Name" maxlength="1000" onkeypress="return blockSpecialChar(event)"/> 
+                                <i class="glyphicon glyphicon-font"></i>
+                            </div>
+                            <div class="col-md-2">City</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtCity" class="form-control" placeholder="City Name" maxlength="1000" onkeypress="return blockSpecialChar(event)"/>
+                                <i class="glyphicon glyphicon-home"></i>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">Email ID<span style="color:red;font-size:15px;">*</span></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="text" id="txtEmailId" class="form-control" placeholder="Email ID" maxlength="1000"  />
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </div>
+                            <div class="col-md-2">Visible</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbVisible" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="info" data-on="Yes" data-off="No">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">Status</div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+                                <input type="checkbox" id="cbStatus" checked="checked" data-toggle="toggle" data-onstyle="success" class="form-control" data-offstyle="info" data-on="Yes" data-off="No">
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4 form-group icon-addon addon-md">
+
+                            </div>
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <button type="submit" class="btn btn-info" id="btnAddLocation">Save Location</button>
+                            <div class="col-md-1">&nbsp;</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

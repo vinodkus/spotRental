@@ -92,13 +92,14 @@ namespace SMT.SpotRental.UI.Controllers
 
             return errors;
         }
-        public MenuResponse GetMenuDetails(int UserID)
+        public MenuResponse GetMenuDetails(int UserID, string RoleID = "0", string QueryNo="1")
         {
             webAPI = new WebAPICommunicator();
             MenuResponse objMenu = new MenuResponse();
-            object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserCred" };
+            object[] paramValue = new object[3]; string[] paramName = new string[3] { "UserCred", "RoleID", "QueryNo" };
             paramValue[0] = UserID;
-
+            paramValue[1] = RoleID;
+            paramValue[2] = QueryNo;
             objMenu = webAPI.GetResponse<MenuResponse>(objMenu, "U", "getnavigationdetails", paramValue, paramName);
             return objMenu;
         }
@@ -115,13 +116,14 @@ namespace SMT.SpotRental.UI.Controllers
             objEmployee = webAPI.GetResponse<EmployeeResponse>(objEmployee, "U", "searchemployees", paramValue, paramName);
             return objEmployee;
         }
-        public TripStatusResponse GetTripStatusList(string DisplayFor)
+        public TripStatusResponse GetTripStatusList(string DisplayFor, string GroupName="")
         {
             webAPI = new WebAPICommunicator();
             TripStatusResponse objResponse = new TripStatusResponse();
             objResponse.listTripStatus = new List<TripStatus>();
-            object[] paramValue = new object[1]; string[] paramName = new string[1] { "DisplayFor" };
+            object[] paramValue = new object[2]; string[] paramName = new string[2] { "DisplayFor", "GroupName" };
             paramValue[0] = DisplayFor;
+            paramValue[1] = GroupName;
             objResponse = webAPI.GetResponse<TripStatusResponse>(objResponse, "I", "gettripstatuslist", paramValue, paramName);
             return objResponse;
         }

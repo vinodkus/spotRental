@@ -46,6 +46,7 @@
     <Compile Include="Entities\DocumentMaster.cs" />
     <Compile Include="Entities\DriverGuard.cs" />
     <Compile Include="Entities\EmailDetails.cs" />
+    <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Reason.cs" />
     <Compile Include="Entities\Roles.cs" />

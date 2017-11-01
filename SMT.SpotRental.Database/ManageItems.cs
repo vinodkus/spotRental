@@ -99,16 +99,17 @@ namespace SMT.SpotRental.Database
         }
 
         /// <summary>
-        /// This method return all available reason for particular group
+        /// This method return all available status for particular group/role
         /// </summary>
         /// <returns>List of reasons</returns>
-        public IList<TripStatus> GetTripStatusList(string DisplayFor)
+        public IList<TripStatus> GetTripStatusList(string DisplayFor,string GroupName="")
         {
             IList<TripStatus> listTripStatus = new List<TripStatus>();
             using (DBConnect dc = new DBConnect())
             {
                 DynamicParameters objparams = new DynamicParameters();
                 objparams.Add("@DisplayFor", DisplayFor);
+                objparams.Add("@GroupName", GroupName);
                 listTripStatus = dc.ExecuteProc<TripStatus>(SR_USP_GETSTATUSDETAILS, objparams);
             }
             return listTripStatus;

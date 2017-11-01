@@ -11,7 +11,7 @@ namespace SMT.SpotRental.Database.interfaces
     {
         User ValidateUser(string UserCred, string UserPassword);
         string[] ManageEmployee(User objUser);
-        IList<Menu> GetNavigationDetails(string LoginCred);
+        IList<Menu> GetNavigationDetails(string LoginCred, string RoleID = "0", string QueryNo = "1");
         IList<User> SearchEmployees(string EmployeeCode, string FName, string LName, string MobileNo, string EmailID);
         string ForgetPassword(string EmailID);
         string ChangePassword(string EmailID, string Password);
@@ -19,9 +19,15 @@ namespace SMT.SpotRental.Database.interfaces
         IList<Roles> GetAllRoles();
         string ManageRoles(Roles request);
         IList<User> GetUserList();
+        string RegisterPortalUser(User req);
+        string UpdatePortalUser(User req);
+        string MapActionRole(Menu request);
         IList<Menu> GetMenuList(string LoginCred);
         IList<Menu> GetParentMenu(string LoginCred);
         string ManageMenus(Menu request);
+
+        IList<Location> GetLocationList(string LoginCred);
+        string ManageLocation(Location request);
 
     }
 }

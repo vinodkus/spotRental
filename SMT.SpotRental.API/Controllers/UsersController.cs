@@ -71,7 +71,7 @@ namespace SMT.SpotRental.API.Controllers
 
         [Route("getnavigationdetails")]
         [HttpGet]
-        public MenuResponse GetNavigationDetails(string UserCred)
+        public MenuResponse GetNavigationDetails(string UserCred, string RoleID = "0", string QueryNo="1")
         {
             MenuResponse objMenu = null;
 
@@ -87,7 +87,7 @@ namespace SMT.SpotRental.API.Controllers
                     BLUsers blUser = new BLUsers();
                     objMenu = new MenuResponse();
                     objMenu.menuItems = new List<MenuEntity>();
-                    objMenu.menuItems = blUser.GetNavigationDetails(UserCred);
+                    objMenu.menuItems = blUser.GetNavigationDetails(UserCred,RoleID, QueryNo);
                     if (objMenu.menuItems != null && objMenu.menuItems.Count > 0)
                     {
                         objMenu.Result = true;
@@ -403,6 +403,131 @@ namespace SMT.SpotRental.API.Controllers
             return objResopnse;
         }
 
+        [Route("registerportaluser")]
+        [HttpPost]
+        public UserResponse RegisterPortalUser(UserEntity request)
+        {
+            UserResponse objUser = null;
+
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    // TO DO :: Need to implement token based security.............
+                }
+                else
+                {
+                    BLUsers blUser = new BLUsers();
+                    objUser = new UserResponse();
+                    string Result = blUser.RegisterPortalUser(request);
+                    if (Result != null )
+                    {
+                        objUser.Result = true;
+                        objUser.IsExcep = false;
+                        objUser.IsError = false;
+                        objUser.ResultId = 1;
+                        objUser.Message = Result;
+                    }
+                    else
+                    {
+                        objUser.Result = false;
+                        objUser.IsExcep = false;
+                        objUser.IsError = false;
+                        objUser.ResultId = 0;
+                        objUser.Message = "FALSE";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objUser = new UserResponse();
+                objUser.ExceptionMessage = ex.Message;
+                objUser.Result = false;
+                objUser.IsExcep = true;
+                objUser.IsError = true;
+                objUser.ResultId = -1;
+                objUser.Message = "";
+            }
+            return objUser;
+        }
+
+        [Route("updateportaluser")]
+        [HttpPost]
+        public UserResponse UpdatePortalUser(UserEntity request)
+        {
+            UserResponse objUser = null;
+
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    // TO DO :: Need to implement token based security.............
+                }
+                else
+                {
+                    BLUsers blUser = new BLUsers();
+                    objUser = new UserResponse();
+                    string Result = blUser.UpdatePortalUser(request);
+                    if (Result != null)
+                    {
+                        objUser.Result = true;
+                        objUser.IsExcep = false;
+                        objUser.IsError = false;
+                        objUser.ResultId = 1;
+                        objUser.Message = Result;
+                    }
+                    else
+                    {
+                        objUser.Result = false;
+                        objUser.IsExcep = false;
+                        objUser.IsError = false;
+                        objUser.ResultId = 0;
+                        objUser.Message = "FALSE";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objUser = new UserResponse();
+                objUser.ExceptionMessage = ex.Message;
+                objUser.Result = false;
+                objUser.IsExcep = true;
+                objUser.IsError = true;
+                objUser.ResultId = -1;
+                objUser.Message = "";
+            }
+            return objUser;
+        }
+
+        [Route("mapactionrole")]
+        [HttpPost]
+        public string MapActionRole(MenuEntity request)
+        {
+            string Result = "";
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    Result = objUser.MapActionRole(request);
+                }
+            }
+            catch (Exception ex)
+            {
+                Result = "Error: " + ex.Message;
+            }
+            return Result;
+        }
+
         [Route("getmenulist")]
         [HttpGet]
         public MenuResponse GetMenuList(string UserID)
@@ -493,6 +618,69 @@ namespace SMT.SpotRental.API.Controllers
                 {
                     BLUsers objUser = new BLUsers();
                     Result = objUser.ManageMenus(request);
+                }
+            }
+            catch (Exception ex)
+            {
+                Result = "Error: " + ex.Message;
+            }
+            return Result;
+        }
+
+
+        [Route("getlocationlist")]
+        [HttpGet]
+        public LocationResponse GetLocationList(string UserID)
+        {
+            LocationResponse objResopnse = new LocationResponse();
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    objResopnse.LocationItems= new List<LocationEntity>();
+                    objResopnse.LocationItems = objUser.GetLocationList(UserID);
+                    if (objResopnse.LocationItems != null && objResopnse.LocationItems.Count > 0)
+                    {
+                        objResopnse.Result = true;
+                    }
+                    else
+                    {
+                        objResopnse.Result = false;
+                        objResopnse.ErrorMessage = "NOREC";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objResopnse.IsExcep = true;
+                objResopnse.ErrorMessage = "Error: " + ex.Message;
+            }
+            return objResopnse;
+        }
+
+        [Route("managelocation")]
+        [HttpPost]
+        public string ManageLocation(LocationEntity request)
+        {
+            string Result = "";
+            try
+            {
+
+                if (!VerifyUser())
+                {
+                    //To do: Need to implement security details
+                }
+                else
+                {
+                    BLUsers objUser = new BLUsers();
+                    Result = objUser.ManageLocation(request);
                 }
             }
             catch (Exception ex)

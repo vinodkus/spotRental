@@ -232,7 +232,7 @@ namespace SMT.SpotRental.API.Controllers
 
         [Route("gettripstatuslist")]
         [HttpGet]
-        public TripStatusResponse GetTripStatusList(string DisplayFor)
+        public TripStatusResponse GetTripStatusList(string DisplayFor,string GroupName="")
         {
             TripStatusResponse objResponse = new TripStatusResponse();
             try
@@ -246,7 +246,7 @@ namespace SMT.SpotRental.API.Controllers
                 {
                     BLItems objItems = new BLItems();
                     objResponse.listTripStatus = new List<TripStatusEntity>();
-                    objResponse.listTripStatus = objItems.GetTripStatusList(DisplayFor);
+                    objResponse.listTripStatus = objItems.GetTripStatusList(DisplayFor, GroupName);
                     if (objResponse.listTripStatus != null && objResponse.listTripStatus.Count > 0)
                     {
                         objResponse.ResultId = 1;

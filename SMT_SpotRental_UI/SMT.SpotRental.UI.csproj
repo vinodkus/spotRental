@@ -198,6 +198,7 @@
     <Compile Include="Response\DesignationResponse.cs" />
     <Compile Include="Response\DocumentMasterResponse.cs" />
     <Compile Include="Response\DriverGuardResponse.cs" />
+    <Compile Include="Response\LocationResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
     <Compile Include="Response\ReasonResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Scripts\pages\common.js" />
     <Content Include="Scripts\pages\dashboard.js" />
     <Content Include="Scripts\pages\login.js" />
+    <Content Include="Scripts\pages\manageLocation.js" />
     <Content Include="Scripts\pages\manageMenu.js" />
     <Content Include="Scripts\pages\manageRole.js" />
     <Content Include="Scripts\pages\manageDriverGuard.js" />
@@ -337,6 +339,7 @@
     <Content Include="Scripts\pages\manageVehicles.js" />
     <Content Include="Scripts\pages\manageVendors.js" />
     <Content Include="Scripts\pages\profile.js" />
+    <Content Include="Scripts\pages\roleActionMap.js" />
     <Content Include="Scripts\pages\supervisorbucket.js" />
     <Content Include="Scripts\pages\uploadDocuments.js" />
     <Content Include="Scripts\pages\usertrip.js" />
@@ -401,8 +404,12 @@
     <Content Include="Views\MasterItems\_DeleteDriverGuard.cshtml" />
     <Content Include="Views\MasterItems\_DriverGuardList.cshtml" />
     <Content Include="Views\MasterItems\_ViewDriverGuardDetails.cshtml" />
+    <Content Include="Views\Access\_RoleActionMap.cshtml" />
+    <Content Include="Views\Access\ManageRoleAction.cshtml" />
     <Content Include="Views\Access\ManageMenu.cshtml" />
     <Content Include="Views\Access\_MenuList.cshtml" />
+    <Content Include="Views\Access\ManageLocation.cshtml" />
+    <Content Include="Views\Access\_LocationList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

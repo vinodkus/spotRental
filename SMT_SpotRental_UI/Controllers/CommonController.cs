@@ -83,11 +83,11 @@ namespace SMT_Amazon_UI.Controllers
 
         [UserSessionTimeout]
         [HttpGet]
-        public new JsonResult GetTripStatusList(string DisplayFor)
+        public new JsonResult GetTripStatusList(string DisplayFor,string GroupName="")
         {
             TripStatusResponse objResponse = new TripStatusResponse();
             objResponse.listTripStatus = new List<TripStatus>();
-            objResponse = base.GetTripStatusList(DisplayFor);
+            objResponse = base.GetTripStatusList(DisplayFor, GroupName);
             if (objResponse != null && objResponse.listTripStatus != null)
             {
                 return Json(new { Result = true, List = objResponse }, JsonRequestBehavior.AllowGet);
@@ -202,6 +202,26 @@ namespace SMT_Amazon_UI.Controllers
             {
                 return Json(new { Result = false }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+
+        [UserSessionTimeout]
+        [HttpGet]
+        public JsonResult GetAllRoles()
+        {
+            RolesResponse objResponse = new RolesResponse();
+
+            webAPI = new WebAPICommunicator();
+            objResponse = webAPI.GetResponse<RolesResponse>(objResponse, "U", "getallroles");
+            if (objResponse != null && objResponse.listRoles != null)
+            {
+                return Json(new { Result = true, List = objResponse }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = false }, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         [InputChecker]

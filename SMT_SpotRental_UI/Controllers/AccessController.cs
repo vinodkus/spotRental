@@ -206,8 +206,8 @@ namespace SMT.SpotRental.UI.Controllers
                 }
                 else
                 {
-                    
-                 
+
+
                     return View("ManagePortalUsers", modelDashboard);
                 }
             }
@@ -243,7 +243,7 @@ namespace SMT.SpotRental.UI.Controllers
         [HttpGet]
         public JsonResult ResetPassword(string EmailID)
         {
-            if (EmailID != null && EmailID != "" && EmailID.Length>=8 )
+            if (EmailID != null && EmailID != "" && EmailID.Length >= 8)
             {
                 webAPI = new WebAPICommunicator();
                 object[] paramValue = new object[1]; string[] paramName = new string[1] { "EmailID" };
@@ -269,6 +269,158 @@ namespace SMT.SpotRental.UI.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult UpdatePortalUser(User request)
+        {
+            if (request != null && request.EmailID != null && request.UserID != 0 && request.UserName != "" && request.RoleIds != null)
+            {
+                webAPI = new WebAPICommunicator();
+                UserResponse response = new UserResponse();
+                response = webAPI.PostRequest_Object<UserResponse, User>(response, request, "U", "updateportaluser");
+                if (response != null && response.Result == true)
+                {
+                    if (response.Message == "INVDATA")
+                    {
+                        return Json(new { Result = true, Message = "Invalid Mobile No/Email ID." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "EMMOB")
+                    {
+                        return Json(new { Result = true, Message = "Mobile No/Email ID already exist." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "TRUE")
+                    {
+                        return Json(new { Result = true, Message = "User updated successfully." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "ERROR")
+                    {
+                        return Json(new { Result = true, Message = "There is some error in updating user." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Result = true, Message = response.Message }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                else
+                {
+                    return Json(new { Result = true, Message = "There is some error in updating user." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { Result = false, Message = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult AddPortalUser(User request)
+        {
+            if (request != null && request.EmailID != null && request.UserName != "" && request.RoleIds != null)
+            {
+                webAPI = new WebAPICommunicator();
+                UserResponse response = new UserResponse();
+                response = webAPI.PostRequest_Object<UserResponse, User>(response, request, "U", "registerportaluser");
+                if (response != null && response.Result == true)
+                {
+                    if (response.Message == "INVDATA")
+                    {
+                        return Json(new { Result = true, Message = "Invalid Mobile No/Email ID." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "EMMOB")
+                    {
+                        return Json(new { Result = true, Message = "Mobile No/Email ID already exist." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "TRUE")
+                    {
+                        return Json(new { Result = true, Message = "User added successfully." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else if (response.Message == "ERROR")
+                    {
+                        return Json(new { Result = true, Message = "There is some error in updating user." }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Result = true, Message = response.Message }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                else
+                {
+                    return Json(new { Result = true, Message = "There is some error in updating user." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { Result = false, Message = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+        #region MANAGE ROLE MAP
+        public ActionResult ManageRoleAction()
+        {
+            if (Session["User"] != null)
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                DashboardViewModel modelDashboard = new DashboardViewModel();
+                modelDashboard.listRoles = new List<Roles>();
+                modelDashboard.userDetails = new UserViewModel();
+                modelDashboard.userDetails = empmodel;
+                ViewBag.TempPassword = modelDashboard.userDetails.TempPwd;
+                ViewBag.ProfilePicPath = PRF_PATH;
+                ViewBag.ProfilePic = !string.IsNullOrEmpty(empmodel.ProfilePic) ? PRF_PATH + empmodel.ProfilePic : PRF_PATH + "PRF_PIC.png";
+                modelDashboard.objMenu = GetMenuDetails(modelDashboard.userDetails.UserID);
+
+                empmodel.TempPwd = false;
+                Session["User"] = empmodel;
+                if (modelDashboard.objMenu == null || modelDashboard.objMenu.menuItems == null || modelDashboard.objMenu.menuItems.Count <= 0 || modelDashboard.objMenu.IsError || modelDashboard.objMenu.IsExcep)
+                {
+                    return RedirectToAction("InvalidAccess", "Message");
+                }
+                else
+                {
+                    return View("ManageRoleAction", modelDashboard);
+                }
+            }
+            else
+            {
+                return RedirectToAction("InvalidAccess", "Message");
+            }
+
+        }
+
+        [UserSessionTimeout]
+
+        public PartialViewResult GetAllMenu(string RoleID)
+        {
+            MenuResponse response = new MenuResponse();
+            if (RoleID != null && RoleID != "" && RoleID != "0")
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                response = GetMenuDetails(empmodel.UserID, RoleID, "3");
+            }
+            return PartialView("_RoleActionMap", response);
+        }
+
+        public JsonResult UpdateActionRole(string RoleID, string ActionIds)
+        {
+            if (RoleID != null && RoleID != "" && RoleID != "0" && ActionIds != null && ActionIds != "" && ActionIds.Length>1)
+            {
+                webAPI = new WebAPICommunicator();
+                Menu request = new Menu();
+                request.RoleID = Convert.ToInt32(RoleID);
+                request.ActionIDs = ActionIds;
+                string Result = webAPI.PostRequest<Menu>(request, "U", "mapactionrole");
+                return Json(new { Result=true,  Message = Result.ToUpper().Contains("TRUE") ? "TRUE" : "There is some issue in mapping actions with role."  }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = false, Message = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region MANAGE MENU
@@ -318,7 +470,7 @@ namespace SMT.SpotRental.UI.Controllers
             {
                 UserViewModel empmodel = new UserViewModel();
                 empmodel = Session["User"] as UserViewModel;
-                object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID",};
+                object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID", };
                 paramValue[0] = empmodel.UserID;
                 webAPI = new WebAPICommunicator();
                 response = webAPI.GetResponse<MenuResponse>(response, "U", "getmenulist", paramValue, paramName);
@@ -335,7 +487,7 @@ namespace SMT.SpotRental.UI.Controllers
         public JsonResult GetParentMenu()
         {
             MenuResponse response = new MenuResponse();
-            
+
             UserViewModel empmodel = new UserViewModel();
             empmodel = Session["User"] as UserViewModel;
             object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID", };
@@ -350,9 +502,9 @@ namespace SMT.SpotRental.UI.Controllers
             else
             {
                 return Json(new { Result = false }, JsonRequestBehavior.AllowGet);
-            }            
+            }
         }
-        public JsonResult AddNewMenu(string ActionName="", string ActionText="", int RootID=0, Boolean status=true, string ControllerName="", int MenuOrder=0, Boolean IsMenuItems=true)
+        public JsonResult AddNewMenu(string ActionName = "", string ActionText = "", int RootID = 0, Boolean status = true, string ControllerName = "", int MenuOrder = 0, Boolean IsMenuItems = true)
         {
             if (ActionName != null && ActionText != null && ControllerName != null)
             {
@@ -365,7 +517,7 @@ namespace SMT.SpotRental.UI.Controllers
                 return Json(new { Result = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
             }
         }
-        private string AddMenu(string ActionName, string ActionText, int RootID, Boolean status, string ControllerName, int MenuOrder, Boolean IsMenuItems,  ref string Result)
+        private string AddMenu(string ActionName, string ActionText, int RootID, Boolean status, string ControllerName, int MenuOrder, Boolean IsMenuItems, ref string Result)
         {
             string strResult = "";
             try
@@ -422,6 +574,147 @@ namespace SMT.SpotRental.UI.Controllers
                 request.RootID = RootID;
                 request.QueryNo = 2;
                 strResult = webAPI.PostRequest<Menu>(request, "U", "managemenus", ref Result);
+
+            }
+            catch (Exception ex)
+            {
+                strResult = "EXE:" + ex.Message;
+            }
+
+            return strResult;
+        }
+        #endregion
+
+        #region MANAGE LOCATION
+        public ActionResult Location()
+        {
+            if (Session["User"] != null)
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                DashboardViewModel modelDashboard = new DashboardViewModel();
+                modelDashboard.userDetails = new UserViewModel();
+                modelDashboard.userDetails = empmodel;
+                ViewBag.TempPassword = modelDashboard.userDetails.TempPwd;
+                ViewBag.ProfilePicPath = PRF_PATH;
+                ViewBag.ProfilePic = !string.IsNullOrEmpty(empmodel.ProfilePic) ? PRF_PATH + empmodel.ProfilePic : PRF_PATH + "PRF_PIC.png";
+                modelDashboard.objMenu = GetMenuDetails(modelDashboard.userDetails.UserID);
+                empmodel.TempPwd = false;
+                Session["User"] = empmodel;
+                if (modelDashboard.objMenu == null || modelDashboard.objMenu.menuItems == null || modelDashboard.objMenu.menuItems.Count <= 0 || modelDashboard.objMenu.IsError || modelDashboard.objMenu.IsExcep)
+                {
+                    return RedirectToAction("InvalidAccess", "Message");
+                }
+                else
+                {
+
+
+                    return View("ManageLocation", modelDashboard);
+                }
+            }
+            else
+            {
+                return RedirectToAction("InvalidAccess", "Message");
+            }
+
+        }
+        public PartialViewResult BindLocation()
+        {
+            LocationResponse response = new LocationResponse();
+            response = GetLocationList();
+            return PartialView("_LocationList", response);
+        }
+        public LocationResponse GetLocationList()
+        {
+            LocationResponse response = new LocationResponse();
+            try
+            {
+                UserViewModel empmodel = new UserViewModel();
+                empmodel = Session["User"] as UserViewModel;
+                object[] paramValue = new object[1]; string[] paramName = new string[1] { "UserID", };
+                paramValue[0] = empmodel.UserID;
+                webAPI = new WebAPICommunicator();
+                response = webAPI.GetResponse<LocationResponse>(response, "U", "getlocationlist", paramValue, paramName);
+
+            }
+            catch
+            {
+
+            }
+
+            return response;
+        }
+
+        public JsonResult AddNewLocation(string LocationCode = "", string LocationName = "", string ShortName = "",string City="", string Status = "", string Visible = "", string EmailId = "")
+        {
+            if (LocationCode.Length >0 && LocationName.Length > 0 && ShortName.Length > 0)
+            {
+                string Result = "";
+                string str = AddLocation(LocationCode, LocationName, ShortName, City, Status, Visible, EmailId, ref Result);
+                return Json(new { Result = Result.ToUpper().Contains("TRUE") ? "TRUE" : Result.ToUpper().Contains("DUPLICATE") ? "This "+ Result + " already exist." : "There are some issue in adding location." }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        private string AddLocation(string LocationCode , string LocationName , string ShortName , string City , string Status , string Visible , string EmailId, ref string Result)
+        {
+            string strResult = "";
+            try
+            {
+                webAPI = new WebAPICommunicator();
+                Location request = new Location();
+                request.Active = Status;
+                request.City = City;
+                request.EmailId = EmailId;
+                request.LocationCode = LocationCode;
+                request.LocationName = LocationName;
+                request.ShortName = ShortName;
+                request.Visible = Visible;
+                request.QueryNo = 1;
+                strResult = webAPI.PostRequest<Location>(request, "U", "managelocation", ref Result);
+
+            }
+            catch (Exception ex)
+            {
+                strResult = "EXE:" + ex.Message;
+            }
+
+            return strResult;
+        }
+
+        public JsonResult UpdateNewLocation(string LocationCode = "", string LocationName = "", string ShortName = "", string City = "", string Status = "", string Visible = "", string EmailId = "")
+        {
+            if (LocationCode.Length > 0 && LocationName.Length > 0 && ShortName.Length > 0)
+            {
+                string Result = "";
+                string str = UpdateLocation(LocationCode, LocationName, ShortName, City, Status, Visible, EmailId, ref Result);
+                return Json(new { Result = Result.ToUpper().Contains("TRUE") ? "TRUE" : Result.ToUpper().Contains("DUPLICATE") ? "This "+ Result + " already exist." : "There are some issue in updating location." }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Result = "Invalid data supplied." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private string UpdateLocation(string LocationCode , string LocationName , string ShortName , string City , string Status , string Visible , string EmailId , ref string Result)
+        {
+            string strResult = "";
+            try
+            {
+                webAPI = new WebAPICommunicator();
+                Location request = new Location();
+                request.LocationCode = LocationCode;
+                request.LocationName = LocationName;
+                request.ShortName = ShortName;
+                request.City = City;
+                request.Active = Status;
+                request.Visible = Visible;
+                request.EmailId = EmailId;
+               
+                request.QueryNo = 2;
+                strResult = webAPI.PostRequest<Location>(request, "U", "managelocation", ref Result);
 
             }
             catch (Exception ex)

@@ -10,14 +10,14 @@
 <div id="divIdCreate" style="padding:20px">
 
 
-    @if (ViewBag.Roles == "EMPLOYEE")
+    @if (ViewBag.Roles == "EMPLOYEE" || ViewBag.Roles == "SUPERVISOR")
     {
         <div class="row">
             <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
                 <label class="control-label" style="font-size: 11px" for="inputLoaction">Employee Id </label>
             </div>
             <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
-                <input name="txtEmployeeId" type="text" maxlength="10" id="txtEmployeeId" disabled="disabled" value="@Model.userDetails.EmployeeCode" class="form-control Cntrl_0" )">
+                <input name="txtEmployeeId" type="text" maxlength="10" id="txtEmployeeId" disabled="disabled" value="@Model.userDetails.EmployeeCode" class="form-control Cntrl_0" >
             </div>
             <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                 <label class="control-label" style="font-size: 11px" for="inputLoaction">Name </label>

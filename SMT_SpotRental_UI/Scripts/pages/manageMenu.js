@@ -82,46 +82,6 @@ var bindAllMenuItems = function () {
         }
     });
 }
-var resetPassword = function (emailID) {
-    swal({
-        title: "Want to reset password?",
-        text: "Current password for this user will be reseted!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Yes, reset it!",
-        cancelButtonText: "No, cancel please!",
-        closeOnConfirm: false,
-        closeOnCancel: false
-    },
-function (isConfirm) {
-    if (isConfirm) {
-        $('.enableLoader').show();
-        $.ajax({
-            type: "GET",
-            data: { 'EmailID': emailID },
-            url: urlPref + '/Access/ResetPassword',
-            success: function (data) {
-                $('.enableLoader').hide();
-                if (data.Result == true) {
-                    swal("Done!", "Password has been reseted and send on registered email.", "success");
-                }
-                else {
-                    swal("Here's a message!", data.Message);
-                }
-            },
-            error: function (xhr) {
-                $('.enableLoader').hide();
-                swal("Error!!", "Unable to connect.");
-            }
-        });
-        swal("Done!", "Password has been reseted and send on registered email.", "success");
-    }
-    else {
-        swal("Cancelled", "Password could not be reseted.", "error");
-    }
-});
-}
 var showPopupForEditMenu = function (actionID, actionName, actionText, controllerName, menuActive, isMenuItems, menuOrder, rootID) {
     
     $('#divAddEditMenu').modal('toggle');

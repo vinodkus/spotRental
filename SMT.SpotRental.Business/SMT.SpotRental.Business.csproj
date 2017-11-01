@@ -49,6 +49,7 @@
     <Compile Include="Entities\DocumentMasterEntity.cs" />
     <Compile Include="Entities\DriverGuardEntity.cs" />
     <Compile Include="Entities\EmailDetailsEntity.cs" />
+    <Compile Include="Entities\LocationEntity.cs" />
     <Compile Include="Entities\MenuEntity.cs" />
     <Compile Include="Entities\ReasonEntity.cs" />
     <Compile Include="Entities\RolesEntity.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Response\DesignationResponse.cs" />
     <Compile Include="Response\DocumentMasterResponse.cs" />
     <Compile Include="Response\DriverGuardResponse.cs" />
+    <Compile Include="Response\LocationResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
     <Compile Include="Response\ReasonResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />

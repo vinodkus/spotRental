@@ -173,6 +173,54 @@ var bindDocumentList = function (cntrlID, docsFor) {
         }
     });
 }
+var bindAllRoles = function (cntrlID) {
+    $.ajax({
+        type: "GET",
+        url: urlPref + '/Common/GetAllRoles',
+        dataType: "json",
+        success: function (data) {
+            listitems = '<option value=0>--SELECT--</option>';
+            if (data.Result == true) {
+                $.each(data.List.listRoles, function (key, value) {
+                    listitems += '<option value=' + "'" + value.RoleID + "'" + '>' + value.RoleName + '</option>';
+                });
+                $(cntrlID).empty();
+                $(cntrlID).append(listitems);
+            }
+            else {
+                $(cntrlID).empty();
+                $(cntrlID).append(listitems);
+            }
+
+        },
+        error: function (xhr) {
+            alert("Critical Error!. Failed to call the server.");
+        }
+    });
+}
+var getAllRolesAsString = function () {
+    var items = '';
+    $.ajax({
+        type: "GET",
+        url: urlPref + '/Common/GetAllRoles',
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            if (data.Result == true) {
+                $.each(data.List.listRoles, function (key, value) {
+                    if (value.Active == "True") {
+                        items += value.RoleID + "-" + value.RoleName + '|';
+                    }
+                });
+            }
+        },
+        error: function (xhr) {
+
+        }
+    });
+
+    return items;
+}
 var getUploadedDocs = function (VehicleID, DriverGuardId) {
 
     $('.enableLoader').show();
@@ -287,6 +335,36 @@ var bindReason = function (groupName, cntrlID) {
         },
         error: function (xhr) {
             alert("Critical Error!. Failed to call the server.");
+        }
+    });
+}
+var bindTripStatus = function (cntrlID, groupName, displayFor) {
+    $.ajax({
+        url: urlPref + '/Common/GetTripStatusList',
+        type: "GET",
+        data: { 'DisplayFor': displayFor, 'GroupName': groupName },
+        contenttype: 'application/json; charset=utf-8',
+        async: true,
+        success: function (data) {
+            var listitems = '<option value=0>--Select--</option>'
+            if (data.Result == true) {
+
+                $.each(data.List.listTripStatus, function (key, value) {
+                    listitems += '<option value=' + "'" + value.StatusCode + "'" + '>' + value.StatusName + '</option>';
+                });
+                if (groupName == '' || groupName == undefined || groupName ==null)
+                listitems += '<option value=-1>ALL</option>'
+
+            }
+            else {
+                listitems += '<option value=-1>ALL</option>'
+            }
+
+            $(cntrlID).empty();
+            $(cntrlID).append(listitems);
+        },
+        error: function (err) {
+            alert("Error::Not Responding");
         }
     });
 }

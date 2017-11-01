@@ -87,7 +87,9 @@ namespace SMT.SpotRental.Business.EntityMapper
                 VehicleID = u.VehicleID,
                 VendorId = u.VendorId,
                 StatusCode = u.StatusCode,
-                GuardID = u.GuardID
+                GuardID = u.GuardID,
+                GroupName=u.GroupName,
+                RequestIDs=u.RequestIDs
 
             }).ToList();
         }

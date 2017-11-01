@@ -19,6 +19,7 @@ namespace SMT.SpotRental.UI
             bundles.Add(new ScriptBundle("~/bundles/BS_CAL").Include("~/Scripts/bootstrap/bootstrap-datepicker.js"));
             bundles.Add(new ScriptBundle("~/bundles/dataTables").Include("~/Scripts/bootstrap/dataTables.bootstrap.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/jquery/dataTables").Include("~/Scripts/jquery/jquery.dataTables.min.js"));
+            bundles.Add(new ScriptBundle("~/Jquery/sweetalert").Include("~/Scripts/plugins/sweetalert/sweetalert.js"));
             //==============================Page JS==================================================//
 
             bundles.Add(new ScriptBundle("~/Jquery/Pages").Include("~/Scripts/pages/login.js"));
@@ -34,11 +35,11 @@ namespace SMT.SpotRental.UI
             bundles.Add(new ScriptBundle("~/Jquery/manageVehicles").Include("~/Scripts/pages/manageVehicles.js"));
             bundles.Add(new ScriptBundle("~/Jquery/manageDriverGuard").Include("~/Scripts/pages/manageDriverGuard.js"));
             bundles.Add(new ScriptBundle("~/Jquery/uploadDocuments").Include("~/Scripts/pages/uploadDocuments.js"));
-            bundles.Add(new ScriptBundle("~/Jquery/manageRole").Include("~/Scripts/pages/manageRole.js"));            
+            bundles.Add(new ScriptBundle("~/Jquery/manageRole").Include("~/Scripts/pages/manageRole.js"));
             bundles.Add(new ScriptBundle("~/Jquery/manageUsersList").Include("~/Scripts/pages/manageUsersList.js"));
+            bundles.Add(new ScriptBundle("~/Jquery/roleActionMap").Include("~/Scripts/pages/roleActionMap.js"));
             bundles.Add(new ScriptBundle("~/Jquery/manageMenu").Include("~/Scripts/pages/manageMenu.js"));
-            bundles.Add(new ScriptBundle("~/Jquery/sweetalert").Include("~/Scripts/plugins/sweetalert/sweetalert.js"));
-
+            bundles.Add(new ScriptBundle("~/Jquery/manageLocation").Include("~/Scripts/pages/manageLocation.js"));
             //---------------------EOF: Javascript Bundels-------------------------------------//
 
             //       **                   ***              **              **

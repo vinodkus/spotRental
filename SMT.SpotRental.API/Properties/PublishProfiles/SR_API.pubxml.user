@@ -10,178 +10,178 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>07/25/2017 16:56:54</publishTime>
-    </File>
-    <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>07/25/2017 16:56:54</publishTime>
-    </File>
-    <File Include="bin/Dapper.dll">
-      <publishTime>08/01/2017 14:50:30</publishTime>
-    </File>
-    <File Include="bin/EntityFramework.dll">
-      <publishTime>07/25/2017 16:57:00</publishTime>
-    </File>
-    <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>07/25/2017 16:57:00</publishTime>
-    </File>
-    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>07/25/2017 16:57:03</publishTime>
-    </File>
-    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>07/25/2017 16:57:03</publishTime>
-    </File>
-    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>07/25/2017 16:57:03</publishTime>
-    </File>
-    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>07/25/2017 16:57:07</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>07/25/2017 16:57:04</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>07/25/2017 16:57:04</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>07/25/2017 16:57:04</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.Google.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
-      <publishTime>07/25/2017 16:57:05</publishTime>
-    </File>
-    <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>07/25/2017 16:56:52</publishTime>
-    </File>
-    <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>07/25/2017 16:56:56</publishTime>
     </File>
-    <File Include="bin/Owin.dll">
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>07/25/2017 16:56:56</publishTime>
+    </File>
+    <File Include="bin/Dapper.dll">
+      <publishTime>08/01/2017 14:50:32</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>07/25/2017 16:57:02</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>07/25/2017 16:57:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>07/25/2017 16:57:04</publishTime>
     </File>
-    <File Include="bin/roslyn/csc.exe">
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>07/25/2017 16:57:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>07/25/2017 16:57:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
       <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
       <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
       <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+    <File Include="bin/Microsoft.Owin.Security.dll">
       <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>07/25/2017 16:57:07</publishTime>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>07/25/2017 16:57:07</publishTime>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>07/25/2017 16:57:07</publishTime>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>07/25/2017 16:57:07</publishTime>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>07/25/2017 16:57:07</publishTime>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
     </File>
-    <File Include="bin/roslyn/vbc.exe">
-      <publishTime>07/25/2017 16:57:07</publishTime>
-    </File>
-    <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>07/25/2017 16:57:07</publishTime>
-    </File>
-    <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>07/25/2017 16:57:07</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.API.dll">
-      <publishTime>10/17/2017 11:07:15</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.API.pdb">
-      <publishTime>10/17/2017 11:07:15</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Business.dll">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Business.pdb">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Data.dll">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Data.pdb">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Database.dll">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Database.pdb">
-      <publishTime>10/17/2017 11:07:11</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Shared.dll">
-      <publishTime>10/17/2017 11:07:10</publishTime>
-    </File>
-    <File Include="bin/SMT.SpotRental.Shared.pdb">
-      <publishTime>10/17/2017 11:07:10</publishTime>
-    </File>
-    <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>07/31/2017 15:23:30</publishTime>
-    </File>
-    <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>07/25/2017 16:56:52</publishTime>
-    </File>
-    <File Include="bin/System.Web.Http.dll">
-      <publishTime>07/31/2017 15:23:30</publishTime>
-    </File>
-    <File Include="bin/System.Web.Http.Owin.dll">
-      <publishTime>07/31/2017 15:23:40</publishTime>
-    </File>
-    <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>07/31/2017 15:23:31</publishTime>
-    </File>
-    <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>07/25/2017 16:56:53</publishTime>
-    </File>
-    <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>07/25/2017 16:56:51</publishTime>
-    </File>
-    <File Include="bin/System.Web.Razor.dll">
-      <publishTime>07/25/2017 16:56:51</publishTime>
-    </File>
-    <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>07/25/2017 16:56:52</publishTime>
-    </File>
-    <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>07/25/2017 16:56:52</publishTime>
-    </File>
-    <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>07/25/2017 16:56:52</publishTime>
-    </File>
-    <File Include="bin/WebGrease.dll">
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2017 16:56:54</publishTime>
     </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>07/25/2017 16:56:58</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>07/25/2017 16:57:06</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>07/25/2017 16:57:08</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.API.dll">
+      <publishTime>10/31/2017 13:09:06</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.API.pdb">
+      <publishTime>10/31/2017 13:09:06</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Business.dll">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Business.pdb">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Data.dll">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Data.pdb">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Database.dll">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Database.pdb">
+      <publishTime>10/31/2017 13:09:00</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Shared.dll">
+      <publishTime>10/31/2017 13:08:59</publishTime>
+    </File>
+    <File Include="bin/SMT.SpotRental.Shared.pdb">
+      <publishTime>10/31/2017 13:08:59</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>07/31/2017 15:23:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>07/25/2017 16:56:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>07/31/2017 15:23:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>07/31/2017 15:23:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>07/31/2017 15:23:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>07/25/2017 16:56:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>07/25/2017 16:56:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>07/25/2017 16:56:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>07/25/2017 16:56:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>07/25/2017 16:56:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>07/25/2017 16:56:54</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>07/25/2017 16:56:56</publishTime>
+    </File>
     <File Include="Global.asax">
-      <publishTime>08/01/2017 11:38:41</publishTime>
+      <publishTime>08/01/2017 11:38:42</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/01/2017 11:39:02</publishTime>
+      <publishTime>08/01/2017 11:39:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/17/2017 11:07:15</publishTime>
+      <publishTime>10/31/2017 13:10:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -34,7 +34,7 @@ namespace SMT.SpotRental.Business.EntityMapper
                 SupervisorID = u.SupervisorID,
                 SupervisorName = u.SupervisorName,
                 TempPwd = u.TempPwd,
-                UserName = u.FName + " " + u.LName,
+                UserName = u.UserName,
                 UserType = u.UserType,
                 VendorID = u.VendorID,
                 UserID = u.UserID,
@@ -68,7 +68,7 @@ namespace SMT.SpotRental.Business.EntityMapper
                 SupervisorID = u.SupervisorID,
                 SupervisorName = u.SupervisorName,
                 TempPwd = u.TempPwd,
-                UserName = u.FName + " " + u.LName,
+                UserName = u.UserName,
                 UserType = u.UserType,
                 VendorID = u.VendorID,
                 UserID = u.UserID,
@@ -76,6 +76,27 @@ namespace SMT.SpotRental.Business.EntityMapper
                 ProfilePic=u.ProfilePic,
                 RoleIds = u.RoleIds,
                 RoleNames = u.RoleNames
+            };
+        }
+        public static Menu MapMenuEntity(MenuEntity c)
+        {
+            return new Menu()
+            {
+                ActionID = c.ActionID,
+                ActionName = c.ActionName,
+                Active = c.Active,
+                Icon = c.Icon,
+                IsMenuItems = c.IsMenuItems,
+                MenuOrder = c.MenuOrder,
+                ActionText = c.ActionText,
+                ControllerName = c.ControllerName,
+                RootID = c.RootID,
+                UserID = c.UserID,
+                QueryNo = c.QueryNo,
+                ActionIDs=c.ActionIDs,
+                MapID=c.MapID,
+                RoleID=c.RoleID
+               
             };
         }
         public static IList<UserEntity> MapUserEntityList(IList<User> x)
@@ -102,7 +123,7 @@ namespace SMT.SpotRental.Business.EntityMapper
                 SupervisorID = u.SupervisorID,
                 SupervisorName = u.SupervisorName,
                 TempPwd = u.TempPwd,
-                UserName = u.FName + " " + u.LName,
+                UserName = u.UserName,
                 UserType = u.UserType,
                 VendorID = u.VendorID,
                 UserID = u.UserID,
@@ -118,21 +139,7 @@ namespace SMT.SpotRental.Business.EntityMapper
             return x.AsEnumerable().Select(c => new MenuEntity()
             {
                 ActionID = c.ActionID,
-                ActionName = c.ActionName,
-                Active = c.Active,
-                Icon = c.Icon,
-                IsMenuItems = c.IsMenuItems,
-                MenuOrder = c.MenuOrder,
-                ActionText = c.ActionText,
-                ControllerName = c.ControllerName,
-                RootID = c.RootID,
-                UserID = c.UserID                
-            }).ToList();
-        }
-        public static Menu MapMenuEntity(MenuEntity c)
-        {
-            return new Menu() {
-                ActionID = c.ActionID,
+                MapID=c.MapID,
                 ActionName = c.ActionName,
                 Active = c.Active,
                 Icon = c.Icon,
@@ -142,8 +149,10 @@ namespace SMT.SpotRental.Business.EntityMapper
                 ControllerName = c.ControllerName,
                 RootID = c.RootID,
                 UserID = c.UserID,
-                QueryNo=c.QueryNo                
-            };
+                ActionIDs=c.ActionIDs,
+                QueryNo=c.QueryNo,
+                RoleID=c.RoleID
+            }).ToList();
         }
         public static IList<RolesEntity> MapRoleEntityList(IList<Roles> m)
         {
@@ -174,6 +183,38 @@ namespace SMT.SpotRental.Business.EntityMapper
                 RoleID = u.RoleID,
                 RoleName = u.RoleName
             };
+        }
+
+        public static Location MapLocationEntity(LocationEntity loc)
+        {
+            return new Location()
+            {
+                Active=loc.Active,
+                City=loc.City,
+                EmailId=loc.EmailId,
+                LocationCode=loc.LocationCode,
+                LocationName=loc.LocationName,
+                QueryNo=loc.QueryNo,
+                ShortName=loc.ShortName,
+                UserID=loc.UserID,
+                Visible=loc.Visible
+            };
+        }
+
+        public static IList<LocationEntity> MapLocationEntityList(IList<Location> loc)
+        {
+            return loc.AsEnumerable().Select(c => new LocationEntity()
+            {
+                Active = c.Active,
+                City = c.City,
+                EmailId = c.EmailId,
+                LocationCode = c.LocationCode,
+                LocationName = c.LocationName,
+                QueryNo = c.QueryNo,
+                ShortName = c.ShortName,
+                UserID = c.UserID,
+                Visible = c.Visible
+            }).ToList();
         }
     }
 }

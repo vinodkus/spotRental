@@ -86,13 +86,15 @@ namespace SMT.SpotRental.Database
         /// </summary>
         /// <param name="LoginCred">user email/login id</param>
         /// <returns>List of menu items</returns>
-        public IList<Menu> GetNavigationDetails(string LoginCred)
+        public IList<Menu> GetNavigationDetails(string LoginCred, string RoleID="0", string QueryNo = "1")
         {
             IList<Menu> objMenuList = new List<Menu>();
             using (DBConnect dc = new DBConnect())
             {
                 DynamicParameters objParam = new DynamicParameters();
                 objParam.Add("@UserID", LoginCred);
+                objParam.Add("@RoleID", RoleID);
+                objParam.Add("@QueryNo", QueryNo);
                 objMenuList = dc.ExecuteProc<Menu>(SR_USP_GETNEVIGATIONDETAIL, objParam);
             }
 
@@ -239,9 +241,86 @@ namespace SMT.SpotRental.Database
         }
 
         /// <summary>
+        /// This method register portal user into database
+        /// </summary>
+        /// <param name="req">User entity as request</param>
+        /// <returns>return action result as string.</returns>
+        public string RegisterPortalUser(User req)
+        {
+            string Result = "";
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objParam = new DynamicParameters();
+                objParam.Add("@UserName", req.UserName);
+                objParam.Add("@EmailId", req.EmailID);
+                objParam.Add("@MobileNo", req.MobileNo);
+                objParam.Add("@OfficeLocation", req.OfficeLocation);
+                objParam.Add("@Gender", req.Gender);
+                objParam.Add("@Address", req.HomeAddress);
+                objParam.Add("@RoleIds", req.RoleIds);
+                objParam.Add("@VendeorID", req.VendorID);
+                objParam.Add("@Result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);// send output parameter
+                int iRes = dc.ExecuteProc(SR_USP_CREATEPORTALUSER, objParam);
+                Result = objParam.Get<string>("@Result");// Get output parameter value
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// This method update portal user into database
+        /// </summary>
+        /// <param name="req">User entity as request</param>
+        /// <returns>return action result as string.</returns>
+        public string UpdatePortalUser(User req)
+        {
+            string Result = "";
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objParam = new DynamicParameters();
+                objParam.Add("@UserID", req.UserID);
+                objParam.Add("@EmailId", req.EmailID);
+                objParam.Add("@MobileNo", req.MobileNo);
+                objParam.Add("@OfficeLocation", req.OfficeLocation);
+                objParam.Add("@Gender", req.Gender);
+                objParam.Add("@Address", req.HomeAddress);
+                objParam.Add("@RoleIds", req.RoleIds);
+                objParam.Add("@VendeorID", req.VendorID);
+                objParam.Add("@Result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);// send output parameter
+                int iRes = dc.ExecuteProc(SR_USP_UPDATEPORTALUSER, objParam);
+                Result = objParam.Get<string>("@Result");// Get output parameter value
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// This method update actions with role
+        /// </summary>
+        /// <param name="request">Menu entity as request</param>
+        /// <returns>return action result as string.</returns>
+        public string MapActionRole(Menu request)
+        {
+            string Result = "";
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objParam = new DynamicParameters();
+                objParam.Add("@UserID", request.UserID);
+                objParam.Add("@RoleId", request.RoleID);
+                objParam.Add("@ActionIds", request.ActionIDs);
+        
+                objParam.Add("@Result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);// send output parameter
+                int iRes = dc.ExecuteProc(SR_USP_UPDATEACTIONROLE, objParam);
+                Result = objParam.Get<string>("@Result");// Get output parameter value
+            }
+            return Result;
+        }
+
+
+
+        #region MANAGE MENU
+        /// <summary>
         /// This method returns all user list with their role
         /// </summary>
-        /// <returns></returns>
+        /// <returns>return list of menu items</returns>
         public IList<Menu> GetMenuList(string LoginCred)
         {
             IList<Menu> listMenu = new List<Menu>();
@@ -257,7 +336,7 @@ namespace SMT.SpotRental.Database
         /// <summary>
         /// This method returns all Parent Menu
         /// </summary>
-        /// <returns></returns>
+        /// <returns>return list of menu items</returns>
         public IList<Menu> GetParentMenu(string LoginCred)
         {
             IList<Menu> listMenu = new List<Menu>();
@@ -270,7 +349,11 @@ namespace SMT.SpotRental.Database
             }
             return listMenu;
         }
-
+        /// <summary>
+        /// This method manage CRUD operation with menu
+        /// </summary>
+        /// <param name="request">request as Menu</param>
+        /// <returns>action of operation</returns>
         public string ManageMenus(Menu request)
         {
             string strResult = "";
@@ -293,5 +376,52 @@ namespace SMT.SpotRental.Database
             return strResult;
 
         }
+        #endregion
+
+        #region MANAGE LOCATION
+        /// <summary>
+        /// This method returns all location list 
+        /// </summary>
+        /// <returns>return list of menu items</returns>
+        public IList<Location> GetLocationList(string LoginCred)
+        {
+            IList<Location> listLocation = new List<Location>();
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objparams = new DynamicParameters();
+                objparams.Add("@UserID", LoginCred);
+                objparams.Add("@QueryNo", 1);
+                listLocation = dc.ExecuteProc<Location>(SR_USP_GETLOCATION, objparams);
+            }
+            return listLocation;
+        }
+
+        /// <summary>
+        /// This method manage CRUD operation with location
+        /// </summary>
+        /// <param name="request">request as Location</param>
+        /// <returns>action of operation</returns>
+        public string ManageLocation(Location request)
+        {
+            string strResult = "";
+            using (DBConnect dc = new DBConnect())
+            {
+                DynamicParameters objparams = new DynamicParameters();
+                objparams.Add("@Loccode", request.LocationCode);
+                objparams.Add("@LocationName", request.LocationName);
+                objparams.Add("@ShortName", request.ShortName);
+                objparams.Add("@City", request.City);
+                objparams.Add("@Active", request.Active);
+                objparams.Add("@visible", request.Visible);
+                objparams.Add("@EmailId", request.EmailId);
+                objparams.Add("@QueryNo", request.QueryNo);
+                objparams.Add("@Result", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+                strResult = Convert.ToString(dc.ExecuteProc(SR_USP_MANAGELOCATION, objparams));
+                strResult = objparams.Get<string>("@Result");
+            }
+            return strResult;
+
+        }
+        #endregion
     }
 }

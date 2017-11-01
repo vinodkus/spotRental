@@ -27,9 +27,9 @@ namespace SMT.SpotRental.Data
             return users.ValidateUser(UserName_Email, UserPassword);
         }
 
-        public IList<Menu> GetNavigationDetails(string LoginCred)
+        public IList<Menu> GetNavigationDetails(string LoginCred, string RoleID = "0", string QueryNo = "1")
         {
-            return users.GetNavigationDetails(LoginCred);
+            return users.GetNavigationDetails(LoginCred, RoleID,QueryNo);
         }
 
         public IList<User> SearchEmployees(string EmployeeCode, string FName, string LName, string MobileNo,string EmailID)
@@ -64,11 +64,23 @@ namespace SMT.SpotRental.Data
             return users.GetUserList();
         }
 
+        public string RegisterPortalUser(User req)
+        {
+            return users.RegisterPortalUser(req);
+        }
+
+        public string UpdatePortalUser(User req)
+        {
+            return users.UpdatePortalUser(req);
+        }
+        public string MapActionRole(Menu req)
+        {
+            return users.MapActionRole(req);
+        }
         public IList<Menu> GetMenuList(string LoginCred)
         {
             return users.GetMenuList(LoginCred);
         }
-
         public IList<Menu> GetParentMenu(string LoginCred)
         {
             return users.GetParentMenu(LoginCred);
@@ -77,5 +89,15 @@ namespace SMT.SpotRental.Data
         {
             return users.ManageMenus(request);
         }
+
+        public IList<Location> GetLocationList(string LoginCred)
+        {
+            return users.GetLocationList(LoginCred);
+        }
+        public string ManageLocation(Location request)
+        {
+            return users.ManageLocation(request);
+        }
+
     }
 }

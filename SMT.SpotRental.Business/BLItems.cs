@@ -35,9 +35,9 @@ namespace SMT.SpotRental.Business
         {
             return ItemsMapper.MapVehicleTypeList(itemRepository.GetAllVehicleTypes());
         }
-        public IList<TripStatusEntity> GetTripStatusList(string DisplayFor)
+        public IList<TripStatusEntity> GetTripStatusList(string DisplayFor, string GroupName = "")
         {
-            return ItemsMapper.MapTripStatus(itemRepository.GetTripStatusList(DisplayFor));
+            return ItemsMapper.MapTripStatus(itemRepository.GetTripStatusList(DisplayFor, GroupName));
         }
         public IList<VehicleMasterEntity> GetVehicleList(string VendorID)
         {

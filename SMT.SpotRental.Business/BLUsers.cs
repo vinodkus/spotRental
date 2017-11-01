@@ -26,9 +26,9 @@ namespace SMT.SpotRental.Business
         {
             return UserMapper.MapUserEntity(userRepository.ValidateUser(LoginCred, Password));
         }
-        public IList<MenuEntity> GetNavigationDetails(string LoginCred)
+        public IList<MenuEntity> GetNavigationDetails(string LoginCred, string RoleID = "0", string QueryNo="1")
         {
-            return UserMapper.MapMenuEntityList(userRepository.GetNavigationDetails(LoginCred));
+            return UserMapper.MapMenuEntityList(userRepository.GetNavigationDetails(LoginCred,RoleID,QueryNo));
         }
         public IList<UserEntity> SearchEmployees(string EmployeeCode, string FName, string LName, string MobileNo, string EmailID)
         {
@@ -60,6 +60,18 @@ namespace SMT.SpotRental.Business
         {
             return  UserMapper.MapUserEntityList(userRepository.GetUserList());
         }
+        public string RegisterPortalUser(UserEntity req)
+        {
+            return userRepository.RegisterPortalUser(UserMapper.MapUser(req));
+        }
+        public string UpdatePortalUser(UserEntity req)
+        {
+            return userRepository.UpdatePortalUser(UserMapper.MapUser(req));
+        }
+        public string MapActionRole(MenuEntity req)
+        {
+            return userRepository.MapActionRole(UserMapper.MapMenuEntity(req));
+        }
         public IList<MenuEntity> GetMenuList(string LoginCred)
         {
             return UserMapper.MapMenuEntityList(userRepository.GetMenuList(LoginCred));
@@ -71,7 +83,16 @@ namespace SMT.SpotRental.Business
         }
         public string ManageMenus(MenuEntity requst)
         {
-            return userRepository.ManageMenus (UserMapper.MapMenuEntity(requst));
+            return userRepository.ManageMenus(UserMapper.MapMenuEntity(requst));
+        }
+
+        public IList<LocationEntity> GetLocationList(string LoginCred)
+        {
+            return UserMapper.MapLocationEntityList(userRepository.GetLocationList(LoginCred));
+        }
+        public string ManageLocation(LocationEntity request)
+        {
+            return userRepository.ManageLocation(UserMapper.MapLocationEntity(request));
         }
     }
 }

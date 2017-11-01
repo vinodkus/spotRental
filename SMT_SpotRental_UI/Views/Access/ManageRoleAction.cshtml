@@ -1,0 +1,57 @@
+﻿@model SMT.SpotRental.UI.Models.DashboardViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Scripts.Render("~/bundles/jquery/dataTables")
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/dataTables")
+
+@Styles.Render("~/Content/addons")
+@Styles.Render("~/Content/sweetalert")
+@Scripts.Render("~/Jquery/sweetalert")
+@Scripts.Render("~/Jquery/manageUsersList")
+@Scripts.Render("~/Jquery/roleActionMap")
+
+<style>
+    .btn {
+        padding: 6px 12px;
+        height: 32px;
+    }
+</style>
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="glyphicon glyphicon-user"></i>&nbsp;Action-Role Map
+            </h3>
+        </div>
+        <div class="box box-default collapsed-box box-solid box-header with-border">
+            <div class="container-fluid">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label" style="font-size: 11px" for="inputLoaction">Select Role </label>
+                    </div>
+                    <div class="form-group">
+                        <select name="ddlRoles" id="ddlRoles"  onchange="getAllMenuItems()" class="form-control" style="width:150px;">
+                            <option value="0">--SELECT--</option>
+                        </select>
+                    </div>
+                    
+
+                    <div class="form-group pull-right">
+                        <input type="submit"  name="btnSave" value="Save" id="btnSave" tabindex="4" class="btn btn-primary btn-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="box-body" style="display:block">
+                <div id="divActionList" style="display:none">
+                    <!--Action/Menu List By Partial View -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿
+@model SMT.SpotRental.UI.Response.LocationResponse
+
+
+<table class="table table-bordered table-striped dataTable no-footer" id="tblLocations" role="grid" aria-describedby="tblLocations">
+    @if (Model != null && Model.locationItems != null && Model.locationItems.Count > 0)
+    {
+        <thead class="header" style="background-color: #3c8dbc; color: white;">
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1">
+                    Location Code
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1">
+                    Location Name
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1">
+                    Short Name
+                </th>
+                <th class="no-sort" tabindex="0" aria-controls="example1" rowspan="1" style="text-align:center">
+                    City
+                </th>
+                <th class="no-sort" tabindex="0" aria-controls="example1" rowspan="1" style="text-align:center">
+                    EmailId
+                </th>
+                <th class="no-sort" tabindex="0" aria-controls="example1" rowspan="1" style="text-align:center">
+                    Active
+                </th>
+                <th class="no-sort" tabindex="0" aria-controls="example1" rowspan="1" style="text-align:center">
+                    Visible
+                </th>
+                
+                <th class="no-sort" tabindex="0" aria-controls="example1" rowspan="1" style="text-align:center">
+                    Edit
+                </th>
+            </tr>
+        </thead>
+        foreach (var location in Model.locationItems)
+        {
+            //var locationctive = location.Active == "Y" ? "Yes" : "No";
+            <tr>
+
+                <td>@location.LocationCode  </td>
+                <td>@location.LocationName</td>
+                <td>@location.ShortName</td>
+                <td>@location.City</td>
+                <td>@location.EmailId</td>
+                @if (location.Active == "Y")
+                    {
+                    <td style="text-align:center">
+                        <a href="#" class="btn btn-success" title="Status">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                    </td>
+                }
+                else
+                {
+                    <td style="text-align:center"><a href="#" class="btn btn-danger" title="Status"> <i class="glyphicon glyphicon-remove"></i></a> </td>
+                }
+                <td style="text-align:center">@(location.Visible == "Y" ? "Yes" : "No") </td>
+                <td style="text-align:center"><a href="#" class="btn btn-danger" onclick="showPopupForEditLocation('@location.LocationCode','@location.LocationName','@location.ShortName','@location.City','@location.EmailId','@location.Active','@location.Visible')"> <i class="glyphicon glyphicon-edit"></i> </a></td>
+
+            </tr>
+        }
+    }
+    else
+    {
+        <tr role="row">
+            <td colspan="6">No data found!!</td>
+        </tr>
+    }
+
+</table>

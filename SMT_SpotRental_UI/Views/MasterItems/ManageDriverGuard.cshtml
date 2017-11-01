@@ -3,15 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/jquery/dataTables")
-@Scripts.Render("~/bundles/dataTables")
-@Styles.Render("~/Content/dataTables")
-
-@Styles.Render("~/Content/addons")
-@Styles.Render("~/Content/sweetalert")
 @Scripts.Render("~/Jquery/manageDriverGuard")
-@Scripts.Render("~/Jquery/sweetalert")
-
 <input type="hidden" id="hdnDocsPath" value='@ViewBag.DOCS_PATH' />
 <div style="" class="content">
     <div class="box box-danger">
